@@ -12,17 +12,19 @@ Traditional autonomous driving technology divides autonomous driving pipeline in
 
 ### LiDAR Perception
 
+## Prediction
+
+## Planning
+
+## Control
+
 ## Simulation
 
 ### Log-Replay Vs. Simulation
 
-## MAPs
+## :world_map: Mapping & Localization
 
-## Autonomous Vehicle Safety
-
-
-
-
+## :safety_vest: Autonomous Vehicle Safety
 
 ### Regulation & Standards
 
