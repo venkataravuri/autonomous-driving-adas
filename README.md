@@ -63,6 +63,8 @@ full autonomous driving requires complete, 360-degree surround camera vision.
 
  variety of seasons, routes, times of the day, illumination conditions, highway, and urban roads.
 
+Surround-view fisheye cameras
+
 ### RADAR Perception
 
 ### LiDAR Perception
