@@ -10,6 +10,8 @@ End-to-end autonomous driving systems streamline this process using a unified mo
 
 end-to-end model ingests camera and lidar data, as well as the vehicle’s trajectory history, to generate a safe, optimal vehicle path for five seconds post-sensor input.
 
+advanced driving assistance systems (ADAS), 
+
 ## :camera: Perception
 
 Building an autonomous system to navigate safely in the complex physical world is extremely challenging. The system needs to perceive and understand its surrounding environment holistically, then make correct, safe decisions in a fraction of a second
@@ -45,6 +47,9 @@ Multi-Sensor Kalman Filter
 
 Sources
 - [DRIVE Labs: Tracking Objects With Surround Camera Vision](https://developer.nvidia.com/blog/drive-labs-tracking-objects-with-surround-camera-vision/)
+- 
+
+### depth estimation
 
 ### Visual Perception
 
@@ -90,6 +95,10 @@ Advanced driver assistance systems rely on front and rear cameras to perform ,
 ##### L2 to L3
 
 ##### High-level (L4+) Autonomous Driving 
+
+## Datasets
+
+https://medium.com/analytics-vidhya/15-best-open-source-autonomous-driving-datasets-34324676c8d7
 
 ## Auto Industry
 
