@@ -1,4 +1,4 @@
-# Awesome Self-Driving Vehicles
+# Awesome Self-Driving Cars & Autonomous Vehicles
 A repository of autnonoums self-driving vehicles articles, dataset, software and more.
 
 ## Vehicle Perception
