@@ -4,7 +4,15 @@ A repository of autnonoums self-driving vehicles articles, dataset, software and
 ## Overview
 Traditional autonomous driving technology divides autonomous driving pipeline into several different functions such as perception, localization & mapping, prediction, planning, and control. However, modern architecture encapsulates entire pipeline tasks into a single module, leveraging an end-to-end deep neural network for high integration level.
 
+AV software development has traditionally been based on a modular approach, with separate components for object detection and tracking, trajectory prediction, and path planning and control.
+
+End-to-end autonomous driving systems streamline this process using a unified model to take in sensor input and produce vehicle trajectories, helping avoid overcomplicated pipelines and providing a more holistic, data-driven approach to handle real-world scenarios.
+
+end-to-end model ingests camera and lidar data, as well as the vehicle’s trajectory history, to generate a safe, optimal vehicle path for five seconds post-sensor input.
+
 ## :camera: Perception
+
+Building an autonomous system to navigate safely in the complex physical world is extremely challenging. The system needs to perceive and understand its surrounding environment holistically, then make correct, safe decisions in a fraction of a second
 
 ###  object detection or tracking 
 
@@ -61,6 +69,9 @@ full autonomous driving requires complete, 360-degree surround camera vision.
 ## Control
 
 ## Simulation
+
+ testing inside the open-source NAVSIM simulator 
+ 
 
 ### Log-Replay Vs. Simulation
 
