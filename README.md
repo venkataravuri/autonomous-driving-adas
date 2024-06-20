@@ -22,6 +22,8 @@ simple online and real-time tracker (SORT) that uses a Kalman filter for state e
 detection errors include partial or double detections and missed detections
  environmental occlusions
 
+ The accuracy of object tracking plays a critical role in robust distance-to-object and object velocity estimations.
+
 vehicle tracking, Pedestrian tracking
 
 Multi-Sensor Kalman Filter
@@ -37,6 +39,16 @@ Sources
 - [DRIVE Labs: Tracking Objects With Surround Camera Vision](https://developer.nvidia.com/blog/drive-labs-tracking-objects-with-surround-camera-vision/)
 
 ### Visual Perception
+
+full autonomous driving requires complete, 360-degree surround camera vision.
+
+ surround camera object tracking software currently leverages a six-camera, 360-degree surround perception setup that has no blind spots around the car. The software tracks objects in all six camera images, and associates their locations in image space with unique ID numbers as well as time-to-collision (TTC) estimates.
+
+ feature points which are invariant to rotation and translation are detected by the Harris Corner Detector [1]. Small templates centered on the corner points are tracked by the Lucas-Kanade template tracking algorithm
+
+ Ghost tracks due to objects moving out of the scene are the main cause of false positive braking. Removing them with low latency and without missing any object tracks is a challenging task. 
+
+ variety of seasons, routes, times of the day, illumination conditions, highway, and urban roads.
 
 ### RADAR Perception
 
@@ -58,7 +70,11 @@ Sources
 
 ### Regulation & Standards
 
-#### Driver Assist System
+#### Advance Driver Assistance System
+
+Advanced driver assistance systems rely on front and rear cameras to perform ,
+1. Automatic cruise control (ACC)
+2. and lane keep assist. 
 
 ##### L2 to L3
 
