@@ -22,17 +22,17 @@ AV software development has traditionally been based on a modular approach, with
 
 - ## :blue_car: [Trajectory Prediction](docs/prediction.md)
 
-- ## :motorway: [Path Planning](docs/planning.md)
+- ## :motorway: [Path Planning](docs/docs/planning.md)
 
-- ## :world_map: [Mapping & Localization](mapping.md)
+- ## :world_map: [Mapping & Localization](docs/mapping.md)
 
-- ## :compass: [Control]()
+- ## :compass: [Control](control.md)
 
-- ## :city_sunset: [Simulation]()
+- ## :city_sunset: [Simulation](docs/simulation.md)
 
   - ### [Log-Replay Vs. Simulation]()
 
-- ## :medal_sports: [Regulations & Standards]()
+- ## :medal_sports: [Regulations & Standards](docs/regulations.md)
 
   - ### [Advanced Driver Assistance System (ADAS) Levels]()
 
