@@ -1,8 +1,8 @@
 # :ok_hand: Awesome Self-Driving Cars - AV & ADAS :car:
 
-AV software development has traditionally been based on a modular approach, with separate components for object detection and tracking, mapping & localization, trajectory prediction, and path planning and control. However, modern architecture encapsulates entire pipeline tasks into a single module, leveraging an end-to-end deep neural network for high integration level.
+AV software development has traditionally been based on a modular approach, with separate components for **object detection and tracking, mapping & localization, trajectory prediction, and path planning and control**. However, modern architecture encapsulates entire pipeline tasks into a single module, leveraging an end-to-end deep neural network for high integration level.
 
-This is a repository of Autonomous Vechicles (AV) & Advanced Driving Assistance Systems (ADAS) articles, dataset, algorithms, hardware and more.
+> This is a repository of Autonomous Vechicles (AV) & Advanced Driving Assistance Systems (ADAS) articles, dataset, algorithms, hardware and more.
 
 - ## :camera: [Perception](docs/perception.md)
 
@@ -18,30 +18,26 @@ This is a repository of Autonomous Vechicles (AV) & Advanced Driving Assistance 
 
     - #### [Multi-Object Trackers (MOT)](), [Simple Online and Real-time Tracker (SORT)]()
 
-    - #### Depth Estimation
+    - #### [Depth Estimation]()
 
-- ## Trajectory Prediction
+- ## :blue_car: [Trajectory Prediction]()
 
-- ## Path Planning
+- ## :motorway: [Path Planning]()
 
-- ## :world_map: Mapping & Localization
+- ## :world_map: [Mapping & Localization]()
 
-- ## Control
+- ## :compass: [Control]()
 
-- ## Simulation
+- ## :city_sunset: [Simulation]()
 
-Testing inside the open-source NAVSIM simulator 
+  - ### [Log-Replay Vs. Simulation]()
 
-### Log-Replay Vs. Simulation
+- ## :medal_sports: [Regulations & Standards]()
 
-- ## Regulations & Standards
+  - ### [Advanced Driver Assistance System (ADAS) Levels]()
 
-  - ### Advance Driver Assistance System (ADAS) Levels
-
-  - ### :safety_vest: Autonomous Vehicle Safety
-
-https://medium.com/analytics-vidhya/15-best-open-source-autonomous-driving-datasets-34324676c8d7
+  - ### :safety_vest: [Autonomous Vehicle Safety]()
 
 - ## :trophy: [Competitions & Challenges](docs/competitons.md)
 
-- ## Auto Industry Insights
+- ## :oncoming_bus: [Auto Industry Insights]()
