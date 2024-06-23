@@ -95,9 +95,27 @@ Surround-view fisheye cameras
 
 Advanced driver assistance systems rely on front and rear cameras to perform ,
 1. Automatic cruise control (ACC)
-2. and lane keep assist. 
+2. and lane keep assist.
 
-##### L2 to L3
+## Object Tracking
 
-##### High-level (L4+) Autonomous Driving 
+There are two main types of tracking algorithm family: 
+1) Single Object Tracker (SOT)
+2) Multiple Object Tracker (MOT)
+   
+Multiple Object Tracking (MOT) refers to the computer vision task that addresses to track every single object of interest in the images or videos. In usual case, MOT integrates a technique known as tracking-by-detection. It entails running a tracker on the set of detections after an independent detector has been applied to images or videos in order to gather expected detections. Unique IDs are then assigned to the bounding box of detected objects and estimation algorithms are used to track moving object’s future actions without losing assigned IDs. As conclusion, the following three steps are shared by the majority of MOT algorithms in high level:
+- Detect objects
+- Create a unique ID for each detected objects
+- Track object as they move, maintaining the assigned IDs.
+
+### real-time object tracking methods.
+
+#### Primitive Techniques
+
+Kalman filters
+
+State Estimation: Kalman filter is applied to to predict the future location of the target by optimally solving the velocity components. Then the detected bounding box in the previous step is used to update the target state.
+Target Association: Kalman filter just estimates the object’s new location, which needs to be optimized. 
+
+Hungarian algorithms 
 
