@@ -1,4 +1,40 @@
+# :camera: Perception
+
 > Perception refers to the processing and interpretation of sensor data to detect, identify, classify and track objects.
+
+Perception helps car to see the world around itself, as well as recognize and classify the things that it sees.
+- The car needs to see and classify traffic lights, pedestrians, road signs, walkways, parking spots, lanes, and much more.
+- Not only that, it also needs to know the exact distance between itself and the objects around it.
+
+To achieve such a high level of perception, a self-driving car must have three sensors:
+- Camera
+- LiDAR
+- RADAR
+
+## Camera - Visual Perception
+
+Camera provides vision to the car, enabling multiple tasks like classification, segmentation, and localization.
+
+## LiDAR
+
+LiDAR stands for Light Detection And Ranging, it’s a method to measure the distance of objects by firing a laser beam and then measuring how long it takes for it to be reflected by something.
+
+LiDAR perceives spatial information. 
+
+ LiDAR sensor uses lasers or light to measure the distance of the nearby object. It will work at night and in dark environments, but it can still fail when there’s noise from rain or fog. That’s why we also need a RADAR sensor.
+
+## RADAR
+
+Radio detection and ranging (RADAR) is a key component in many military and consumer applications. It was first used by the military to detect objects. It calculates distance using radio wave signals.
+
+RADARs are highly effective because they use radio waves instead of lasers, so they work in any conditions. 
+
+Radars are noisy sensors, means that even if the camera sees no obstacle, the radar will detect some obstacles.
+
+<img src="https://i0.wp.com/neptune.ai/wp-content/uploads/2022/10/Self-driving-cars-lidar.png?ssl=1" height="50%" width="50%" />
+<img src="https://i0.wp.com/neptune.ai/wp-content/uploads/2022/10/Self-driving-cars-radar.png?ssl=1" height="50%" width="50%" />
+
+RADAR data should be cleaned in order to make good decisions and predictions. We need to separate weak signals from strong ones; this is called thresholding. We also use Fast Fourier Transforms (FFT) to filter and interpret the signal. 
 
 Generate the trajectories of objects and bounding box (bbox). The labels on top of a bbox (for example, [21] (0.24)) show the car ID (for example, 21), and the tracking confidence (for example, 0.24), respectively.
 
