@@ -44,3 +44,24 @@ In a raw-data fusion approach, objects detected by the different sensors are fir
 <img src="https://leddartech.com/app/uploads/2022/03/figure2.png" height="50%" width="50%" />
 
 Fusing raw data from multiple frames and multiple measurements of a single object improves the signal-to-noise ratio (SNR), enables the system to overcome single sensor faults and allows the use of lower-cost sensors. This solution provides better detections and less false alarms, especially for small obstacles and unclassified objects.
+
+full autonomous driving requires complete, 360-degree surround camera vision.
+
+ surround camera object tracking software currently leverages a six-camera, 360-degree surround perception setup that has no blind spots around the car. The software tracks objects in all six camera images, and associates their locations in image space with unique ID numbers as well as time-to-collision (TTC) estimates.
+
+ feature points which are invariant to rotation and translation are detected by the Harris Corner Detector [1]. Small templates centered on the corner points are tracked by the Lucas-Kanade template tracking algorithm
+
+ Ghost tracks due to objects moving out of the scene are the main cause of false positive braking. Removing them with low latency and without missing any object tracks is a challenging task. 
+
+ variety of seasons, routes, times of the day, illumination conditions, highway, and urban roads.
+
+Surround-view fisheye cameras
+
+Advanced driver assistance systems rely on front and rear cameras to perform ,
+1. Automatic cruise control (ACC)
+2. and lane keep assist. 
+
+##### L2 to L3
+
+##### High-level (L4+) Autonomous Driving 
+
