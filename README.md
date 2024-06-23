@@ -4,53 +4,44 @@ AV software development has traditionally been based on a modular approach, with
 
 This is a repository of Autonomous Vechicles (AV) & Advanced Driving Assistance Systems (ADAS) articles, dataset, algorithms, hardware and more.
 
-## :camera: [Perception](docs/perception.md)
+- ## :camera: [Perception](docs/perception.md)
 
-###  Object Detection 
+  - ### [Object Detection]()
 
-### Object Tracking 
+    - #### [Camera](), [RADAR]() & [LiDAR]()
 
-#### Multi-Object Trackers (MOT)
+    - #### [Sensor Fusion]()
 
-#### simple online and real-time tracker (SORT)
+    - ##### [Datasets](), [Algorithms]() & [Hardware]()
 
-### Sensor Fusion
+  - ### [Object Tracking]() 
 
-### Sensor Fusion
+    - #### [Multi-Object Trackers (MOT)](), [Simple Online and Real-time Tracker (SORT)]()
 
-### depth estimation
+    - #### Depth Estimation
 
-### Visual Perception
+- ## Trajectory Prediction
 
-### RADAR Perception
+- ## Path Planning
 
-### LiDAR Perception
+- ## :world_map: Mapping & Localization
 
-## Prediction
+- ## Control
 
-## Planning
-
-## Control
-
-## Simulation
+- ## Simulation
 
 Testing inside the open-source NAVSIM simulator 
 
 ### Log-Replay Vs. Simulation
 
-## :world_map: Mapping & Localization
+- ## Regulations & Standards
 
-## :safety_vest: Autonomous Vehicle Safety
+  - ### Advance Driver Assistance System (ADAS) Levels
 
-### Regulation & Standards
-
-#### Advance Driver Assistance System (ADAS) Levels
-
-
-## Datasets
+  - ### :safety_vest: Autonomous Vehicle Safety
 
 https://medium.com/analytics-vidhya/15-best-open-source-autonomous-driving-datasets-34324676c8d7
 
-## Auto Industry
+- ## :trophy: [Competitions & Challenges](docs/competitons.md)
 
-## :trophy: [Competitions & Challenges](docs/competitons.md)
+- ## Auto Industry Insights
