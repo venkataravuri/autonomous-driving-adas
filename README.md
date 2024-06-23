@@ -6,7 +6,7 @@ AV software development has traditionally been based on a modular approach, with
 
 - ## :camera: [Perception](docs/perception.md)
 
-  - ### [Object Detection]()
+  - ### :vertical_traffic_light: [Object Detection]()
 
     - #### [Camera](), [RADAR]() & [LiDAR]()
 
@@ -14,17 +14,17 @@ AV software development has traditionally been based on a modular approach, with
 
     - ##### [Datasets](), [Algorithms]() & [Hardware]()
 
-  - ### [Object Tracking]() 
+  - ### :minibus: [Object Tracking]() 
 
     - #### [Multi-Object Trackers (MOT)](), [Simple Online and Real-time Tracker (SORT)]()
 
     - #### [Depth Estimation]()
 
-- ## :blue_car: [Trajectory Prediction]()
+- ## :blue_car: [Trajectory Prediction](docs/prediction.md)
 
-- ## :motorway: [Path Planning]()
+- ## :motorway: [Path Planning](docs/planning.md)
 
-- ## :world_map: [Mapping & Localization]()
+- ## :world_map: [Mapping & Localization](mapping.md)
 
 - ## :compass: [Control]()
 
