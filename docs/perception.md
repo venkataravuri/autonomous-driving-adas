@@ -119,3 +119,11 @@ Target Association: Kalman filter just estimates the object’s new location, wh
 
 Hungarian algorithms 
 
+#### Performance Metrics
+
+Metrics for evaluating multi-object tracking (MOT) performance.
+- [HOTA](https://jonathonluiten.medium.com/how-to-evaluate-tracking-with-the-hota-metrics-754036d183e1) (Higher Order Tracking Accuracy). 
+- MOTA
+- IDF1
+- Track mAP
+
