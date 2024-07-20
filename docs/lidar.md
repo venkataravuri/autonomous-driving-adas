@@ -44,3 +44,4 @@ https://www.cvlibs.net/datasets/kitti/index.php
 - https://www.linkedin.com/pulse/auto-annotating-labeling-lidar-data-self-driving-vehicles-bertini/
 - https://www.thinkautonomous.ai/blog/voxel-vs-points/
 - https://www.thinkautonomous.ai/blog/types-of-lidar/
+- https://www.thinkautonomous.ai/blog/how-lidar-detection-works/
