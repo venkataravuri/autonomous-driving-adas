@@ -40,15 +40,18 @@ https://www.cvlibs.net/datasets/kitti/index.php
 
 ## LiDAR Object Detection Algorithms
 
+Traditional CNNs cannot be applied to Point Clouds. Images have a fixed width and height, it's a rectangular matrix where every pixel lies between 0 and 255, nearby pixels belong to the same object, and it's all flat 2D. Point clouds are 3D structure has no order, no color, and no continuity between the points.
+
+PointNet/PointNet++ is used to extract features, later these features used in 3D Object Detectors.
+
 - MOSAIK Suite from MicroVision – Comprehensive and professional object detection software, including lane detection and free space detection. Sign recognition is slated to release in MOSAIK 2.0 in Sept. 2023. MicroVision Tools Login
 - PointNet: A deep learning architecture designed for processing point cloud data directly. PointNet
 - PointNet++: An extension of PointNet that handles large-scale point cloud data more effectively. PointNet++
-- VoteNet: A model for 3D object detection in point clouds, which can be applied to LiDAR data. VoteNe
+- VoteNet: A model for 3D object detection in point clouds, which can be applied to LiDAR data.
 
 ## Hardware
 
 - [OUSTER](https://ouster.com/) formerly Velodyne
-
 
 ## 
 
