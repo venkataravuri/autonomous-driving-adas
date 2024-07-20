@@ -1,19 +1,14 @@
 # :ok_hand: Awesome Self-Driving Cars - AV & ADAS :car:
 
-AV software development has traditionally been based on a modular approach, with separate components for **object detection and tracking, mapping & localization, trajectory prediction, and path planning and control**. However, modern architecture encapsulates entire pipeline tasks into a single module, leveraging an end-to-end deep neural network for high integration level.
+> A repository of Advanced Driving Assistance Systems (ADAS) articles, trends, research papers, challenges covering datasets, ML algorithms, hardware and more.
 
-> This is a repository of Autonomous Vechicles (AV) & Advanced Driving Assistance Systems (ADAS) articles, dataset, algorithms, hardware and more.
+The modern Autononoums driving architectures today replacing conventional modular pipeline tasks, with separate components for **object detection and tracking, mapping & localization, trajectory prediction, and path planning and control** with end-to-end AI models encapsulating entire pipeline tasks into a single module, leveraging an end-to-end deep neural networks.
 
 - ## :camera: [Perception](docs/perception.md)
-
-  - ### :vertical_traffic_light: [Object Detection]()
-
-    - #### [Camera](), [RADAR]() & [LiDAR]()
-
+  - ### Sensors: [Camera](), [RADAR](), [LiDAR]() & [GPS]()
     - #### [Sensor Fusion]()
-
+  - ### :vertical_traffic_light: [Object Detection]()
     - ##### [Datasets](), [Algorithms]() & [Hardware]()
-
   - ### :minibus: [Object Tracking]() 
 
     - #### [Multi-Object Trackers (MOT)](), [Simple Online and Real-time Tracker (SORT)]()
