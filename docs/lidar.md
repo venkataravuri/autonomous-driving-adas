@@ -13,6 +13,8 @@ LiDAR sensor works with light. LiDAR stands for Light Detection And Ranging. LiD
 
 LiDAR estimate velocity as difference between two consecutive measurements. RADARs, on the other hand, can estimate the velocity using Doppler effect.
 
+---
+
 Obstacle detection process that generally include folliwng steps.
 - Point cloud processing
 - Point cloud Segmentation
@@ -48,6 +50,16 @@ PointNet/PointNet++ is used to extract features, later these features used in 3D
 - PointNet: A deep learning architecture designed for processing point cloud data directly. PointNet
 - PointNet++: An extension of PointNet that handles large-scale point cloud data more effectively. PointNet++
 - VoteNet: A model for 3D object detection in point clouds, which can be applied to LiDAR data.
+
+### Voxels Vs. Point Clouds
+
+A voxel is a 3D image. Splits the space (yes, the "air") into 50*50*50 cm grids, and consider these as voxels. You then take the average of the points inside and give it a value. If no point is inside, you consider it empty.
+
+By converting  point cloud to a set of "voxels", we can use 3D Convolutions.
+
+Point and Voxel based approaches are the 2 "main" ways to process point clouds with 3D Deep Learning, 
+
+5 Approaches we can use to process point clouds using 3D Deep Learning, 
 
 ## Hardware
 
