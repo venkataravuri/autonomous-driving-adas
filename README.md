@@ -5,8 +5,9 @@
 The modern Autononoums driving architectures today replacing conventional modular pipeline tasks, with separate components for **object detection and tracking, mapping & localization, trajectory prediction, and path planning and control** with end-to-end AI models encapsulating entire pipeline tasks into a single module, leveraging an end-to-end deep neural networks.
 
 - ## :camera: [Perception](docs/perception.md)
-  - ### Sensors: [Camera](), [RADAR](), [LiDAR](docs/lidar.md) & [GPS]()
-    - #### [Sensor Fusion]()
+  - ### [Sensors]()
+    - #### [Camera](), [RADAR](), [LiDAR](docs/lidar.md) & [GPS]()
+    - #### [Sensor Fusion](docs/sensor-fusion.md)
   - ### :vertical_traffic_light: [Object Detection]()
     - ##### [Datasets](), [Algorithms]() & [Hardware]()
   - ### :minibus: [Object Tracking]() 
