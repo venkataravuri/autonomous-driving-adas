@@ -2,7 +2,16 @@
 
 ## Mapping
 
+Given a surround view of images, optionally accompanied by lidar point clouds, the end to end map generation task aims to predict map elements directly. Map elements include road boundaries, lane delimiters, centerlines, and crosswalks.
+
+### HD Maps
+
+High-definition (HD) maps offer an intricate and precise depiction of the road, encompassing lane markings, traffic signs, and other critical features. 
+
 ### Algorithms
+
+- [HDMapNet: An Online HD Map Construction and Evaluation Framework](https://arxiv.org/pdf/2107.06307)
+- [MapTRv2: An End-to-End Framework for Online Vectorized HD Map Construction](https://arxiv.org/pdf/2308.05736)
 
  PoseNet and VLocNet++, are some of the frameworks that use point data to estimate the 3D position and orientation. These estimated 3D positions and orientations can be used to derive scene semantics, as seen in the image below. 
 
