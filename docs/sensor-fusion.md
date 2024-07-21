@@ -31,6 +31,12 @@ The idea is to have, let’s say, a camera and a LiDAR sensor detect an obstacle
 
 This is similar to the mid-level method, except that we implement detection as well as tracking algorithms for each individual sensor, and then fuse the results.
 
+## Kalman Filters
+
+https://www.thinkautonomous.ai/blog/sensor-fusion/
+https://www.thinkautonomous.ai/blog/9-types-of-sensor-fusion-algorithms/
+
+
 #### References
 - https://medium.com/@dorlecontrols/sensor-fusion-242bc70e7332
 - 
