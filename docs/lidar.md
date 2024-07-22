@@ -13,6 +13,14 @@ LiDAR sensor works with light. LiDAR stands for Light Detection And Ranging. LiD
 
 LiDAR estimate velocity as difference between two consecutive measurements. RADARs, on the other hand, can estimate the velocity using Doppler effect.
 
+#### How LiDARs point clouds can be stored efficiently?
+
+- Point cloud data is stored in formats like LAS, LAZ, or PLY, with metadata like color or intensity values.
+- Data is structured using techniques like octrees or k-d trees. These structures enable faster data access and manipulation.
+- Data compression is applied to reduce storage needs while maintaining accuracy.
+  
+- [Storing Point Clouds in PostgreSQL](https://oslandia.com/wp-content/uploads/2018/05/Lemoine-Oslandia-Pointcloud.pdf)
+
 ---
 
 Obstacle detection process that generally include folliwng steps.
