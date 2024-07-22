@@ -24,11 +24,13 @@ HD Map is organized into layers.
 | 4 | Dynamic elements |  Dynamic elements like pedestrians, obstacles, and vehicles need to be updated for the HD map to be always precise and accurate. The dynamic element layer of HD maps captures and represents these time-varying aspects of the environment, which are essential for safe and efficient path planning and decision-making. |
 | 5 | Feature-Based Map Layers | HD maps rely heavily on advanced feature-based map layers for accurate localization and navigation. These layers use various techniques to identify and match features in the environment to ensure precise vehicle positioning. |
 
-### What are different HD Maps?
+### What are different HD Maps formats?
 
-
-
-
+| Format | Description File | Format Representations |
+| --- | --- | --- |
+| OpenDRIVE | Standard for logical description of road networks | XML Geometric primitives |
+| Lanelet2 | HD map format for autonomous driving XML, OSM | Points |
+| NDS | Global standard for automotive map data | Binary Vector data |
 
 ### Algorithms
 
