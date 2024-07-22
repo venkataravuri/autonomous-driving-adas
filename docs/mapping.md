@@ -15,7 +15,8 @@ High-definition (HD) maps offer an intricate and precise depiction of the road, 
 | 1 | Topological Representation | Topology captures how roads, lanes, intersections, and other features are connected |
 | 2 | Geometric Representation | Geometric features include the shapes and positions of roads, lanes, sidewalks, buildings, and terrain. These features are typically represented using a vector data structure, which describes simplified geometric shapes such as points, lines, curves, circles, and polygon. |
 | 3 | Semantic Representation | Semantic representation includes various traffic 2D and 3D objects such as lane boundaries, intersections, crosswalks, parking spots, stop signs, traffic lights, road speed limits, lane information, and road classification |
-
+| 4 | Dynamic elements |  Dynamic elements like pedestrians, obstacles, and vehicles need to be updated for the HD map to be always precise and accurate. The dynamic element layer of HD maps captures and represents these time-varying aspects of the environment, which are essential for safe and efficient path planning and decision-making. |
+| 5 | Feature-Based Map Layers | HD maps rely heavily on advanced feature-based map layers for accurate localization and navigation. These layers use various techniques to identify and match features in the environment to ensure precise vehicle positioning. |
 
 ### What are different HD Maps?
 
