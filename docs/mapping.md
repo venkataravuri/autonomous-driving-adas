@@ -8,7 +8,13 @@ Given a surround view of images, optionally accompanied by lidar point clouds, t
 
 High-definition (HD) maps offer an intricate and precise depiction of the road, encompassing lane markings, traffic signs, and other critical features. 
 
+<img src="https://geospatialmedia.s3.amazonaws.com/wp-content/uploads/2016/04/here-1.jpg" height="50%" width="50%" />
+
 #### What are different HD map layers?
+
+HD Map is organized into layers. 
+
+<img src="https://geospatialmedia.s3.amazonaws.com/wp-content/uploads/2019/01/HD-Maps-Layers-20190107.png" height="50%" width="50%" />
 
 | Layer | Mappying Information | ? |
 | --- | --- | --- |
@@ -32,6 +38,8 @@ High-definition (HD) maps offer an intricate and precise depiction of the road, 
  PoseNet and VLocNet++, are some of the frameworks that use point data to estimate the 3D position and orientation. These estimated 3D positions and orientations can be used to derive scene semantics, as seen in the image below. 
 
 ## Localization
+
+Localization module tells the car where you are in the 3D space, and what’s actually around you.
 
 Localization algorithms in self-driving cars calculate the position and orientation of the vehicle as it navigates – a science known as Visual Odometry (VO).
 
