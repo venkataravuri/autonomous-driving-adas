@@ -14,7 +14,7 @@ High-definition (HD) maps offer an intricate and precise depiction of the road, 
 
 HD Map is organized into layers. 
 
-<img src="https://geospatialmedia.s3.amazonaws.com/wp-content/uploads/2019/01/HD-Maps-Layers-20190107.png" height="50%" width="50%" />
+<img src="https://geospatialmedia.s3.amazonaws.com/wp-content/uploads/2019/01/HD-Maps-Layers-20190107.png" height="30%" width="30%" />
 
 | Layer | Mappying Information | ? |
 | --- | --- | --- |
@@ -32,7 +32,9 @@ HD Map is organized into layers.
 | Lanelet2 | HD map format for autonomous driving XML, OSM | Points |
 | NDS | Global standard for automotive map data | Binary Vector data |
 
-### Algorithms
+### HD Map Generation Techniques
+
+4 techniques are used to perform point cloud registration: optimization-based approaches, probabilistic-based approaches, feature-based approaches, and deep learning techniques.
 
 - [HDMapNet: An Online HD Map Construction and Evaluation Framework](https://arxiv.org/pdf/2107.06307)
 - [MapTRv2: An End-to-End Framework for Online Vectorized HD Map Construction](https://arxiv.org/pdf/2308.05736)
