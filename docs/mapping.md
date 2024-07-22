@@ -8,6 +8,21 @@ Given a surround view of images, optionally accompanied by lidar point clouds, t
 
 High-definition (HD) maps offer an intricate and precise depiction of the road, encompassing lane markings, traffic signs, and other critical features. 
 
+#### What are different HD map layers?
+
+| Layer | Mappying Information | ? |
+| --- | --- | --- |
+| 1 | Topological Representation | Topology captures how roads, lanes, intersections, and other features are connected |
+| 2 | Geometric Representation | Geometric features include the shapes and positions of roads, lanes, sidewalks, buildings, and terrain. These features are typically represented using a vector data structure, which describes simplified geometric shapes such as points, lines, curves, circles, and polygon. |
+| 3 | Semantic Representation | Semantic representation includes various traffic 2D and 3D objects such as lane boundaries, intersections, crosswalks, parking spots, stop signs, traffic lights, road speed limits, lane information, and road classification |
+
+
+### What are different HD Maps?
+
+
+
+
+
 ### Algorithms
 
 - [HDMapNet: An Online HD Map Construction and Evaluation Framework](https://arxiv.org/pdf/2107.06307)
@@ -21,3 +36,6 @@ Localization algorithms in self-driving cars calculate the position and orientat
 
 VO works by matching key points in consecutive video frames. With each frame, the key points are used as the input to a mapping algorithm. The mapping algorithm, such as Simultaneous localization and mapping (SLAM), computes the position and orientation of each object nearby with respect to the previous frame and helps to classify roads, pedestrians, and other objects around.
 
+### References
+
+- [A Comprehensive Survey on High-Definition Map Generation and Maintenance](https://www.mdpi.com/2220-9964/13/7/232)
