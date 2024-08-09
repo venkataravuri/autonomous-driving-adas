@@ -49,25 +49,13 @@ LiDAR point cloud data requires annotation and labeling to be used for training 
 XYZ & ASCII
 PLY
 
-## LiDAR Devices
+## LiDAR Hardware
 
-TODO
+- [OUSTER](https://ouster.com/) formerly Velodyne
 
-## FAQ
+## LiDAR Point Cloud Visualization
 
-#### How LiDARs estimate Velocity?
 
-LiDAR estimate velocity as difference between two consecutive measurements. RADARs, on the other hand, can estimate the velocity using Doppler effect.
-
-#### How LiDARs point clouds can be stored efficiently?
-
-- Point cloud data is stored in formats like LAS, LAZ, or PLY, with metadata like color or intensity values.
-- Data is structured using techniques like octrees or k-d trees. These structures enable faster data access and manipulation.
-- Data compression is applied to reduce storage needs while maintaining accuracy.
-  
-- [Storing Point Clouds in PostgreSQL](https://oslandia.com/wp-content/uploads/2018/05/Lemoine-Oslandia-Pointcloud.pdf)
-
----
 
 ## LiDAR 3D Object-Detection Methods
 
@@ -112,13 +100,29 @@ Point and Voxel based approaches are the 2 "main" ways to process point clouds w
 
 5 Approaches we can use to process point clouds using 3D Deep Learning, 
 
-## Hardware
+## Hands-on Lab
 
-- [OUSTER](https://ouster.com/) formerly Velodyne
+### 1. LiDAR Object Detection Non-ML Algorithms
 
-## 
+Processing and analyzing 3D point cloud data, particularly for object detection and segmentation tasks,
 
-**References**
+Github Repo: https://github.com/AlirezaHabibi1377/3D-LiDAR-Based-Object-Detection
+
+## FAQ
+
+#### How LiDARs estimate Velocity?
+
+LiDAR estimate velocity as difference between two consecutive measurements. RADARs, on the other hand, can estimate the velocity using Doppler effect.
+
+#### How LiDARs point clouds can be stored efficiently?
+
+- Point cloud data is stored in formats like LAS, LAZ, or PLY, with metadata like color or intensity values.
+- Data is structured using techniques like octrees or k-d trees. These structures enable faster data access and manipulation.
+- Data compression is applied to reduce storage needs while maintaining accuracy.
+  
+- [Storing Point Clouds in PostgreSQL](https://oslandia.com/wp-content/uploads/2018/05/Lemoine-Oslandia-Pointcloud.pdf)
+
+## References
 
 - https://www.linkedin.com/pulse/auto-annotating-labeling-lidar-data-self-driving-vehicles-bertini/
 - https://www.thinkautonomous.ai/blog/voxel-vs-points/
