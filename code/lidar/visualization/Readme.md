@@ -1,4 +1,8 @@
 
+# Introduction to AV Datasets
+
+
+## KITTI Dataset Visualization
 
 
 ### Prerequisites
@@ -16,8 +20,14 @@ sudo update-alternatives --install /usr/bin/python3 python /usr/bin/python3.10 1
 sudo update-alternatives --list python
 ```
 
+
 Create virtual environment,
 ```
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+
+
+
+export ETS_TOOLKIT='null'
+export DISPLAY=:1

@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
-import kitti_utils
+from kitti import kitti_utils
+import Object3d as o3d
 
 class KITTIDataset():
     '''Load KITT data and parse data into a usable format.'''
@@ -18,7 +19,7 @@ class KITTIDataset():
     def __len__(self):
         return self.num_samples
 
-    def _count_files_in_directory(directory_path):
+    def _count_files_in_directory(self, directory_path):
         path = Path(directory_path)
         return sum(1 for entry in path.iterdir() if entry.is_file())
 
@@ -31,3 +32,9 @@ class KITTIDataset():
         assert(idx < self.num_samples)
         label_file_name = os.path.join(self.label_2_dir, '%06d.txt'%(idx))
         return kitti_utils.read_label(label_filename=label_file_name)
+
+
+    def get_lidar_pcl(self, idx: int) -> o3d.geometry.PointCloud:
+        assert(idx < self.num_samples)
+        lidar_file_name = os.path.join(self.velodyne_dir, '%06d.bin'%(idx))
+        return kitti_utils.bin_to_pcd(bin_file=lidar_file_name)

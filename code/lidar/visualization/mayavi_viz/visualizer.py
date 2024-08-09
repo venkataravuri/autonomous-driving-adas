@@ -1,9 +1,17 @@
 
 from mayavi import mlab
-from ..kitti_dataset import KITTIDataset
+import mayavi
+import mayavi.core
+import mayavi.core.off_screen_engine
+
+from kitti.kitti_dataset import KITTIDataset
 import logging
+import numpy as np
 
 logger = logging.getLogger(__name__)
+
+mlab.options.offscreen = True
+
 
 def draw_lidar(pc, pc_label, color=None, fig=None, bgcolor=(0,0,0), pts_scale=1, pts_mode='point', pts_color=None):
     ''' Draw lidar points
@@ -27,7 +35,24 @@ def draw_lidar(pc, pc_label, color=None, fig=None, bgcolor=(0,0,0), pts_scale=1,
                 (125/255, 1, 0),
                 (0, 1, 0)]
 
-    mlab.points3d(pc[:,0], pc[:,1], pc[:,2],  color=color_list[1], mode=pts_mode, colormap = 'gnuplot', scale_factor=pts_scale, figure=fig) 
+    #mlab.points3d(pc[:,0], pc[:,1], pc[:,2],  color=color_list[1], mode=pts_mode, colormap = 'gnuplot', scale_factor=pts_scale, figure=fig)
+
+    fig = mayavi.mlab.figure(bgcolor=(0, 0, 0), size=(640, 360))
+    mayavi.mlab.points3d(
+        pc[:, 0],   # x
+        pc[:, 1],   # y
+        pc[:, 2],   # z
+        pc[:, 2],   # Height data used for shading
+        mode="point", # How to render each point {'point', 'sphere' , 'cube' }
+        colormap='spectral',  # 'bone', 'copper',
+        #color=(0, 1, 0),     # Used a fixed (r,g,b) color instead of colormap
+        scale_factor=1,     # scale of the points
+        line_width=10,        # Scale of the line, if any
+        figure=fig,
+    )
+    # 
+
+    mlab.savefig('lidar1.png')
 
     lidar_label = pc_label 
 
@@ -37,7 +62,7 @@ def draw_lidar(pc, pc_label, color=None, fig=None, bgcolor=(0,0,0), pts_scale=1,
         bbox = lidar_label[idx]
 
         b = convert_bbox_to_corners(bbox)#
-        # print('189: the size of b is: ', b.shape)
+        logger.debug(f"bbox corners {b}")
         # min_x, min_y, min_z, max_x, max_y, max_z, length_x, length_y, length_z
         
         for k in range(0,4):
@@ -51,9 +76,9 @@ def draw_lidar(pc, pc_label, color=None, fig=None, bgcolor=(0,0,0), pts_scale=1,
             i,j=k,k+4
             mlab.plot3d([b[i,0], b[j,0]], [b[i,1], b[j,1]], [b[i,2], b[j,2]], color=color, tube_radius=None, line_width=line_width)#, figure=fig)
 
+    mlab.savefig('lidar2.png')
 
-
-    middle_idx = 3000#00#pc.shape[0] / 2#
+    middle_idx = pc.shape[0] // 2
     mlab.view(azimuth=270, elevation=0, focalpoint=[ pc[middle_idx,0], pc[middle_idx,1], pc[middle_idx,2]], distance=10.0, figure=fig)
 
     return fig
@@ -79,7 +104,7 @@ def convert_bbox_to_corners(bbox):
     return np.transpose(corners_3d)
 
 
-def show_lidar(point_cloud_velo, point_cloud_label, img_fov=False):
+def generate_lidar_image(point_cloud_velo, point_cloud_label, img_fov=False):
     ''' Show all LiDAR points.
         Draw 3d box in LiDAR point cloud (in velo coord system) '''
 
@@ -87,7 +112,7 @@ def show_lidar(point_cloud_velo, point_cloud_label, img_fov=False):
 
     draw_lidar(point_cloud_velo, point_cloud_label, fig=fig)
 
-    mlab.show(1)
+    mlab.savefig('lidar.png')
 
 
 def dataset_viz():
@@ -96,7 +121,11 @@ def dataset_viz():
     idx : int = 7480
 
     point_cloud = dataset.get_lidar(idx)[:,0:7]
-    pint_cloud_label = dataset.get_label(idx)[:,0]
+    logger.debug(f"point cloud: {point_cloud.shape}")
+    logger.debug(f"{dataset.get_label(idx)}")
+    point_cloud_label = dataset.get_label(idx)
+
+    generate_lidar_image(point_cloud_velo=point_cloud, point_cloud_label=point_cloud_label)
 
 if __name__ == '__main__':
     dataset_viz()
