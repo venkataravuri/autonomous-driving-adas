@@ -1,7 +1,8 @@
 # LiDAR - Light Detection and Ranging
 
-LiDAR sensor works with light. LiDAR stands for Light Detection And Ranging. LiDAR sensors measure the time it takes for every laser beam hit an obstactcle to reflect and come back. The ouput is a point cloud. 
+LiDAR device functions by emitting laser (light) pulses and measuring the duration it takes for these pulses to return after bouncing off of things. This time delay, known as the “time of flight”, is used to calculate precise distances, allowing for the creation of detailed three-dimensional maps of the environment.
 
+- LiDAR sensor readings are given in a set of 3D coordinates called a Point Cloud (PCL), which gives accurate depth information of each point’s surroundings and intensity levels. 
 - LiDAR sensors capture millions of data points per second, creating dense point clouds that represent the vehicle's surroundings in rich 3D scenes of environment.
 - Point clouds are rich in spatial information, they lack semantic context.
 - Point clouds represent the world in 3D. The LiDAR sensor gets the exact (X,Y,Z) position of every impact point.
@@ -22,6 +23,8 @@ LiDAR estimate velocity as difference between two consecutive measurements. RADA
 - [Storing Point Clouds in PostgreSQL](https://oslandia.com/wp-content/uploads/2018/05/Lemoine-Oslandia-Pointcloud.pdf)
 
 ---
+
+## LiDAR 3D Object-Detection Methods
 
 Obstacle detection process that generally include folliwng steps.
 - Point cloud processing
