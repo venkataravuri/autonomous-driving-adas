@@ -38,6 +38,16 @@ LiDAR point cloud data requires annotation and labeling to be used for training 
 
 - MOSAIK Suite from MicroVision
 
+### LiDAR Data Formats
+
+| Data Format | Dataset | Details |
+|---|---|---|
+|bin|KITTI|?|
+|LAS |KITTI|?|
+XYZ & ASCII
+PLY
+
+
 ## LiDAR Devices
 
 TODO
