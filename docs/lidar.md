@@ -21,7 +21,7 @@ LiDAR device functions by emitting laser (light) pulses and measuring the durati
 
 > RADARs measure the world by sending radio waves, and SONARs sending sound waves, LiDAR do it using light waves.
 
-<img src="https://www.researchgate.net/profile/Wang-Guojun/publication/331102582/figure/fig3/AS:726379775664129@1550193842193/The-cartesian-coordinate-system-of-LiDAR.png" width="70%" height="70%" />
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRexJXGGhK719BgaGSQI5BouU79zlI-NWCOlql5wlISgRugJOwWsFUU1bUw7HBjD1j52u8" width="30%" height="30%" />
 
 ## LiDAR Datasets
 - [10 Lidar Datasets for Autonomous Driving](https://segments.ai/blog/lidar-driving-datasets)
