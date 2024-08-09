@@ -9,6 +9,8 @@
 
 - [FAQ](#faq)
 
+<img align="right" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRexJXGGhK719BgaGSQI5BouU79zlI-NWCOlql5wlISgRugJOwWsFUU1bUw7HBjD1j52u8" width="30%" height="30%" />
+
 ## LiDAR Overview
 
 LiDAR device functions by emitting laser (light) pulses and measuring the duration it takes for these pulses to return after bouncing off of things. This time delay, known as the “time of flight”, is used to calculate precise distances, allowing for the creation of detailed three-dimensional maps of the environment.
@@ -20,8 +22,6 @@ LiDAR device functions by emitting laser (light) pulses and measuring the durati
 - LiDARs don’t work well in bad weather conditions. In cases of fog, the lasers can hit it and muddle the scene. Similar to rain drops or dirt.
 
 > RADARs measure the world by sending radio waves, and SONARs sending sound waves, LiDAR do it using light waves.
-
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRexJXGGhK719BgaGSQI5BouU79zlI-NWCOlql5wlISgRugJOwWsFUU1bUw7HBjD1j52u8" width="30%" height="30%" />
 
 ## LiDAR Datasets
 - [10 Lidar Datasets for Autonomous Driving](https://segments.ai/blog/lidar-driving-datasets)
@@ -48,7 +48,6 @@ LiDAR point cloud data requires annotation and labeling to be used for training 
 |LAS |KITTI|?|
 XYZ & ASCII
 PLY
-
 
 ## LiDAR Devices
 
