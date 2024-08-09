@@ -5,6 +5,12 @@
   - [LiDAR Data Annotation & Labeling](#lidar-data-annotation--labeling)
   - [Annotaiton Tools](#annotaiton-tools)
 - [LiDAR Devices](#lidar-devices)
+  - [Projection Methods](#projection-methods)
+  - [Volumetric (Voxel) Methods](#volumetric-voxel-methods)
+  - [Raw Point Cloud Methods](#raw-point-cloud-methods)
+- [Hands-on Lab](#hands-on-lab)
+  - ?
+  - ?   
 - [LiDAR 3D Object-Detection Methods](#lidar-3d-object-detection-methods)
 
 - [FAQ](#faq)
@@ -55,14 +61,14 @@ PLY
 
 ## LiDAR Point Cloud Visualization
 
-
-
 ## LiDAR 3D Object-Detection Methods
 
 Point cloud representation methods divided into,
 - Projection
 - Voxel
 - Raw point cloud.
+
+> Refer to [Multi-modal sensor data fusion approaches]()
 
 ### Projection Methods
 The projection method transforms the 3D data points into a 2D space using plane (image), spherical, cylindrical, or bird’s-eye view (BEV) projection techniques. The projected data can be processed using the standard 2D methods and regressed to obtain the 3D bounding boxes. It is hard to detect occluded objects in 2D plane representations. 
