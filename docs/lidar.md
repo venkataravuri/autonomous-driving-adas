@@ -108,6 +108,12 @@ Processing and analyzing 3D point cloud data, particularly for object detection 
 
 Github Repo: https://github.com/AlirezaHabibi1377/3D-LiDAR-Based-Object-Detection
 
+### 2. OpenPCDet
+
+OpenPCDet is a PyTorch-based toolbox for 3D object detection from point cloud. It currently supports multiple state-of-the-art 3D object detection methods with highly refactored codes for both one-stage and two-stage 3D detection frameworks.
+
+Github Repo: https://github.com/open-mmlab/OpenPCDet/
+
 ## FAQ
 
 #### How LiDARs estimate Velocity?
