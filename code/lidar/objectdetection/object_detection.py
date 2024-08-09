@@ -1,12 +1,10 @@
 
-import enum
-from turtle import distance
 import open3d.visualization
-from dataset.kitti.kitti_dataset import KITTIDataset
 import open3d
 import numpy as np
 import matplotlib as plt
 import pandas as pd
+from dataset.kitti.kitti_dataset import KITTIDataset
 
 def oriented_bbox(pcd, labels, min_points=30, max_points=400):
     """
@@ -134,8 +132,9 @@ def visulaization_video(dataset):
     viz = open3d.visualization.Visualizer()
     viz.create_window(False)
 
-    for idx, file in enumerate(dataset):
-        visuals = object_detection_pipeline(file)
+    for idx, data in dataset:
+        pcd = data.get_lidar_pcl()
+        visuals = object_detection_pipeline(pcd)
 
         for vi in visuals:
             viz.add_geometry(vi)
