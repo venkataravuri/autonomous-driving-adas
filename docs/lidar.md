@@ -1,5 +1,16 @@
 # LiDAR - Light Detection and Ranging
 
+- [LiDAR Overview](#introduction)
+- [LiDAR Datasets](#lidar-datasets)
+  - [LiDAR Data Annotation & Labeling](#lidar-data-annotation--labeling)
+  - [Annotaiton Tools](#annotaiton-tools)
+- [LiDAR Devices](#lidar-devices)
+- [LiDAR 3D Object-Detection Methods](#lidar-3d-object-detection-methods)
+
+- [FAQ](#faq)
+
+## LiDAR Overview
+
 LiDAR device functions by emitting laser (light) pulses and measuring the duration it takes for these pulses to return after bouncing off of things. This time delay, known as the “time of flight”, is used to calculate precise distances, allowing for the creation of detailed three-dimensional maps of the environment.
 
 - LiDAR sensor readings are given in a set of 3D coordinates called a Point Cloud (PCL), which gives accurate depth information of each point’s surroundings and intensity levels. 
@@ -9,6 +20,29 @@ LiDAR device functions by emitting laser (light) pulses and measuring the durati
 - LiDARs don’t work well in bad weather conditions. In cases of fog, the lasers can hit it and muddle the scene. Similar to rain drops or dirt.
 
 > RADARs measure the world by sending radio waves, and SONARs sending sound waves, LiDAR do it using light waves.
+
+## LiDAR Datasets
+- [10 Lidar Datasets for Autonomous Driving](https://segments.ai/blog/lidar-driving-datasets)
+- [5 Best LiDAR Datasets to Learn & Process Point Clouds Data](https://www.thinkautonomous.ai/blog/lidar-datasets/)
+
+### LiDAR Data Annotation & Labeling
+
+LiDAR point cloud data requires annotation and labeling to be used for training autonomous vehicles.
+- Object Detection: Annotators identify and label objects within the point cloud, including cars, pedestrians, cyclists, and other relevant objects.
+- Semantic Segmentation: Assigning a label to each point in the cloud, creating a pixel-wise segmentation of objects and their boundaries.
+- Instance Segmentation: Separating individual instances of the same object class, such as distinguishing between different vehicles.
+- 3D Bounding Boxes: Defining 3D bounding boxes around objects, including their dimensions, orientation, and location in 3D space.
+- Lane and Road Markings: Annotating the road layout, lane markings, and other navigational information.
+
+### Annotaiton Tools
+
+- MOSAIK Suite from MicroVision
+
+## LiDAR Devices
+
+TODO
+
+## FAQ
 
 #### How LiDARs estimate Velocity?
 
@@ -26,30 +60,25 @@ LiDAR estimate velocity as difference between two consecutive measurements. RADA
 
 ## LiDAR 3D Object-Detection Methods
 
-Obstacle detection process that generally include folliwng steps.
-- Point cloud processing
-- Point cloud Segmentation
-- Obstacle clustering
-- Bounding box fitting.
+Point cloud representation methods divided into,
+- Projection
+- Voxel
+- Raw point cloud.
 
-## Annotation & Labeling LiDAR Data
+### Projection Methods
+The projection method transforms the 3D data points into a 2D space using plane (image), spherical, cylindrical, or bird’s-eye view (BEV) projection techniques. The projected data can be processed using the standard 2D methods and regressed to obtain the 3D bounding boxes. It is hard to detect occluded objects in 2D plane representations. 
 
-LiDAR point cloud data requires annotation and labeling to be useful for training autonomous vehicles.
-- Object Detection: Annotators identify and label objects within the point cloud, including cars, pedestrians, cyclists, and other relevant objects.
-- Semantic Segmentation: Assigning a label to each point in the cloud, creating a pixel-wise segmentation of objects and their boundaries.
-- Instance Segmentation: Separating individual instances of the same object class, such as distinguishing between different vehicles.
-- 3D Bounding Boxes: Defining 3D bounding boxes around objects, including their dimensions, orientation, and location in 3D space.
-- Lane and Road Markings: Annotating the road layout, lane markings, and other navigational information.
+### Volumetric (Voxel) Methods
 
-Automated annotation and labeling of LiDAR data
+The volumetric method discretizes the unstructured and sparse 3D point clouds into a volumetric 3D grid of voxels (volume elements) and uses a series of voxels to represent a 3D point cloud. Voxels are similar to image pixels, but in 3D representation that explicitly provides depth information.
 
-### Annotaiton Tools
+Another limitation of the voxel representation is that it uses 3D convolution for CNN models, increasing the computational cost and involving a trade-off between resolution and memory.
 
-MOSAIK Suite from MicroVision
+### Raw Point Cloud Methods
 
-## LiDAR Datasets
+The LiDAR data projection and volumetric methods cause spatial information loss during conversion to another domain, so processing point clouds directly are important to keep this spatial information. However, the raw point cloud methods have high sparsity and computational costs due to 3D convolutions.
 
-https://www.cvlibs.net/datasets/kitti/index.php
+PointNet is a unified architecture for 3D object classification, part segmentation, and semantic segmentation that directly uses raw point cloud data.
 
 ## LiDAR Object Detection Algorithms
 
