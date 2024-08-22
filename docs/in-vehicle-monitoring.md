@@ -28,6 +28,14 @@ Below are some key ML use cases in IVMS:
 
 <img src="https://cdn.prod.website-files.com/5d7b77b063a9066d83e1209c/62dfe3c6b83ee8a71aeadf54_IN%20TEXT%20ASSET-6.jpg" width="50%" height="50%"/>
 
+### 2D
+
+[MPII Human Pose Dataset](http://human-pose.mpi-inf.mpg.de/)
+
+
+### 3D
+
+
 
 HIVE (Human In VEhicles) provides RGB and NIR in-vehicle image pairs with ground-truth 2D and 3D pose and shape annotations
 
@@ -63,7 +71,7 @@ Classical Human Pose Estimation solutions are based on classical Computer Vision
 |||||||||
 |||||||||
 |2021|Transformer Sequence Modeling||Transformer architecture applied to gesture recognition and pose estimation.|||||
-|||||||||
+|2024|[HoT - Hourglass Tokenizer for Efficient Transformer-Based 3D Human Pose Estimation (CVPR 2024)](https://github.com/NationalGAILab/HoT)|||||||
 
 ## Hardware & Sensors
 
