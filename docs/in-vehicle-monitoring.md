@@ -1,4 +1,4 @@
-![62dfe3c6b83ee8a71aeadf54_IN TEXT ASSET-6](https://github.com/user-attachments/assets/be74a886-d28b-4cb1-927f-fd567cbac43d)# In-Vehicle Occupants Monitoring Systems 
+# In-Vehicle Occupants Monitoring Systems 
 
 > In-Vehicle Occupants Monitoring System enhances vehicle safety and driver comfort by monitoring the driver, passengers, and the vehicle's interior environment.
 
