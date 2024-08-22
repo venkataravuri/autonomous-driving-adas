@@ -16,13 +16,17 @@ Below are some key ML use cases in IVMS:
 |<h4>Gesture Operations</h4>|Gesture recognition allows drivers to control vehicle functions (e.g., adjusting the volume, accepting calls) using hand gestures, minimizing distractions.||<img src="https://how2electronics.com/wp-content/uploads/2020/01/Gesture-Recognition-and-Its-Application-in-Machine-Learning-1000x528.jpg" height="100%" width="100%" />|
 |<h4>Occupancy Detection</h4>|Detecting the presence and number of occupants in the vehicle is important for various applications, including airbag deployment optimization, HVAC control, and security.|Infrared cameras combined with ML algorithms like CNNs can be used to detect and count occupants, even in low-light conditions. Trends: The use of 3D sensors and LiDAR in combination with ML models is enhancing the accuracy of occupancy detection systems.|<img src="https://www.ai-online.com/wp-content/uploads/2020/05/Xperi-Corporation-announced-that-its-in-cabin-monitoring-solution-1024x572.jpg" height="100%" width="100%" />|
 
+## Concepts
+
+[What is Human Pose Estimation?](https://softwaremill.com/human-pose-estimation-2023-guide/)
+
 ## Datasets
 
 - Near-Infrared (IR) Image 
 - Depth Image
 - RGB & RGB-Depth images
 
-<img src="https://cdn.prod.website-files.com/5d7b77b063a9066d83e1209c/62dfe3c6b83ee8a71aeadf54_IN%20TEXT%20ASSET-6.jpg" />
+<img src="https://cdn.prod.website-files.com/5d7b77b063a9066d83e1209c/62dfe3c6b83ee8a71aeadf54_IN%20TEXT%20ASSET-6.jpg" width="50%" height="50%"/>
 
 
 HIVE (Human In VEhicles) provides RGB and NIR in-vehicle image pairs with ground-truth 2D and 3D pose and shape annotations
@@ -35,16 +39,27 @@ dataset features twelve hours and over 9.6 million frames of people engaged in d
 
 ### Performance Measures
 
+[PCK - Percentage of Correct Keypoints](https://softwaremill.com/human-pose-estimation-2023-guide/)
+[OKS - Object Keypoint Similarity](https://softwaremill.com/human-pose-estimation-2023-guide/)
+
+This metric is used in the MPII dataset, where the detected joint is considered correct when the distance between the predicted location and the true location is within a certain threshold.
+
 MPJPE
 PA-MPJPE
 
 ## ML Models
 
-ML Trends: Advanced models like attention-based networks are being used to focus on the most relevant facial features for detecting drowsiness, improving accuracy and reducing false positives.
+Classical Human Pose Estimation solutions are based on classical Computer Vision, with a focus on parts and changes in colors and contrast. In the past few years, this area has been dominated by deep learning solutions distinguished into two branches,
 
-|Year|Model|Model Type|Model Description|Model Architecture|Research Paper|Code|Benchmarks|
+- Top-down approaches: firstly performing person detection and then regressing key points within the chosen bounding box. 
+- Bottom-up appraches: localize identity free key points and group them into person instances. Bottom-up approaches produce multiple skeletons at once, so they are often faster and more suitable for real-time solutions and also perform better in crowd scenes for multi person pose estimation.
+
+
+
+
+|Year|Model|Model Category|Model Description|Model Architecture|Research Paper|Code|Benchmarks|
 |---|---|---|---|---|---|---|---|
-|2016|OpenPose|Pose Estimation|Multi-person detection for human pose estimation, useful for driver monitoring.|Part Affinity Fields (PAFs) and CNNs||||
+|2016|OpenPose|Pose Estimation| Bottom-up apprach |Multi-person detection for human pose estimation, useful for driver monitoring.|Part Affinity Fields (PAFs) and CNNs|||
 |||||||||
 |||||||||
 |2021|Transformer Sequence Modeling||Transformer architecture applied to gesture recognition and pose estimation.|||||
