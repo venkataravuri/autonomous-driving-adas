@@ -1,6 +1,6 @@
-# In-Vehicle Monitoring Systems 
+![62dfe3c6b83ee8a71aeadf54_IN TEXT ASSET-6](https://github.com/user-attachments/assets/be74a886-d28b-4cb1-927f-fd567cbac43d)# In-Vehicle Occupants Monitoring Systems 
 
-> In-Vehicle Monitoring Systems (IVMS) enhances vehicle safety and driver comfort by monitoring the driver, passengers, and the vehicle's interior environment.
+> In-Vehicle Occupants Monitoring System enhances vehicle safety and driver comfort by monitoring the driver, passengers, and the vehicle's interior environment.
 
 - [IVMS Use Cases]()
 - [ML Models]()
@@ -15,6 +15,28 @@ Below are some key ML use cases in IVMS:
 |<h4>Seat Belt Detection</h4>|Detecting whether passengers are wearing seat belts is essential for safety compliance.||<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.0-RyrIz-nyseQz8rCDSiowHaEK%26pid%3DApi&f=1&ipt=04a9f1a12558f608e4b8f26691bcabb3a09fd0bf084ebfecc1593a4c56095eb5&ipo=images" height="100%" width="100%" />|
 |<h4>Gesture Operations</h4>|Gesture recognition allows drivers to control vehicle functions (e.g., adjusting the volume, accepting calls) using hand gestures, minimizing distractions.||<img src="https://how2electronics.com/wp-content/uploads/2020/01/Gesture-Recognition-and-Its-Application-in-Machine-Learning-1000x528.jpg" height="100%" width="100%" />|
 |<h4>Occupancy Detection</h4>|Detecting the presence and number of occupants in the vehicle is important for various applications, including airbag deployment optimization, HVAC control, and security.|Infrared cameras combined with ML algorithms like CNNs can be used to detect and count occupants, even in low-light conditions. Trends: The use of 3D sensors and LiDAR in combination with ML models is enhancing the accuracy of occupancy detection systems.|<img src="https://www.ai-online.com/wp-content/uploads/2020/05/Xperi-Corporation-announced-that-its-in-cabin-monitoring-solution-1024x572.jpg" height="100%" width="100%" />|
+
+## Datasets
+
+- Near-Infrared (IR) Image 
+- Depth Image
+- RGB & RGB-Depth images
+
+<img src="https://cdn.prod.website-files.com/5d7b77b063a9066d83e1209c/62dfe3c6b83ee8a71aeadf54_IN%20TEXT%20ASSET-6.jpg" />
+
+
+HIVE (Human In VEhicles) provides RGB and NIR in-vehicle image pairs with ground-truth 2D and 3D pose and shape annotations
+
+A synthetic dataset consists of synthesized humans with different shapes and poses in vehicels.
+
+[Drive&Act](https://driveandact.com/): A Multi-Modal Dataset for Fine-Grained Driver Behavior Recognition in Autonomous Vehicles
+
+dataset features twelve hours and over 9.6 million frames of people engaged in distractive activities during both, manual and automated driving. We capture color, infrared, depth and 3D body pose information from six views and densely label the videos with a hierarchical annotation scheme, resulting in 83 categories. 
+
+### Performance Measures
+
+MPJPE
+PA-MPJPE
 
 ## ML Models
 
