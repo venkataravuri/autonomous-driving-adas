@@ -1,33 +1,42 @@
 # In-Vehicle Monitoring Systems 
 
-In-Vehicle Monitoring Systems (IVMS) are designed to enhance vehicle safety and driver comfort by monitoring the driver, passengers, and the vehicle's interior environment. Machine learning (ML) plays a crucial role in enabling these systems by providing the capability to interpret complex data in real time. Below are some key ML use cases in IVMS:
+> In-Vehicle Monitoring Systems (IVMS) enhances vehicle safety and driver comfort by monitoring the driver, passengers, and the vehicle's interior environment.
 
-### Pose Estimation
+- [IVMS Use Cases]()
+- [ML Models]()
+- [Hardware & Sensors]()
 
-Pose estimation involves detecting and tracking the body posture of the driver and passengers. This is crucial for detecting drowsiness, inattentiveness, and improper seating postures that could compromise safety.
+Below are some key ML use cases in IVMS:
 
-ML techniques such as OpenPose or PoseNet can extract key body points and track movements in real time.
+|Activity|Usecases|ML Algorithms|---|
+|---|---|----|---|
+|<h4>Pose Estimation</h4>|Pose estimation involves detecting and tracking the body posture of the driver and passengers. Pose Estimation is crucial for detecting drowsiness, inattentiveness, and improper seating postures that could compromise safety.|ML techniques such as OpenPose or PoseNet can extract key body points and track movements in real time.|<img src="https://i.ytimg.com/vi/UZqpqNsC84Y/maxresdefault.jpg" height="100%" width="100%" />|
+|<h4>Driver Drowsiness Detection</h4>|Detecting signs of drowsiness or fatigue in drivers can prevent accidents. This is often done by monitoring eye closure, head position, and other facial cues.|Techniques such as facial landmark detection and eye aspect ratio (EAR) calculation are also employed.|<img src="https://i.ytimg.com/vi/UZqpqNsC84Y/maxresdefault.jpg" height="100%" width="100%" />|
+|<h4>Seat Belt Detection</h4>|Detecting whether passengers are wearing seat belts is essential for safety compliance.||<img src="" height="100%" width="100%" />|
+|<h4>Gesture Operations</h4>|Gesture recognition allows drivers to control vehicle functions (e.g., adjusting the volume, accepting calls) using hand gestures, minimizing distractions.||<img src="" height="100%" width="100%" />|
+|<h4>Occupancy Detection</h4>|Detecting the presence and number of occupants in the vehicle is important for various applications, including airbag deployment optimization, HVAC control, and security.|Infrared cameras combined with ML algorithms like CNNs can be used to detect and count occupants, even in low-light conditions. Trends: The use of 3D sensors and LiDAR in combination with ML models is enhancing the accuracy of occupancy detection systems.|<img src="" height="100%" width="100%" />|
+|<h4></h4>|||<img src="" height="100%" width="100%" />|
+|<h4></h4>|||<img src="" height="100%" width="100%" />|
+
     
-### Driver Drowsiness Detection
+### 
 
-Detecting signs of drowsiness or fatigue in drivers can prevent accidents. This is often done by monitoring eye closure, head position, and other facial cues.
 
-Techniques such as facial landmark detection and eye aspect ratio (EAR) calculation are also employed.
 
-### Seat Belt Detection
 
-Detecting whether passengers are wearing seat belts is essential for safety compliance. ML models can analyze images or video feeds to detect the presence and correct usage of seat belts.
 
-### Gesture Operations
+### 
+ 
 
-Gesture recognition allows drivers to control vehicle functions (e.g., adjusting the volume, accepting calls) using hand gestures, minimizing distractions.
+### 
 
-### Occupancy Detection
 
-Detecting the presence and number of occupants in the vehicle is important for various applications, including airbag deployment optimization, HVAC control, and security.
 
-    Infrared cameras combined with ML algorithms like CNNs can be used to detect and count occupants, even in low-light conditions.
-    Trends: The use of 3D sensors and LiDAR in combination with ML models is enhancing the accuracy of occupancy detection systems.
+### 
+
+
+
+    
 
 1.5 
     Techniques: CNNs are commonly used to analyze facial features in real-time video feeds. 
@@ -37,8 +46,12 @@ Detecting the presence and number of occupants in the vehicle is important for v
     OpenPose for Pose Estimation
     YOLO for Object Detection
 
-2. Table of Machine Learning Models for In-Vehicle Monitoring System Use Cases
-Year	Model Name	Model Type	Model Description	Model Architecture	Research Paper	GitHub Link	Validation Scores	Popularity	Model Diagram
+ML models for In-Vehicle Monitoring System Use Cases
+
+|Year|Model|Model Type|Model Description|Model Architecture|Research Paper|Code|Benchmarks|
+|---|---|---|---|---|---|---|---|
+|||||||||
+
 2016	YOLOv2	Object Detection	Real-time object detection model, effective for detecting seat belts and gestures.	CNN-based single-stage detector	YOLOv2 Paper	YOLOv2 GitHub	mAP: 78.6% on COCO dataset	High	YOLOv2 Diagram
 2017	OpenPose	Pose Estimation	Multi-person detection for human pose estimation, useful for driver monitoring.	Part Affinity Fields (PAFs) and CNNs	OpenPose Paper	OpenPose GitHub	N/A	High	OpenPose Diagram
 2018	SSD	Object Detection	Single Shot MultiBox Detector, effective for real-time detection tasks in IVMS.	CNN-based single-stage detector	SSD Paper	SSD GitHub	mAP: 74.3% on VOC 2007	High	SSD Diagram
