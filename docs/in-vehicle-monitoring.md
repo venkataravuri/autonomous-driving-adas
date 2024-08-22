@@ -19,61 +19,25 @@ Below are some key ML use cases in IVMS:
 |<h4></h4>|||<img src="" height="100%" width="100%" />|
 
     
-### 
+## ML Models
 
-
-
-
-
-### 
- 
-
-### 
-
-
-
-### 
-
-
-
-    
-
-1.5 
-    Techniques: CNNs are commonly used to analyze facial features in real-time video feeds. 
-    Trends: Advanced models like attention-based networks are being used to focus on the most relevant facial features for detecting drowsiness, improving accuracy and reducing false positives.
-
-
-    OpenPose for Pose Estimation
-    YOLO for Object Detection
-
-ML models for In-Vehicle Monitoring System Use Cases
+ML Trends: Advanced models like attention-based networks are being used to focus on the most relevant facial features for detecting drowsiness, improving accuracy and reducing false positives.
 
 |Year|Model|Model Type|Model Description|Model Architecture|Research Paper|Code|Benchmarks|
 |---|---|---|---|---|---|---|---|
+|2016|OpenPose|Pose Estimation|Multi-person detection for human pose estimation, useful for driver monitoring.|Part Affinity Fields (PAFs) and CNNs||||
+|||||||||
+|||||||||
+|2021|Transformer Sequence Modeling||Transformer architecture applied to gesture recognition and pose estimation.|||||
 |||||||||
 
-2016	YOLOv2	Object Detection	Real-time object detection model, effective for detecting seat belts and gestures.	CNN-based single-stage detector	YOLOv2 Paper	YOLOv2 GitHub	mAP: 78.6% on COCO dataset	High	YOLOv2 Diagram
-2017	OpenPose	Pose Estimation	Multi-person detection for human pose estimation, useful for driver monitoring.	Part Affinity Fields (PAFs) and CNNs	OpenPose Paper	OpenPose GitHub	N/A	High	OpenPose Diagram
-2018	SSD	Object Detection	Single Shot MultiBox Detector, effective for real-time detection tasks in IVMS.	CNN-based single-stage detector	SSD Paper	SSD GitHub	mAP: 74.3% on VOC 2007	High	SSD Diagram
-2020	EfficientNet	Classification	High-performance CNN for image classification, adaptable for gesture recognition.	Scaled CNN architecture	EfficientNet Paper	EfficientNet GitHub	Accuracy: 84.4% on ImageNet	High	EfficientNet Diagram
-2021	Transformer	Sequence Modeling	Transformer architecture applied to gesture recognition and pose estimation.	Self-attention mechanism	Transformer Paper	Transformer GitHub	N/A	Very High	Transformer Diagram
-3. Sensor Hardware for In-Vehicle Monitoring System
+## Hardware & Sensors
 
-Sensor Types and Usage:
-
-    Cameras: High-resolution RGB cameras are used for tasks like pose estimation, gesture recognition, and occupancy detection. These cameras provide real-time video feeds, which are processed by ML models to detect and track objects and behaviors.
-    Infrared (IR) Cameras: Used for low-light or night-time monitoring, particularly for tasks like drowsiness detection and occupancy detection. IR cameras work by detecting infrared radiation, which is emitted by all objects with a temperature above absolute zero.
-    LiDAR: LiDAR sensors use laser beams to create detailed 3D maps of the vehicle's interior, aiding in accurate occupancy detection and pose estimation. These sensors are particularly useful in low-visibility conditions.
-    Ultrasonic Sensors: Used for proximity detection and occupant classification. They emit sound waves and measure the time taken for the echo to return, helping in detecting objects and their distance from the sensor.
-    Radar Sensors: Radar is employed for detecting the presence and motion of occupants, as well as monitoring heart rate and respiration for drowsiness detection.
-
-Communication with Central System:
-
-    Protocols: Sensors typically communicate with the central processing unit (CPU) or GPU via standard communication protocols like CAN (Controller Area Network), Ethernet, I2C (Inter-Integrated Circuit), or SPI (Serial Peripheral Interface).
-    Data Formats: The data collected by sensors is transmitted in various formats depending on the type of sensor. For example:
-        Camera Data: Transmitted as image frames (e.g., JPEG, PNG) or video streams (e.g., H.264, MJPEG).
-        LiDAR Data: Transmitted as point clouds (e.g., PCD, LAS).
-        Radar Data: Typically transmitted as binary data representing range, velocity, and angle information.
+- Cameras: High-resolution RGB cameras are used for tasks like pose estimation, gesture recognition, and occupancy detection. These cameras provide real-time video feeds, which are processed by ML models to detect and track objects and behaviors.
+- Infrared (IR) Cameras: Used for low-light or night-time monitoring, particularly for tasks like drowsiness detection and occupancy detection. IR cameras work by detecting infrared radiation, which is emitted by all objects with a temperature above absolute zero.
+- LiDAR: LiDAR sensors use laser beams to create detailed 3D maps of the vehicle's interior, aiding in accurate occupancy detection and pose estimation. These sensors are particularly useful in low-visibility conditions.
+- Ultrasonic Sensors: Used for proximity detection and occupant classification. They emit sound waves and measure the time taken for the echo to return, helping in detecting objects and their distance from the sensor.
+- Radar Sensors: Radar is employed for detecting the presence and motion of occupants, as well as monitoring heart rate and respiration for drowsiness detection.
 
 Diagrams of Sensors:
 
