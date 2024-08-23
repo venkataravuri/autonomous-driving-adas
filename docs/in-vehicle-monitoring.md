@@ -45,7 +45,11 @@ Deep Learning based Pose Detection methods
 |Year|Model|Model Category|Model Description|Model Architecture|Research Paper|Code|Benchmarks|
 |---|---|---|---|---|---|---|---|
 |2016|OpenPose|Pose Estimation| Bottom-up apprach |Multi-person detection for human pose estimation, useful for driver monitoring.|Part Affinity Fields (PAFs) and CNNs||[Understanding OpenPose (with code reference)— Part 1](https://medium.com/analytics-vidhya/understanding-openpose-with-code-reference-part-1-b515ba0bbc73)|
+|2019|HRNet|Bottom-up pose estimation (CVPR 2021)||[Pytorch Implementation](https://github.com/leoxiaobin/deep-high-resolution-net.pytorch)||||
 |2024|[HoT - Hourglass Tokenizer for Efficient Transformer-Based 3D Human Pose Estimation (CVPR 2024)](https://github.com/NationalGAILab/HoT)|||||||
+||Deep Pose|||||||
+||PoseNet|||||||
+||Dense Pose|||||||
 |||||||||
 
 [Pose Estimation Leaderboard](https://paperswithcode.com/task/pose-estimation)
@@ -116,10 +120,10 @@ Deep Learning based Pose Detection methods
 |Year|Model|Model Category|Model Description|Model Architecture|Research Paper|Code|Benchmarks|
 |---|---|---|---|---|---|---|---|
 |2016|OpenPose|Pose Estimation| Bottom-up apprach |Multi-person detection for human pose estimation, useful for driver monitoring.|Part Affinity Fields (PAFs) and CNNs|||
-|2019|HRNet|Bottom-up pose estimation (CVPR 2021)||https://github.com/leoxiaobin/deep-high-resolution-net.pytorch||||
-|||||||||
+|2019|HRNet|Bottom-up pose estimation (CVPR 2021)||[Pytorch Implementation](https://github.com/leoxiaobin/deep-high-resolution-net.pytorch)||||
 |2021|Transformer Sequence Modeling||Transformer architecture applied to gesture recognition and pose estimation.|||||
 |2024|[HoT - Hourglass Tokenizer for Efficient Transformer-Based 3D Human Pose Estimation (CVPR 2024)](https://github.com/NationalGAILab/HoT)|||||||
+|||||||||
 
 ## Hardware & Sensors
 
