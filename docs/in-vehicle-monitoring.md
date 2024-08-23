@@ -30,6 +30,14 @@
 
 By knowing the orientation and overall appearance of a person, we can understand human behavior and recognize activities within images or videos.
 
+Human pose estimation and tracking is a computer vision task that includes detecting, associating, and tracking semantic key points such as “right shoulders,” and “left knees.”
+
+Human pose estimation aims to predict the poses of human body parts and joints in images or videos.
+
+Human body is usually represented in three common types: skeletal model, planar model, volume model
+
+<img src="https://viso.ai/wp-content/uploads/2021/01/human-pose-model.jpg" width="50%" height="50%" />
+
 ### Driver Drowsiness Detection
 
 Techniques used to identify drowsiness,
@@ -87,7 +95,7 @@ PA-MPJPE
 Classical Human Pose Estimation solutions are based on classical Computer Vision, with a focus on parts and changes in colors and contrast. In the past few years, this area has been dominated by deep learning solutions distinguished into two branches,
 
 - Top-down approaches: firstly performing person detection and then regressing key points within the chosen bounding box. 
-- Bottom-up appraches: localize identity free key points and group them into person instances. Bottom-up approaches produce multiple skeletons at once, so they are often faster and more suitable for real-time solutions and also perform better in crowd scenes for multi person pose estimation.
+- Bottom-up appraches: Estimate each body joint first and then group them to form a unique pose. Bottom-up approaches produce multiple skeletons at once, so they are often faster and more suitable for real-time solutions and also perform better in crowd scenes for multi person pose estimation.
 
 
 
@@ -113,3 +121,4 @@ https://electronicsmaker.com/detecting-vehicle-occupancy-with-mmwave-sensors
 ### Credits
 - [A Systematic Review of Recent Deep Learning Approaches for 3D Human Pose Estimation](https://www.mdpi.com/2313-433X/9/12/275)
 - [Driver Drowsiness Detection System using Deep Learning](https://www.ijraset.com/research-paper/driver-drowsiness-detection-system-using-deep-learning)
+- [Human Pose Estimation with Deep Learning – Ultimate Overview in 2024](https://viso.ai/deep-learning/pose-estimation-ultimate-overview/)
