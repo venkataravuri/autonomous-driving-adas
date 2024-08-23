@@ -48,6 +48,8 @@ Deep Learning based Pose Detection methods
 |2024|[HoT - Hourglass Tokenizer for Efficient Transformer-Based 3D Human Pose Estimation (CVPR 2024)](https://github.com/NationalGAILab/HoT)|||||||
 |||||||||
 
+[Pose Estimation Leaderboard](https://paperswithcode.com/task/pose-estimation)
+
 ### Driver Drowsiness Detection
 
 Techniques used to identify drowsiness,
