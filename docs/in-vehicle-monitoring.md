@@ -18,13 +18,17 @@ Below are some key ML use cases in IVMS:
 
 ## Concepts
 
-[What is Human Pose Estimation?](https://softwaremill.com/human-pose-estimation-2023-guide/)
+### Human Pose Estimation
+
+:star::star::star: [What is Human Pose Estimation?](https://softwaremill.com/human-pose-estimation-2023-guide/)
+
+By knowing the orientation and overall appearance of a person, we can understand human behavior and recognize activities within images or videos. 
 
 ## Datasets
 
-- Near-Infrared (IR) Image 
-- Depth Image
-- RGB & RGB-Depth images
+- Near-Infrared (IR) Images 
+- Depth images (RGB-D) which provide explicit 3D information
+- Multiple RGB images from different views to address occlusion challenges
 
 <img src="https://cdn.prod.website-files.com/5d7b77b063a9066d83e1209c/62dfe3c6b83ee8a71aeadf54_IN%20TEXT%20ASSET-6.jpg" width="50%" height="50%"/>
 
@@ -82,3 +86,6 @@ Classical Human Pose Estimation solutions are based on classical Computer Vision
 - Radar Sensors: Radar is employed for detecting the presence and motion of occupants, as well as monitoring heart rate and respiration for drowsiness detection.
 
 https://electronicsmaker.com/detecting-vehicle-occupancy-with-mmwave-sensors
+
+### Credits
+- [A Systematic Review of Recent Deep Learning Approaches for 3D Human Pose Estimation](https://www.mdpi.com/2313-433X/9/12/275)
