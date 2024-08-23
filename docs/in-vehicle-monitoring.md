@@ -112,3 +112,4 @@ https://electronicsmaker.com/detecting-vehicle-occupancy-with-mmwave-sensors
 
 ### Credits
 - [A Systematic Review of Recent Deep Learning Approaches for 3D Human Pose Estimation](https://www.mdpi.com/2313-433X/9/12/275)
+- [Driver Drowsiness Detection System using Deep Learning](https://www.ijraset.com/research-paper/driver-drowsiness-detection-system-using-deep-learning)
