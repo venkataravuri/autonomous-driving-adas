@@ -38,6 +38,16 @@ Human body is usually represented in three common types: skeletal model, planar 
 
 <img src="https://viso.ai/wp-content/uploads/2021/01/human-pose-model.jpg" width="50%" height="50%" />
 
+#### ML Models
+
+Deep Learning based Pose Detection methods
+
+|Year|Model|Model Category|Model Description|Model Architecture|Research Paper|Code|Benchmarks|
+|---|---|---|---|---|---|---|---|
+|2016|OpenPose|Pose Estimation| Bottom-up apprach |Multi-person detection for human pose estimation, useful for driver monitoring.|Part Affinity Fields (PAFs) and CNNs||[Understanding OpenPose (with code reference)— Part 1](https://medium.com/analytics-vidhya/understanding-openpose-with-code-reference-part-1-b515ba0bbc73)|
+|2024|[HoT - Hourglass Tokenizer for Efficient Transformer-Based 3D Human Pose Estimation (CVPR 2024)](https://github.com/NationalGAILab/HoT)|||||||
+|||||||||
+
 ### Driver Drowsiness Detection
 
 Techniques used to identify drowsiness,
@@ -97,6 +107,7 @@ Classical Human Pose Estimation solutions are based on classical Computer Vision
 - Top-down approaches: firstly performing person detection and then regressing key points within the chosen bounding box. 
 - Bottom-up appraches: Estimate each body joint first and then group them to form a unique pose. Bottom-up approaches produce multiple skeletons at once, so they are often faster and more suitable for real-time solutions and also perform better in crowd scenes for multi person pose estimation.
 
+Deep Learning based Pose Detection methods
 
 
 
