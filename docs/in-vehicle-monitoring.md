@@ -1,4 +1,4 @@
-# In-Vehicle Occupants Monitoring Systems 
+# In-Vehicle Occupants Monitoring 
 
 > In-Vehicle Occupants Monitoring System enhances vehicle safety and driver comfort by monitoring the driver, passengers, and the vehicle's interior environment.
 
@@ -25,13 +25,13 @@
 
 ## Concepts
 
-|Activity|Usecases|ML Algorithms|---|
+|Concept|Description|Usecases|Sample|
 |---|---|----|---|
-|<h4>Human Pose Estimation</h4>|Pose estimation involves detecting and tracking the body posture of the driver and passengers. Pose Estimation is crucial for detecting drowsiness, inattentiveness, and improper seating postures that could compromise safety.|ML techniques such as OpenPose or PoseNet can extract key body points and track movements in real time.|<img src="https://i.ytimg.com/vi/UZqpqNsC84Y/maxresdefault.jpg" height="100%" width="100%" />|
-|<h4>Driver Drowsiness Detection</h4>|Detecting signs of drowsiness or fatigue in drivers can prevent accidents. This is often done by monitoring eye closure, head position, and other facial cues.|Techniques such as facial landmark detection and eye aspect ratio (EAR) calculation are also employed.|<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.RIr16UO7ARQ5D8_VCVvZ1gHaEI%26pid%3DApi&f=1&ipt=aa767fe26e25db3d7104b9e95e308e4a9193b0614f872cc70114d2385f370a8f&ipo=images" height="100%" width="100%" />|
+|<h4>Human Pose Estimation</h4>|Pose estimation involves detecting and tracking the body posture of the driver and passengers.|Pose Estimation is crucial for detecting drowsiness, inattentiveness, and improper seating postures that could compromise safety.|<img src="https://i.ytimg.com/vi/UZqpqNsC84Y/maxresdefault.jpg" height="100%" width="100%" />|
+|<h4>Driver Drowsiness Detection</h4>|Detecting signs of drowsiness or fatigue in drivers can prevent accidents. This is often done by monitoring eye closure, head position, and other facial cues.||<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.RIr16UO7ARQ5D8_VCVvZ1gHaEI%26pid%3DApi&f=1&ipt=aa767fe26e25db3d7104b9e95e308e4a9193b0614f872cc70114d2385f370a8f&ipo=images" height="100%" width="100%" />|
 |<h4>Seat Belt Detection</h4>|Detecting whether passengers are wearing seat belts is essential for safety compliance.||<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.0-RyrIz-nyseQz8rCDSiowHaEK%26pid%3DApi&f=1&ipt=04a9f1a12558f608e4b8f26691bcabb3a09fd0bf084ebfecc1593a4c56095eb5&ipo=images" height="100%" width="100%" />|
 |<h4>Gesture Operations</h4>|Gesture recognition allows drivers to control vehicle functions (e.g., adjusting the volume, accepting calls) using hand gestures, minimizing distractions.||<img src="https://how2electronics.com/wp-content/uploads/2020/01/Gesture-Recognition-and-Its-Application-in-Machine-Learning-1000x528.jpg" height="100%" width="100%" />|
-|<h4>Occupancy Detection</h4>|Detecting the presence and number of occupants in the vehicle is important for various applications, including airbag deployment optimization, HVAC control, and security.|Infrared cameras combined with ML algorithms like CNNs can be used to detect and count occupants, even in low-light conditions. Trends: The use of 3D sensors and LiDAR in combination with ML models is enhancing the accuracy of occupancy detection systems.|<img src="https://www.ai-online.com/wp-content/uploads/2020/05/Xperi-Corporation-announced-that-its-in-cabin-monitoring-solution-1024x572.jpg" height="100%" width="100%" />|
+|<h4>Occupancy Detection</h4>|Detecting the presence and number of occupants in the vehicle is important for various applications, including airbag deployment optimization, HVAC control, and security.||<img src="https://www.ai-online.com/wp-content/uploads/2020/05/Xperi-Corporation-announced-that-its-in-cabin-monitoring-solution-1024x572.jpg" height="100%" width="100%" />|
 
 ### Human Pose Estimation
 
@@ -74,11 +74,17 @@ Yawning-based detection systems analyse the variations in the geometric shape of
 
 - Vehicular Parameters-Based Techniques: Vehicular parameter-based methods try to detect driver fatigue based on vehicular features such as frequent lane-changing patterns, vehicle speed variability, steering wheel angle, steering wheel grip force, etc
 
+### Occupants Detection
+
+Infrared cameras combined with ML algorithms like CNNs can be used to detect and count occupants, even in low-light conditions. Trends: The use of 3D sensors and LiDAR in combination with ML models is enhancing the accuracy of occupancy detection systems.
+
 - Eye Aspect Ratio (EAR)  
 
 EAR is a widely used metric for measuring eye-opening and is commonly used in facial expression analysis, eye tracking, and driver drowsiness detection systems. EAR is calculated by measuring the ratio of the distance between the vertical landmarks of the eye (the upper and lower eyelids) to the distance between the horizontal landmarks of the eye.
 
 <img src="https://www.ijraset.com/images/text_version_uploads/imag%201_29670.png" />
+
+Techniques such as facial landmark detection and eye aspect ratio (EAR) calculation are also employed.
 
 ## Datasets
 
