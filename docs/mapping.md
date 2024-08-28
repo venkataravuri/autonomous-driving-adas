@@ -1,8 +1,10 @@
 # Mapping & Localization
 
-## Mapping
+## Maps Overview
 
-Given a surround view of images, optionally accompanied by lidar point clouds, the end to end map generation task aims to predict map elements directly. Map elements include road boundaries, lane delimiters, centerlines, and crosswalks.
+Map includes elements such as road boundaries, lane delimiters, centerlines, direction of travel and crosswalks.
+
+Mapping is a process of predicting map elements for a given set of surround view images and lidar point clouds. 
 
 ### HD Maps
 
