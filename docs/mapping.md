@@ -1,14 +1,34 @@
 # Mapping & Localization
 
-## Maps Overview
+## Mapping Overview
 
-Map includes elements such as road boundaries, lane delimiters, centerlines, direction of travel and crosswalks.
+Maps includes elements such as road boundaries, lane delimiters, centerlines, direction of travel and crosswalks.
 
-Mapping is a process of predicting map elements for a given set of surround view images and lidar point clouds. 
+Mapping is a process of predicting map elements for a given set of surround view images and lidar point clouds.
+
+## Map Categores
+
+- Toplogical Maps (Traditional)
+- HD Maps
+
+### Topological Maps (Traditional)
+
+Topological maps includes attributes like road topology, lane topology (number of lanes), building footprints, street segments, direction of travel, parking lots. They are useful to know how to get from point A to point B.
+
+Data used to assemble these maps are produced from cameras mounted on dashboards (can be crowdsourced), aerial imagery from satelites, planes and drones.
+
+#### What are different approaches to assemble toplogical maps?
+
+- Segmentation followed by Heuristics - Usually done through Road pixel binary semantic segmentation on aerial imagery followed by heuristic to get the road network. It is subjected to challenges such as partial occlusion or an unexpected angle in areal imagery.
+- Engergy based
+- Neural Network
+
 
 ### HD Maps
 
-High-definition (HD) maps offer an intricate and precise depiction of the road, encompassing lane markings, traffic signs, and other critical features. 
+High-definition (HD) maps offer an intricate and precise depiction of the road, encompassing lane markings, traffic signs, and other critical features.
+
+HD Maps contain both geometric structure information as well as semantics.
 
 <img src="https://geospatialmedia.s3.amazonaws.com/wp-content/uploads/2016/04/here-1.jpg" height="50%" width="50%" />
 
