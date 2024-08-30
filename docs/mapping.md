@@ -65,6 +65,11 @@ HD Map is organized into layers.
 
  PoseNet and VLocNet++, are some of the frameworks that use point data to estimate the 3D position and orientation. These estimated 3D positions and orientations can be used to derive scene semantics, as seen in the image below.
 
+### Online HD Maps
+
+- [HDMapNet: An Online HD Map Construction and Evaluation Framework - 2022](https://arxiv.org/abs/2107.06307)
+
+
 ## Mapless Autonomous Driving
 
 Mapless autonomous driving leverages a combination of cameras and sensors to create a dynamic perception map of the vehicle’s surroundings without relying on pre-loaded HD maps.
