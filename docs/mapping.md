@@ -10,6 +10,8 @@ Mapping is a process of predicting map elements for a given set of surround view
 
 - Toplogical Maps (Traditional)
 - HD Maps
+ - Offline
+ - Online 
 - Mapless Autonomous Driving
 
 ### Topological Maps (Traditional)
@@ -23,7 +25,6 @@ Data used to assemble these maps are produced from cameras mounted on dashboards
 - Segmentation followed by Heuristics - Usually done through Road pixel binary semantic segmentation on aerial imagery followed by heuristic to get the road network. It is subjected to challenges such as partial occlusion or an unexpected angle in areal imagery.
 - Engergy based
 - Neural Network
-
 
 ### HD Maps
 
