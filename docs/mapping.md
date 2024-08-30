@@ -10,6 +10,7 @@ Mapping is a process of predicting map elements for a given set of surround view
 
 - Toplogical Maps (Traditional)
 - HD Maps
+- Mapless Autonomous Driving
 
 ### Topological Maps (Traditional)
 
@@ -61,7 +62,18 @@ HD Map is organized into layers.
 - [HDMapNet: An Online HD Map Construction and Evaluation Framework](https://arxiv.org/pdf/2107.06307)
 - [MapTRv2: An End-to-End Framework for Online Vectorized HD Map Construction](https://arxiv.org/pdf/2308.05736)
 
- PoseNet and VLocNet++, are some of the frameworks that use point data to estimate the 3D position and orientation. These estimated 3D positions and orientations can be used to derive scene semantics, as seen in the image below. 
+ PoseNet and VLocNet++, are some of the frameworks that use point data to estimate the 3D position and orientation. These estimated 3D positions and orientations can be used to derive scene semantics, as seen in the image below.
+
+## Mapless Autonomous Driving
+
+Mapless autonomous driving leverages a combination of cameras and sensors to create a dynamic perception map of the vehicle’s surroundings without relying on pre-loaded HD maps.
+
+Companies like Imagry, Deeproute, Tesla was the frontrunner among OEMs adopting Mapless AD for its lineup using FSD, other OEMs such as Xpeng, Huawei AITO, GAC Aion and Li Auto have also adopted Mapless.
+
+Map-based AD systems depend on detailed pre-loaded HD maps, which are regularly updated to ensure accuracy and reliability. Major players like Google, HERE, and TomTom provide these comprehensive maps, which enhance navigation and route guidance. 
+
+[MapVision: CVPR 2024 Autonomous Grand Challenge Mapless Driving Tech Report](https://arxiv.org/pdf/2406.10125v1)
+
 
 ## Localization
 
