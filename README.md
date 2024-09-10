@@ -35,5 +35,8 @@ The modern Autononoums driving architectures today replacing conventional modula
   - ### :safety_vest: [Autonomous Vehicle Safety]()
 
 - ## :trophy: [Competitions & Challenges](docs/competitons.md)
+  - #### [CVPR - Opendrivelab](https://opendrivelab.com/challenge2024/)
+  - #### [ICLR](https://iclr.cc/)
+  - #### [CVF](https://www.thecvf.com)
 
 - ## :oncoming_bus: [Auto Industry Insights]()
