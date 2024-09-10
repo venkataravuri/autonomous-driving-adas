@@ -4,7 +4,7 @@
 
 - ## [:2nd_place_medal: AV 1.0 vs. AV 2.0 :trophy: - Conventional Vs. End-to-End Neural Network Model]()
 - ## :camera: [Perception](docs/perception.md)
-  - #### :thermometer: [Sensors]() - [Camera](), [RADAR](), [LiDAR](docs/lidar.md) & [GPS](), [Sensor Fusion](docs/sensor-fusion.md)
+  - #### :thermometer: [Sensors]() - [Camera](), [RADAR](), [LiDAR](docs/lidar.md) & [GPS](), [Sensor Fusion](docs/sensor-fusion.md), [Sensor data calibration]()
   - #### :vertical_traffic_light: [Object Detection]() - [Datasets](), [Algorithms]() & [Hardware]()
   - #### :minibus: [Object Tracking]() - [Multi-Object Trackers (MOT)](), [Simple Online and Real-time Tracker (SORT)](), [Depth Estimation]()
 - ## :blue_car: [Trajectory Prediction](docs/prediction.md)
