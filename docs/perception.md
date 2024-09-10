@@ -2,7 +2,7 @@
 
 > Perception refers to the processing and interpretation of sensor data to detect, identify, classify and track objects.
 
-Perception helps car to see the world around itself, as well as recognize and classify the things that it sees.
+Perception provides information about surroundings, static and movable obstacles. Perception helps car to see the world around itself, as well as recognize and classify the things that it sees.
 - The car needs to see and classify traffic lights, pedestrians, road signs, walkways, parking spots, lanes, and much more.
 - Not only that, it also needs to know the exact distance between itself and the objects around it.
 
