@@ -1,9 +1,9 @@
 # :ok_hand: Awesome Self-Driving Cars - AV & ADAS :car:
 
-> A repository of Advanced Driving Assistance Systems (ADAS) articles, trends, research papers, challenges covering datasets, ML algorithms, hardware and more.
+> A repository of :car: Autonomous Driving, :oncoming_automobile: Advanced Driving Assistance Systems (ADAS) -  :open_book: articles, :chart_with_upwards_trend: trends, :scroll: research papers, challenges covering datasets, ML algorithms, hardware and more.
 
 The modern Autononoums driving architectures today replacing conventional modular pipeline tasks, with separate components for **object detection and tracking, mapping & localization, trajectory prediction, and path planning and control** with end-to-end AI models encapsulating entire pipeline tasks into a single module, leveraging an end-to-end deep neural networks.
-
+- ## [:2nd_place_medal: AV 1.0 vs. AV 2.0 :trophy: - Conventional Vs. End-to-End Neural Network Model]()
 - ## :camera: [Perception](docs/perception.md)
   - ### [Sensors]()
     - #### [Camera](), [RADAR](), [LiDAR](docs/lidar.md) & [GPS]()
