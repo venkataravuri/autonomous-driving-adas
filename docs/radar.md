@@ -16,6 +16,12 @@ There are different types of radars based on the range and beam angle. In the pa
 #### What is doppler effect?
 Radar can also measure the relative speed of all the detected objects using the doppler shift of the reflected electromagnetic wave as well as the transverse offset with an angle estimation.
 
+#### What are strengths of radar over other sensors?
+- They’re able to see through objects unlike lidar.
+- They work normally in bad weather (rain, snow, dust) unlike lidar.
+- They work well in fog and low light night time situations unlike cameras.
+- Some newer versions have resolutions and object recognition capabilities comparable to lidar.
+
 #### References
 
 https://medium.com/@BabakShah/radar-in-self-driving-cars-5a31951164e2
