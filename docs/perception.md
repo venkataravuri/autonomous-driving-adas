@@ -127,3 +127,13 @@ Metrics for evaluating multi-object tracking (MOT) performance.
 - IDF1
 - Track mAP
 
+
+### FAQ
+- How camera, LiDAR, Radar calibration works?
+- What camera device is used? What is difference between Stero camera? RGB Depth Camera?
+- How sensor data is fused?
+- What is camera frequency is used? What is FPS?
+- Which algorithms are used for perception? What is architecture? What are the output heads?
+- Where models deployed? Which hardware? 
+- How object tracking is done?
+- Do you use semantic segmentation?
