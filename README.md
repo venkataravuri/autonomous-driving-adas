@@ -13,7 +13,7 @@
 - ## :world_map: [Mapping & Localization](docs/mapping.md)
 - ## :compass: [Control](control.md)
 - ## :city_sunset: [Simulation](docs/simulation.md)
-  - #### [Log-Replay Vs. Simulation]()
+  - #### [Log-Replay Vs. Simulation](), [Reinforcement Learning](docs/reinforcement-learning.md)
 - ## :medal_sports: [Regulations & Standards](docs/regulations.md)
   - #### [Advanced Driver Assistance System (ADAS) Levels](), :safety_vest: [Autonomous Vehicle Safety]()
 - ## :trophy: [AV Competitions & Challenges](docs/competitons.md)
