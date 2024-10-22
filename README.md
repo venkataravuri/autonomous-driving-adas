@@ -15,6 +15,6 @@
 - ## :city_sunset: [Simulation](docs/simulation.md)
   - #### [Log-Replay Vs. Simulation](), [Reinforcement Learning](docs/reinforcement-learning.md)
 - ## :medal_sports: [Regulations & Standards](docs/regulations.md)
-  - #### [Advanced Driver Assistance System (ADAS) Levels](), :safety_vest: [Autonomous Vehicle Safety]()
+  - #### [Advanced Driver Assistance System (ADAS) Levels](docs/competitions.md), :safety_vest: [Autonomous Vehicle Safety](docs/competitions.md)
 - ## :trophy: [AV Competitions & Challenges](docs/competitons.md)
   - #### [CVPR - Opendrivelab](https://opendrivelab.com/challenge2024/), [ICLR](https://iclr.cc/), [CVF](https://www.thecvf.com)
