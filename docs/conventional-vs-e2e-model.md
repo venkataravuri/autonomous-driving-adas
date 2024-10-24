@@ -1,4 +1,4 @@
-# AV1.0 vs. AV2.0 - Conventional AV vs. E2E Neural Network Model
+# Conventional (AV 1.0) vs. End-to-End Neural Network Model (AV 2.0)
 The modern Autononoums driving architectures today replacing conventional modular pipeline tasks, with separate components for object detection and tracking, mapping & localization, trajectory prediction, and path planning and control with end-to-end AI models encapsulating entire pipeline tasks into a single module, leveraging an end-to-end deep neural networks.
 
 Conventional autonomous driving systems use multiple software modules that link together to form complex working systems. In contrast, the E2E approach delegates all decision-making to a machine learning (ML) model, which focuses on developing the model and generating data for it to use.

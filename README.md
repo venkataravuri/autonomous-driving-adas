@@ -2,11 +2,11 @@
 
 > A repository of :car: Autonomous Driving, :oncoming_automobile: Advanced Driving Assistance Systems (ADAS) -  :open_book: articles, :chart_with_upwards_trend: trends, :scroll: research papers, challenges covering datasets, ML algorithms, hardware and more.
 
-- ## [:2nd_place_medal: AV 1.0 vs. AV 2.0 :trophy: - Conventional Vs. End-to-End Neural Network Model]()
+- ## :oncoming_police_car: [Conventional (AV 1.0) vs. End-to-End Neural Network Model (AV 2.0)](docs/conventional-vs-e2e-model.md)
 - ## :camera: [Perception](docs/perception.md)
-  - #### :thermometer: [Sensors]() - [Camera](), [RADAR](), [LiDAR](docs/lidar.md) & [GPS](), [Sensor Fusion](docs/sensor-fusion.md), [Sensor data calibration]()
-  - #### :vertical_traffic_light: [Object Detection]() - [Datasets](), [Algorithms]() & [Hardware]()
-  - #### :minibus: [Object Tracking]() - [Multi-Object Trackers (MOT)](), [Simple Online and Real-time Tracker (SORT)](), [Depth Estimation]()
+  - #### :thermometer: [Sensors](docs/sensors.md) - Camera, RADAR, LiDAR & IMU, [Sensor Fusion](docs/sensor-fusion.md) - Sensor Data Calibration
+  - #### :vertical_traffic_light: [Object Detection](docs/perception.md), [Semantic Segmentation](docs/perception.md)
+  - #### :minibus: [Object Tracking]() - [Multi-Object Trackers (MOT)](), [Simple Online and Real-time Tracker (SORT)]()
 - ## :blue_car: [Prediction](docs/prediction.md)
   - #### [Motion Prediction](), [Trajectory Prediction]()
 - ## :motorway: [Path Planning](docs/docs/planning.md)

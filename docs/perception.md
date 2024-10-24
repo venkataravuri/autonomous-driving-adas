@@ -137,3 +137,46 @@ Metrics for evaluating multi-object tracking (MOT) performance.
 - Where models deployed? Which hardware? 
 - How object tracking is done?
 - Do you use semantic segmentation?
+
+
+### Raw Point Cloud Methods
+
+The LiDAR data projection and volumetric methods cause spatial information loss during conversion to another domain, so processing point clouds directly are important to keep this spatial information. However, the raw point cloud methods have high sparsity and computational costs due to 3D convolutions.
+
+PointNet is a unified architecture for 3D object classification, part segmentation, and semantic segmentation that directly uses raw point cloud data.
+
+## LiDAR Object Detection Algorithms
+
+Traditional CNNs cannot be applied to Point Clouds. Images have a fixed width and height, it's a rectangular matrix where every pixel lies between 0 and 255, nearby pixels belong to the same object, and it's all flat 2D. Point clouds are 3D structure has no order, no color, and no continuity between the points.
+
+PointNet/PointNet++ is used to extract features, later these features used in 3D Object Detectors.
+
+- MOSAIK Suite from MicroVision – Comprehensive and professional object detection software, including lane detection and free space detection. Sign recognition is slated to release in MOSAIK 2.0 in Sept. 2023. MicroVision Tools Login
+- PointNet: A deep learning architecture designed for processing point cloud data directly. PointNet
+- PointNet++: An extension of PointNet that handles large-scale point cloud data more effectively. PointNet++
+- VoteNet: A model for 3D object detection in point clouds, which can be applied to LiDAR data.
+
+
+
+### Voxels Vs. Point Clouds
+
+A voxel is a 3D image. Splits the space (yes, the "air") into 50*50*50 cm grids, and consider these as voxels. You then take the average of the points inside and give it a value. If no point is inside, you consider it empty.
+
+By converting  point cloud to a set of "voxels", we can use 3D Convolutions.
+
+Point and Voxel based approaches are the 2 "main" ways to process point clouds with 3D Deep Learning, 
+
+5 Approaches we can use to process point clouds using 3D Deep Learning, 
+
+
+### 1. LiDAR Object Detection Non-ML Algorithms
+
+Processing and analyzing 3D point cloud data, particularly for object detection and segmentation tasks,
+
+Github Repo: https://github.com/AlirezaHabibi1377/3D-LiDAR-Based-Object-Detection
+
+### 2. OpenPCDet
+
+OpenPCDet is a PyTorch-based toolbox for 3D object detection from point cloud. It currently supports multiple state-of-the-art 3D object detection methods with highly refactored codes for both one-stage and two-stage 3D detection frameworks.
+
+Github Repo: https://github.com/open-mmlab/OpenPCDet/
