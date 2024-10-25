@@ -7,8 +7,8 @@ E2E autonomous driving relies on decisions made by a black-box ML model, which r
 
 Traditional autonomous driving approach is a complex system that operates by connecting a large number of small modules
 
-<img src="conventional-av.png" width="70%" height="70%" />
+<img src="diagrams/conventional-av.png" width="70%" height="70%" />
 
 End-to-end autonomous driving uses a single model that uses sensors mainly cameras as inputs to generate the vehicle’s actions.
 
-<img src="e2e-model-av.png" width="60%" height="60%" />
+<img src="diagrams/e2e-model-av.png" width="60%" height="60%" />
