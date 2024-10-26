@@ -166,6 +166,59 @@ OpenDRIVE files typically have the .xodr extension and are organized into severa
 
 </details>
 
+### Waymo HD Maps Structuure 
+
+Waymo's HD maps generally include the following components:
+
+- **Lane Information**: Detailed descriptions of lanes, including their boundaries, types (e.g., driving, bike lanes), and markings.
+- **Traffic Signals**: Locations and states of traffic lights and other signals.
+- **Road Geometry**: Information about road curvature, elevation changes, and intersections.
+- **Static Objects**: Features such as buildings, trees, and other obstacles that might affect navigation.
+
+<details>
+<summary>Waymo HD Map Sample</summary>
+ 
+```json
+{
+  "map": {
+    "version": "1.0",
+    "roads": [
+      {
+        "id": "road_1",
+        "length": 1500,
+        "lanes": [
+          {
+            "id": "lane_1",
+            "type": "driving",
+            "width": 3.5,
+            "lineMarkings": [
+              {"type": "solid", "color": "white"},
+              {"type": "dashed", "color": "yellow"}
+            ]
+          },
+          {
+            "id": "lane_2",
+            "type": "bike",
+            "width": 1.5,
+            "lineMarkings": [
+              {"type": "solid", "color": "green"}
+            ]
+          }
+        ],
+        "trafficSignals": [
+          {
+            "id": "signal_1",
+            "position": {"x": 1000, "y": 0},
+            "state": "green"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+</details>
+
 ### HD Map Generation ML Models
 
 - [HDMapNet: An Online HD Map Construction and Evaluation Framework](https://arxiv.org/pdf/2107.06307)
