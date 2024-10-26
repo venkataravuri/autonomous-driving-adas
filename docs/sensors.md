@@ -16,6 +16,17 @@
 - [Open Datasets]()
 
 
+# Camera Sensor
+
+
+Multiple camera sensors are typically positioned to cover different angles around the ego vehicle (front, rear, and sides), providing a near 360-degree view in the 2D space.
+
+Each camera covers a specific Field of View (FoV)
+
+- Camera 1 covers the front (120° FoV).
+- Camera 2 covers the rear (120° FoV).
+- Four other cameras cover the left, right, front-left, and front-right regions, respectively, with smaller FoVs.
+
 <img align="right" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRexJXGGhK719BgaGSQI5BouU79zlI-NWCOlql5wlISgRugJOwWsFUU1bUw7HBjD1j52u8" width="30%" height="30%" />
 
 # LiDAR - Light Detection and Ranging
@@ -30,6 +41,10 @@ LiDAR device functions by emitting laser (light) pulses and measuring the durati
 
 > RADARs measure the world by sending radio waves, and SONARs sending sound waves, LiDAR do it using light waves.
 
+
+# LiDAR
+
+The LiDAR sensor provides a 360-degree view by outputting a 3D point cloud of the surroundings. Assume the LiDAR outputs 100,000 points per frame, each point with 3D coordinates  relative to the vehicle's reference frame. The LiDAR also provides intensity information per point, which indicates how strong the reflection was.
 
 ### LiDAR Data Formats
 
