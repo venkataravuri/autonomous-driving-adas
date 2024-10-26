@@ -63,11 +63,55 @@ HD Map is organized into layers.
 
 ### What are different HD Maps formats?
 
-| Format | Description File | Format Representations |
-| --- | --- | --- |
-| OpenDRIVE | Standard for logical description of road networks | XML Geometric primitives |
-| Lanelet2 | HD map format for autonomous driving XML, OSM | Points |
-| NDS | Global standard for automotive map data | Binary Vector data |
+|Dataset| Format | Description File | Format Representations |
+| --- | --- | --- | --- |
+|Argoverse 2, nuScenes, CommonRoad| Lanelet2 | HD map format for autonomous driving XML, OSM | Points |
+|KITTI Dataset| OpenDRIVE | Standard for logical description of road networks | XML Geometric primitives |
+| Waymo Open Dataset| Custom proprietary| Detailed HD maps from Waymo's autonomous vehicles.||
+
+## Lanelet2 HDMap Format
+
+Lanelet2 maps are organized into three main layers:
+- **Physical Layer**:
+  - Contains observable elements such as lane boundaries, road markings, and traffic signs.
+  - Represents the real-world features that can be detected by sensors.
+- **Relational Layer**:
+  - Defines the relationships between physical elements (e.g., which lanes connect to which intersections).
+  - Includes regulatory elements that represent traffic rules like stop signs and traffic lights.
+- **Topological Layer**:
+  - Combines elements from the relational layer into a network of drivable areas.
+  - This layer helps in understanding navigable paths and potential interactions between different road users.
+
+<details>
+<summary>Lanelet 2 sample</summary>
+ 
+```xml
+ <laneletMap>
+    <lanelets>
+        <lanelet id="1">
+            <lineString>
+                <point x="1.0" y="1.0"/>
+                <point x="1.0" y="5.0"/>
+            </lineString>
+            <regulatoryElement>
+                <trafficLight id="tl1" state="green"/>
+            </regulatoryElement>
+        </lanelet>
+        <lanelet id="2">
+            <lineString>
+                <point x="1.0" y="5.0"/>
+                <point x="5.0" y="5.0"/>
+            </lineString>
+        </lanelet>
+    </lanelets>
+    <regulatoryElements>
+        <trafficLight id="tl1" position="1.0, 5.0" state="green"/>
+    </regulatoryElements>
+</laneletMap>
+```
+
+</details>
+
 
 ### HD Map Generation ML Models
 
