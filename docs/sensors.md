@@ -38,6 +38,17 @@ Extrinsic Parameters: These describe the camera’s position and orientation rel
 
 # LiDAR - Light Detection and Ranging
 
+1. LiDAR Point Cloud Basics
+ 
+LiDAR sensors emit laser pulses and measure the time it takes for the pulses to return after hitting an object. This generates a dense point cloud, which is a collection of 3D points representing the objects and terrain in the sensor’s field of view. Each point in the cloud has:
+ 
+3D coordinates (x, y, z), representing its position in space.
+ 
+Intensity value, representing the strength of the returned laser pulse.
+
+Point Cloud Preprocessing: This involves removing noise, ground points (e.g., roads), and redundant points to focus on potential objects.
+
+
 LiDAR device functions by emitting laser (light) pulses and measuring the duration it takes for these pulses to return after bouncing off of things. This time delay, known as the “time of flight”, is used to calculate precise distances, allowing for the creation of detailed three-dimensional maps of the environment.
 
 - LiDAR sensor readings are given in a set of 3D coordinates called a Point Cloud (PCL), which gives accurate depth information of each point’s surroundings and intensity levels. 
@@ -52,6 +63,8 @@ LiDAR device functions by emitting laser (light) pulses and measuring the durati
 # LiDAR
 
 The LiDAR sensor provides a 360-degree view by outputting a 3D point cloud of the surroundings. Assume the LiDAR outputs 100,000 points per frame, each point with 3D coordinates  relative to the vehicle's reference frame. The LiDAR also provides intensity information per point, which indicates how strong the reflection was.
+
+LiDAR generates a 3D point cloud of the environment.
 
 ### LiDAR Data Formats
 
