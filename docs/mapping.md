@@ -220,6 +220,88 @@ Waymo's HD maps generally include the following components:
 
 </details>
 
+### Tile-Based Storage of HD Maps
+
+Tile-based storage organizes HD maps into small, manageable “tiles” that are each assigned specific geolocation coordinates. These tiles allow a vehicle to retrieve only the map data relevant to its current position, reducing memory and computational demands.
+
+How it Works:
+
+- **Map Tiling**: The map is divided into a grid of square or rectangular tiles, each representing a small geographic area. Each tile is associated with a unique identifier based on its location.
+- **Coordinate System**: Latitude and longitude coordinates define tile boundaries. Global systems like the Mercator projection convert these coordinates into a flat, rectangular grid to simplify calculations.
+
+Example: A city’s map is divided into tiles measuring, say, 100x100 meters. For a vehicle driving at latitude 37.7749 and longitude -122.4194, only the tile corresponding to this coordinate (and its surrounding tiles) is loaded. If the vehicle moves to a new tile, the old one can be unloaded, and the new one loaded in real-time.
+
+<details>
+<summary>Sample JSON structure for an HD map tile, representing a 100x100 meter area</summary>
+
+```json
+{
+  "tile_id": "37.7749,-122.4194",
+  "coordinates": {
+    "latitude": 37.7749,
+    "longitude": -122.4194
+  },
+  "features": {
+    "lanes": [
+      {
+        "lane_id": "L1",
+        "type": "driving",
+        "boundary_left": [
+          {"x": 100.0, "y": 50.0, "elevation": 0.0},
+          {"x": 102.0, "y": 60.0, "elevation": 0.1}
+        ],
+        "boundary_right": [
+          {"x": 105.0, "y": 50.0, "elevation": 0.0},
+          {"x": 107.0, "y": 60.0, "elevation": 0.1}
+        ],
+        "centerline": [
+          {"x": 102.5, "y": 55.0, "elevation": 0.05},
+          {"x": 104.5, "y": 65.0, "elevation": 0.1}
+        ],
+        "lane_width": 3.5
+      }
+    ],
+    "traffic_signs": [
+      {
+        "sign_id": "TS1",
+        "type": "STOP",
+        "position": {"x": 150.0, "y": 75.0, "elevation": 0.0}
+      }
+    ],
+    "crosswalks": [
+      {
+        "crosswalk_id": "CW1",
+        "points": [
+          {"x": 110.0, "y": 80.0, "elevation": 0.0},
+          {"x": 115.0, "y": 85.0, "elevation": 0.0},
+          {"x": 120.0, "y": 80.0, "elevation": 0.0},
+          {"x": 115.0, "y": 75.0, "elevation": 0.0}
+        ]
+      }
+    ],
+    "road_boundaries": [
+      {
+        "boundary_id": "RB1",
+        "type": "curb",
+        "points": [
+          {"x": 95.0, "y": 40.0, "elevation": 0.0},
+          {"x": 95.5, "y": 90.0, "elevation": 0.0}
+        ]
+      }
+    ]
+  }
+}
+```
+
+</details>
+### Compression Techniques in HD Maps
+
+HD maps are large and complex, so compression techniques are essential for efficient storage and transmission. Here are two primary techniques:
+
+- **Polygon Simplification**: Many HD map features, like lanes and curbs, are represented as polygons. Simplifying these polygons by reducing the number of vertices can significantly compress the map data. For instance, using algorithms like the Douglas-Peucker algorithm, redundant points are removed while preserving the shape’s essential structure. This helps maintain important features without a significant loss in accuracy.
+
+- **Lossy Compression**: By applying lossy compression to areas where minor details are less critical (such as textures or vegetation), map size can be reduced. This involves approximating some data points, accepting minor distortions in exchange for a smaller file size. In HD maps, lossy techniques are typically applied to secondary information layers that are less relevant for precise localization.
+
 ### HD Map Generation ML Models
 
 - [HDMapNet: An Online HD Map Construction and Evaluation Framework](https://arxiv.org/pdf/2107.06307)
