@@ -43,6 +43,8 @@ Use LiDAR point clouds to detect objects in 3D space (with 3D bounding boxes).
  
 Fuse these results by projecting the 3D LiDAR data onto the 2D image, or by correlating detected objects in both modalities. This improves detection accuracy and helps assign depth to the objects detected by the camera.
 
+Late Fusion: Object detections from LiDAR and camera are processed independently, and the results are combined at a decision-making stage. For example, after YOLO detects objects in the image, the system might confirm or refine those detections using LiDAR data, improving localization or classification.
+
 ## Kalman Filters
 
 https://www.thinkautonomous.ai/blog/sensor-fusion/
