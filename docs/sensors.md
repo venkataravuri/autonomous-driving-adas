@@ -432,3 +432,14 @@ Both YUV and RGB data can be compressed into JPEG using color space conversion, 
 Mobileye camera sensors send processed data (like object detection results) over CAN bus at 30-60 Hz, and for full video streams, they may use H.264 compression over Ethernet.
  
 H.264 streams can vary in bitrate depending on resolution and compression settings but generally allow for efficient video transmission.
+
+### Voxels Vs. Point Clouds
+
+A voxel is a 3D image. Splits the space (yes, the "air") into 50*50*50 cm grids, and consider these as voxels. You then take the average of the points inside and give it a value. If no point is inside, you consider it empty.
+
+By converting  point cloud to a set of "voxels", we can use 3D Convolutions.
+
+Point and Voxel based approaches are the 2 "main" ways to process point clouds with 3D Deep Learning, 
+
+5 Approaches we can use to process point clouds using 3D Deep Learning, 
+
