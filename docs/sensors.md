@@ -27,6 +27,13 @@ Each camera covers a specific Field of View (FoV)
 - Camera 2 covers the rear (120° FoV).
 - Four other cameras cover the left, right, front-left, and front-right regions, respectively, with smaller FoVs.
 
+
+### Calibration
+
+Intrinsic Parameters: These describe the camera’s focal length and principal point, defining how the 3D world is projected onto the 2D image plane.
+ 
+Extrinsic Parameters: These describe the camera’s position and orientation relative to the ego vehicle.
+
 <img align="right" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRexJXGGhK719BgaGSQI5BouU79zlI-NWCOlql5wlISgRugJOwWsFUU1bUw7HBjD1j52u8" width="30%" height="30%" />
 
 # LiDAR - Light Detection and Ranging
