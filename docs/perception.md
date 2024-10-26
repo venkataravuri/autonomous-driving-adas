@@ -154,18 +154,6 @@ Metrics for evaluating multi-object tracking (MOT) performance.
 
 The LiDAR data projection and volumetric methods cause spatial information loss during conversion to another domain, so processing point clouds directly are important to keep this spatial information. However, the raw point cloud methods have high sparsity and computational costs due to 3D convolutions.
 
-PointNet is a unified architecture for 3D object classification, part segmentation, and semantic segmentation that directly uses raw point cloud data.
-
-## LiDAR Object Detection Algorithms
-
-Traditional CNNs cannot be applied to Point Clouds. Images have a fixed width and height, it's a rectangular matrix where every pixel lies between 0 and 255, nearby pixels belong to the same object, and it's all flat 2D. Point clouds are 3D structure has no order, no color, and no continuity between the points.
-
-PointNet/PointNet++ is used to extract features, later these features used in 3D Object Detectors.
-
-- MOSAIK Suite from MicroVision – Comprehensive and professional object detection software, including lane detection and free space detection. Sign recognition is slated to release in MOSAIK 2.0 in Sept. 2023. MicroVision Tools Login
-- PointNet: A deep learning architecture designed for processing point cloud data directly. PointNet
-- PointNet++: An extension of PointNet that handles large-scale point cloud data more effectively. PointNet++
-- VoteNet: A model for 3D object detection in point clouds, which can be applied to LiDAR data.
 
 ### Voxels Vs. Point Clouds
 
@@ -190,7 +178,21 @@ OpenPCDet is a PyTorch-based toolbox for 3D object detection from point cloud. I
 
 Github Repo: https://github.com/open-mmlab/OpenPCDet/
 
-## BEV oriented ML Models
+## ML-driven Object Detection, Object Classification & Semantic Segmentation
+
+### LiDAR Only Object Detection Algorithms
+
+Traditional CNNs cannot be applied to Point Clouds. Images have a fixed width and height, it's a rectangular matrix where every pixel lies between 0 and 255, nearby pixels belong to the same object, and it's all flat 2D. Point clouds are 3D structure has no order, no color, and no continuity between the points.
+
+|Year|Model|Description|Paper|
+|---|---|---|---|
+||PointNet|PointNet is a unified architecture for 3D object classification, part segmentation, and semantic segmentation that directly uses raw point cloud data.||
+||PointNet++|PointNet++ is used to extract features, later these features used in 3D Object Detectors.||
+||VoteNet|||
+
+### Sensor Fusion ML Models
+
+### BEV-based Models
 
 ### BEVFusion
 
@@ -202,194 +204,100 @@ Github Repo: https://github.com/open-mmlab/OpenPCDet/
 
 <img src="diagrams/bevformer-1.png" />
 
-### How Image Features and Point Cloud Features are Aligned in BEV Space?
-
-To fuse camera image features and LiDAR point cloud features in the BEV space, the following steps are typically performed:
- 
-Camera Projection to BEV: Camera images are captured in a 2D perspective space, while the BEV is essentially a top-down 2D view of the 3D world. To align the camera features with the BEV space, a geometric transformation known as inverse perspective mapping (IPM) is applied. This transforms the 2D image features into a BEV format by projecting the features onto the ground plane based on the known camera calibration (intrinsic and extrinsic parameters) and the vehicle's pose.
- 
-Point Cloud Projection to BEV: LiDAR directly provides 3D spatial information, so converting it to BEV is simpler. The LiDAR point cloud is projected onto the ground plane, which naturally fits into a BEV format, where each point cloud is mapped to its respective BEV cell or grid location.
- 
-Alignment in BEV: After projection, both image and LiDAR features exist in the BEV space, which is effectively a common spatial grid. This allows the features to be aligned at the same resolution and spatial location, where each cell represents a specific location in the world. Features from the camera and LiDAR corresponding to the same physical location can now be fused.
- 
-#### How Image Features are Geometrically Aligned with Point Cloud Features
- 
-The geometric alignment between camera image features and point cloud features is achieved through transformations that consider the extrinsic and intrinsic parameters of the sensors:
- 
-Extrinsic Calibration: This step ensures that the relative position and orientation of the cameras and LiDAR are known. Using these extrinsics, image features can be geometrically transformed into the 3D coordinate system in which the LiDAR points reside.
- 
-Reprojection of 3D Points: Once camera features are projected onto the BEV space, they are aligned with the LiDAR features by considering the depth information provided by LiDAR. The 3D points from the LiDAR can be used to infer the corresponding image features by reprojecting them into the 3D scene, effectively mapping the 2D image information onto the 3D point cloud space.
- 
- 
-This geometric alignment ensures that the image features from a particular spatial location in the scene correspond to the point cloud features at the same location.
-
-#### Mapping 6 Camera Sensor Images to LiDAR’s 360-Degree View
- 
-Multiple Camera Sensors: The six cameras are typically positioned to cover different angles around the ego vehicle (front, rear, and sides), providing a near 360-degree view in the 2D space. However, the LiDAR inherently captures a full 360-degree view in 3D, often with higher spatial resolution.
- 
-Image to LiDAR Mapping: Each camera covers a specific Field of View (FoV), and the features extracted from each camera are transformed to the BEV format based on the camera’s position, orientation, and coverage area. The LiDAR point cloud is also converted into the BEV space, so camera image features are mapped onto the corresponding regions of the LiDAR point cloud based on their spatial overlap.
- 
-Fusing Partial Camera Views: Since each camera only covers a portion of the 360-degree field, their features are fused together in the BEV space, providing complementary information for the full 360-degree view that LiDAR provides. The areas where camera views overlap with LiDAR can be fused directly, while areas not covered by the cameras rely solely on LiDAR information.
-
-#### Generating Semantic Segmentation from BEV Fusion Data
- 
-Feature Fusion in BEV: Once both the camera and LiDAR features are transformed into the BEV space, they are combined using fusion techniques, such as:
- 
-Concatenation: The features from both modalities can be concatenated channel-wise.
- 
-Weighted Summation: Fusion can be performed by taking a weighted sum or applying learned weights to blend the features.
- 
-Cross-Attention Mechanisms: Some advanced fusion techniques use attention mechanisms to selectively fuse features based on their relevance to the task.
- 
- 
-Segmentation Head: After fusion, a segmentation head (usually a convolutional neural network or a fully connected network) processes the fused BEV features to predict class labels for each BEV grid cell. This segmentation represents different semantic classes such as vehicles, pedestrians, roads, and other relevant objects.
- 
-Semantic Segmentation in BEV: The semantic segmentation is typically performed in the BEV space. Each pixel in the BEV grid corresponds to a location in the physical environment, and the output of the segmentation provides a label for each of these locations.
-
-
-#### Semantic Segmentation in Image Dimensions
- 
-Reprojection to Camera View: After performing the segmentation in the BEV space, if the goal is to present the segmentation result in the same dimensions as the camera image, the BEV segmentation results are reprojected back into the image space. This is done using the inverse of the perspective transformation that was initially applied to project the camera images into the BEV.
- 
-Consistent Resolution: To ensure that the semantic segmentation map has the same resolution as the original camera images, the BEV segmentation results can be interpolated to match the pixel dimensions of the camera input. This ensures that the output segmentation is in the same format and perspective as the original camera images, while being informed by the fused data from both LiDAR and camera features.
- 
- 
-In summary, the process of fusing camera and LiDAR features in a BEV space for object detection and semantic segmentation involves geometric transformations, sensor calibration, feature fusion, and projection techniques to generate a unified perception of the environment.
-
-Aligning image features from multiple cameras and point cloud features from LiDAR in Bird’s Eye View (BEV) space involves understanding how 2D images and 3D LiDAR point clouds relate to the real-world environment around the ego vehicle. The goal is to project the features from both sensors onto a common BEV space, so that spatial information from each sensor can be fused. Let’s break this down with an example.
- 
-Step 1: Understanding the Sensors
- 
-Camera Setup: Assume we have 6 cameras mounted on the ego vehicle, positioned to cover 360 degrees around the vehicle. Each camera has its own field of view (FoV) and produces a 2D image. Let’s assume each image has a resolution of 1280x720 pixels (width x height).
- 
-Let’s say:
- 
-Camera 1 covers the front (120° FoV).
- 
-Camera 2 covers the rear (120° FoV).
- 
-Four other cameras cover the left, right, front-left, and front-right regions, respectively, with smaller FoVs.
- 
- 
-LiDAR: The LiDAR sensor provides a 360-degree view by outputting a 3D point cloud of the surroundings. Assume the LiDAR outputs 100,000 points per frame, each point with 3D coordinates  relative to the vehicle's reference frame. The LiDAR also provides intensity information per point, which indicates how strong the reflection was.
- 
- 
-Step 2: Extracting Features from Camera Images and LiDAR Point Clouds
- 
-a. Camera Features Extraction
+### Camera Features Extraction
  
 For each camera, we use a backbone network (e.g., a ResNet or FPN) to extract features from the 2D images. Let’s assume the output feature map from each camera image has the following properties:
  
 Input image resolution: 1280x720
  
-Backbone reduces spatial resolution by a factor of 4, so the output feature map has a size of 320x180 (width x height).
- 
-Assume the output feature map has 256 channels.
- 
- 
+Backbone reduces spatial resolution by a factor of 4, so the output feature map has a size of 320x180X256 (width x height x channels).
 Now, for each camera, we have feature maps of size 320x180x256. These features are in the image's perspective view, meaning they represent the scene from the camera's point of view.
+
+### LiDAR Features Extraction
  
-b. LiDAR Features Extraction
- 
-For the LiDAR, we typically use a point-based or voxel-based backbone (e.g., PointNet, VoxelNet, or a variant) to extract features from the raw point cloud.
+For the LiDAR, use a point-based or voxel-based backbone (e.g., PointNet, VoxelNet, or a variant) to extract features from the raw point cloud.
  
 Assume the point cloud is divided into voxels in 3D space, with a voxel size of 0.2 meters (i.e., each voxel represents a 0.2m x 0.2m x 0.2m cube in the real world).
  
 We discretize the point cloud into a BEV feature map with spatial dimensions, where each voxel represents a cell in the BEV grid.
- 
- 
+
+
+
+### How Image Features and Point Cloud Features are Geometrically Aligned in BEV Space?
+
 Let’s assume the BEV feature map is 400x400 with 128 channels. This grid represents a 40m x 40m region around the vehicle (i.e., each cell in the BEV grid represents a 0.1m x 0.1m area in the real world).
+
+To fuse camera image features and LiDAR point cloud features in the BEV space, the following steps are typically performed:
  
-Step 3: Projecting Camera Features to BEV Space
- 
-The camera images are in a perspective view, so we need to project them into BEV space to align them with the LiDAR features.
- 
-a. Inverse Perspective Mapping (IPM)
- 
-To project the camera features into BEV space, we use the camera’s intrinsic and extrinsic parameters:
- 
-Intrinsic Parameters: These describe the camera’s focal length and principal point, defining how the 3D world is projected onto the 2D image plane.
- 
-Extrinsic Parameters: These describe the camera’s position and orientation relative to the ego vehicle.
- 
+- **Projecting Camera Features to BEV Space**: Camera images are captured in a 2D perspective space, while the BEV is essentially a top-down 2D view of the 3D world. To align the camera features with the BEV space, a geometric transformation known as **Inverse Perspective Mapping (IPM)** is applied. This transforms the 2D image features into a BEV format by projecting the features onto the ground plane based on the known camera calibration intrinsic and extrinsic parameters and the vehicle's pose.
+
+Each camera covers a specific Field of View (FoV), and the features extracted from each camera are transformed to the BEV format based on the camera’s position, orientation, and coverage area. Since each camera only covers a portion of the 360-degree field, their features are fused together in the BEV space
+
+- **Intrinsic Parameters**: These describe the camera’s focal length and principal point, defining how the 3D world is projected onto the 2D image plane.
+- **Extrinsic Parameters**: These describe the camera’s position and orientation relative to the ego vehicle.
  
 Using these parameters, we perform Inverse Perspective Mapping (IPM), which transforms 2D image pixels to 3D world coordinates. Specifically, we map each pixel in the camera image (after feature extraction) to a point on the ground plane in the world space. This involves:
  
-Ray-casting from each pixel in the 2D image into the 3D world.
+- Ray-casting from each pixel in the 2D image into the 3D world.
+- Assuming that objects are on the ground plane (common assumption for BEV).
+- Calculating where each ray intersects the ground plane in the world space, which corresponds to a point in the BEV grid.
  
-Assuming that objects are on the ground plane (common assumption for BEV).
- 
-Calculating where each ray intersects the ground plane in the world space, which corresponds to a point in the BEV grid.
- 
- 
-b. Example of Camera Feature Projection
+**Example of Camera Feature Projection**
  
 Let’s say the front camera captures a portion of the road in front of the vehicle. After IPM, each feature in the 320x180x256 front camera feature map is projected onto a corresponding location in the BEV space (40m x 40m around the vehicle).
  
 The resulting BEV feature map for the front camera would have dimensions that align with the BEV grid, say 400x400x256 (with spatial dimensions matching the LiDAR BEV grid and feature channels from the camera).
  
-This process is repeated for all 6 cameras, projecting each camera’s feature map to its respective region in the BEV space. For example:
+This process is repeated for all cameras, projecting each camera’s feature map to its respective region in the BEV space. For example:
  
-The front camera features project to the front area of the BEV grid.
- 
-The rear camera features project to the rear area of the BEV grid, and so on.
- 
- 
-c. Combining Features from Multiple Cameras
- 
+- The front camera features project to the front area of the BEV grid.
+- The rear camera features project to the rear area of the BEV grid, and so on.
+  
 Each camera covers a different FoV, so after projecting all six cameras to the BEV space, we get feature maps that correspond to different regions of the BEV grid. The feature maps from each camera are combined (e.g., through summation, concatenation, or learned fusion mechanisms) to form a unified camera-based BEV feature map.
  
-Step 4: LiDAR Point Cloud to BEV Space
- 
-LiDAR points are already in 3D space, so converting them to BEV space is straightforward.
- 
-The point cloud is projected directly onto the ground plane (i.e., the XY-plane).
+- **Projecting LiDAR Point Cloud to BEV Space**: LiDAR directly provides 3D spatial information, so converting it to BEV is simpler. The LiDAR point cloud is projected onto the ground plane, which naturally fits into a BEV format, where **_each point cloud is mapped to its respective BEV cell or grid location_**.
+
+LiDAR points are already in 3D space, so converting them to BEV space is straightforward. The point cloud is projected directly onto the ground plane (i.e., the XY-plane).
  
 Each point is assigned to a voxel or grid cell in the BEV space, based on its  and  coordinates.
  
 Feature extraction from the LiDAR point cloud gives us a 400x400x128 BEV feature map.
  
+**Alignment in BEV**: After projection, both image and LiDAR features exist in the BEV space, which is effectively a common spatial grid. This allows the features to be aligned at the same resolution and spatial location, where each cell represents a specific location in the world. Features from the camera and LiDAR corresponding to the same physical location can now be fused.
  
-Step 5: Fusing Camera and LiDAR Features in BEV Space
- 
+#### Fusing Camera and LiDAR Features in BEV Space
+
 Once we have both the camera-based BEV features (e.g., 400x400x256) and the LiDAR-based BEV features (e.g., 400x400x128), we can fuse them to form a comprehensive representation of the environment.
- 
+
 Fusion Techniques: The features from both sensors can be fused using techniques like:
  
-Concatenation: Simply concatenating the camera and LiDAR features along the channel dimension, resulting in a BEV feature map of size 400x400x(256+128) = 400x400x384.
+- **Concatenation**: Simply concatenating the camera and LiDAR features along the channel dimension, resulting in a BEV feature map of size 400x400x(256+128) = 400x400x384.
+- **Summation or Weighted Fusion**: Taking a weighted sum of the camera and LiDAR features at each grid cell in the BEV space.
+- **Learned Attention Mechanisms**: Using neural networks (e.g., attention layers) to learn how to weight and combine the features from the two modalities.
+
+#### Generating Semantic Segmentation from BEV Features
  
-Learned Attention Mechanisms: Using neural networks (e.g., attention layers) to learn how to weight and combine the features from the two modalities.
- 
-Summation or Weighted Fusion: Taking a weighted sum of the camera and LiDAR features at each grid cell in the BEV space.
- 
- 
- 
-Step 6: Generating Semantic Segmentation from BEV Features
- 
+**Segmentation Head**: 
+
 Once the fused BEV feature map is generated (e.g., 400x400x384), it is passed through a segmentation head (typically a convolutional network) to produce a semantic segmentation map.
- 
+
+Segmentation head (usually a convolutional neural network or a fully connected network) processes the fused BEV features to predict class labels for each BEV grid cell. 
+
 Output Segmentation Map: The final output would be a 400x400 BEV map where each cell is assigned a class label (e.g., road, vehicle, pedestrian).
  
 The segmentation map can then be projected back to the image space if needed, or used in the BEV space for navigation, object detection, or planning.
  
- 
-Summary of Dimensions:
- 
-Camera images are 1280x720.
- 
-Camera feature maps after backbone: 320x180x256.
- 
-LiDAR point cloud projected to BEV: 400x400x128.
- 
-Fused BEV feature map: 400x400x384 (after concatenating camera and LiDAR features).
- 
-Final BEV semantic segmentation: 400x400, where each cell represents a class label (e.g., road, vehicle).
- 
- 
+In summary, the process of fusing camera and LiDAR features in a BEV space for object detection and semantic segmentation involves _geometric transformations, sensor calibration, feature fusion, and projection techniques_ to generate a unified perception of the environment.
+
 This process aligns and fuses image and point cloud features in the BEV space, allowing for comprehensive environmental perception around the ego vehicle.
 
-#### Can you detail how Image Features and Point Cloud Features are Aligned in BEV Space? Explain with an example where 6 camera images and LiDAR 360 point cloud based features are extracted and how these features carry spatial information to map to BEV space? explain with dimensions?
+**Summary of Dimensions**:
  
+- Camera images are 1280x720.
+- Camera feature maps after backbone: 320x180x256.
+- LiDAR point cloud projected to BEV: 400x400x128.
+- Fused BEV feature map: 400x400x384 (after concatenating camera and LiDAR features).
+- Final BEV semantic segmentation: 400x400, where each cell represents a class label (e.g., road, vehicle).
 
 #### Does BEVfusion or BEVformer capable of detecting road lane markings, lane width, lane joins and more. 
 
