@@ -27,6 +27,15 @@ Each camera covers a specific Field of View (FoV)
 - Camera 2 covers the rear (120° FoV).
 - Four other cameras cover the left, right, front-left, and front-right regions, respectively, with smaller FoVs.
 
+Camera provides vision to the car, enabling multiple tasks like object classification, segmentation, and localization.
+
+Cameras provide rich visual information and object classification (identifying what the object is), such as recognizing a car, a pedestrian, or a cyclist.
+
+A camera captures a 2D image of the scene.
+
+- Detected Object 1: 2D bounding box (x1', y1'), object class: "car", confidence: 0.95.
+- Detected Object 2: 2D bounding box (x2', y2'), object class: "pedestrian", confidence: 0.85.
+
 
 ### Calibration
 
@@ -37,6 +46,25 @@ Extrinsic Parameters: These describe the camera’s position and orientation rel
 <img align="right" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRexJXGGhK719BgaGSQI5BouU79zlI-NWCOlql5wlISgRugJOwWsFUU1bUw7HBjD1j52u8" width="30%" height="30%" />
 
 # LiDAR - Light Detection and Ranging
+
+LiDAR stands for Light Detection And Ranging, it’s a method to measure the distance of objects by firing a laser beam and then measuring how long it takes for it to be reflected by something.
+
+LiDAR perceives spatial information. 
+
+ LiDAR sensor uses lasers or light to measure the distance of the nearby object. It will work at night and in dark environments, but it can still fail when there’s noise from rain or fog. That’s why we also need a RADAR sensor.
+
+ 
+LiDAR generates a 3D point cloud of the environment.
+ 
+Object Detection: A LiDAR-based object detection algorithm (e.g., clustering, DBSCAN, or deep learning methods) processes the point cloud to detect objects like vehicles, pedestrians, or obstacles. The result is a set of 3D bounding boxes around detected objects, along with their estimated positions (x, y, z coordinates).
+ 
+Strengths: LiDAR provides accurate depth and 3D localization, allowing precise measurements of the distance and size of objects.
+ 
+ - Detected Object 1: 3D bounding box with coordinates (x1, y1, z1), size (w1, h1, l1), object type: unknown.
+ - Detected Object 2: 3D bounding box with coordinates (x2, y2, z2), size (w2, h2, l2), object type: unknown.
+ 
+
+
 
 1. LiDAR Point Cloud Basics
  
@@ -96,6 +124,22 @@ LiDAR estimate velocity as difference between two consecutive measurements. RADA
 ## RADAR
 
 Radar stands for Radio Detection And Ranging.
+
+Radio detection and ranging (RADAR) is a key component in many military and consumer applications. It was first used by the military to detect objects. It calculates distance using radio wave signals.
+
+RADARs are highly effective because they use radio waves instead of lasers, so they work in any conditions. 
+
+Radars are noisy sensors, means that even if the camera sees no obstacle, the radar will detect some obstacles.
+
+<img src="https://i0.wp.com/neptune.ai/wp-content/uploads/2022/10/Self-driving-cars-lidar.png?ssl=1" height="50%" width="50%" />
+<img src="https://i0.wp.com/neptune.ai/wp-content/uploads/2022/10/Self-driving-cars-radar.png?ssl=1" height="50%" width="50%" />
+
+RADAR data should be cleaned in order to make good decisions and predictions. We need to separate weak signals from strong ones; this is called thresholding. We also use Fast Fourier Transforms (FFT) to filter and interpret the signal. 
+
+Generate the trajectories of objects and bounding box (bbox). The labels on top of a bbox (for example, [21] (0.24)) show the car ID (for example, 21), and the tracking confidence (for example, 0.24), respectively.
+
+Generating the trajectory of an object requires identifying the same object over time even when there are abrupt changes in visual appearance or motion dynamics. 
+
 
 ### Physics of Radar
 
