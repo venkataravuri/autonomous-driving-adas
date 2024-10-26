@@ -69,97 +69,74 @@ Segmentation: Uses RANSAC to identify inliers and outliers, fitting a geometric 
 There are two main types of tracking algorithm family: 
 1) Single Object Tracker (SOT)
 2) Multiple Object Tracker (MOT)
-   
-Multiple Object Tracking (MOT) refers to the computer vision task that addresses to track every single object of interest in the images or videos. In usual case, MOT integrates a technique known as tracking-by-detection. It entails running a tracker on the set of detections after an independent detector has been applied to images or videos in order to gather expected detections. Unique IDs are then assigned to the bounding box of detected objects and estimation algorithms are used to track moving object’s future actions without losing assigned IDs. As conclusion, the following three steps are shared by the majority of MOT algorithms in high level:
+
+### Single Object Tracking (SOT)
+
+Single Object Tracking focuses on tracking a single object throughout a sequence of frames. 
+
+The process begins with initializing a bounding box around the target object in the first frame, after which the tracker aims to locate this object in subsequent frames.
+
+Key Algorithms:
+- **Correlation Filters**: These are used to match the target's appearance in subsequent frames based on learned features.
+- **Deep Learning Approaches**: Convolutional Neural Networks (CNNs) are frequently employed to learn robust appearance models, enhancing tracking accuracy even under occlusion or changes in scale.
+
+### Multiple Object Tracking (MOT)
+
+Multiple Object Tracking aims to identify and track multiple objects simultaneously across video frames. This involves not only detecting objects but also associating them across frames to maintain their identities over time.
+
+Unique IDs are then assigned to the bounding box of detected objects and estimation algorithms are used to track moving object’s future actions without losing assigned IDs. 
 - Detect objects
 - Create a unique ID for each detected objects
 - Track object as they move, maintaining the assigned IDs.
 
+Key Steps:
+- **Detection**: Identify objects in each frame using bounding boxes.
+- **Prediction**: Estimate where each object will be in the next frame, often using motion models like Kalman filters.
+- **Data Association**: Link detected objects across frames based on predicted locations and appearance features.
+
+**Algorithms**:
+
+- **Tracking-by-Detection**: This prevalent approach combines detection and tracking by first detecting objects in each frame and then associating these detections across frames.
+- **Simple Online and Realtime Tracking (SORT)**: An efficient algorithm that uses **Kalman filters** for prediction and a simple data association strategy based on bounding box overlap.
+- **DeepSORT**: An extension of SORT that incorporates appearance information through deep learning, improving performance in complex scenarios like occlusions.
+- **FairMOT**: A recent approach that treats detection and re-identification as a multi-task learning problem, allowing for simultaneous optimization of both tasks within a single framework.
+   
+Multiple Object Tracking (MOT) refers to the computer vision task that addresses to track every single object of interest in the images or videos. In usual case, MOT integrates a technique known as tracking-by-detection. It entails running a tracker on the set of detections after an independent detector has been applied to images or videos in order to gather expected detections.
 After object detection, each detected object is represented by a bounding box (from the image or LiDAR) and additional features (e.g., class labels, position, velocity). These detections become the measurements for the Kalman filter, which tracks the objects over time.
 
-### real-time object tracking methods.
-
-#### Primitive Techniques
-
 ### Kalman filters
+
+The Kalman filter tracks each object by maintaining a state vector for each detected object, which typically includes:
+
+1. State Vector: For each object, the Kalman filter maintains a state vector that contains information about the object's position and velocity in the 2D image space. The state might include:
+    - Object's position (e.g., x, y from image and/or x, y, z from LiDAR)
+    - Velocity in x, y directions (inferred from motion between frames)
+    - Size (width, height, depth of the 3D bounding box)
+
+  
+2. Prediction Step: At each time step, the Kalman filter predicts the object's next position based on its current velocity and motion model. The Kalman filter uses a motion model (usually a constant velocity model) to predict the future position of each object based on its current state. This is particularly useful when an object might temporarily disappear from view (occlusion) or when detection is missed for a few frames.
 
 State Estimation: Kalman filter is applied to to predict the future location of the target by optimally solving the velocity components. Then the detected bounding box in the previous step is used to update the target state.
 Target Association: Kalman filter just estimates the object’s new location, which needs to be optimized. 
 
-Hungarian algorithms 
-
-Step 5: Feeding Fused Results into Kalman Filter for Tracking
+    1. Hungarian Algorithm: This algorithm is used for solving the assignment problem, where new detections (bounding boxes) are matched with predicted object positions based on their spatial proximity. 
+    2. Appearance Metric: In addition to spatial matching, DeepSORT uses a cosine similarity metric on the appearance features to associate new detections with previously tracked objects. This prevents identity switches (i.e., when the identity of an object is wrongly transferred to another).
  
-Once the objects have been detected and classified using late fusion, their positions and attributes (e.g., 3D bounding boxes, class labels) are used as inputs for a Kalman filter to track these objects across time.
- 
-Kalman Filter Input: For each object, the Kalman filter takes the fused bounding box coordinates (x, y, z) and class label and predicts the next state of the object in terms of its position and velocity.
+3. Update Step: When new measurements (bounding boxes) arrive from the sensor fusion system (LiDAR and camera), the Kalman filter updates its estimate of the object's position and velocity, correcting any discrepancies between the prediction and the measurement. After predicting the object's next state, the Kalman filter receives new measurements from the object detector (new bounding box locations). The filter then updates the predicted state with these measurements, refining the object's position and velocity. This recursive update helps in keeping the track consistent even with noisy detections. 
  
 Tracking: As new detections come in at each time step, the Kalman filter updates the object's position and motion model, allowing for robust tracking of objects as they move, even if one sensor fails to detect an object in a particular frame.
  
- 
 The Kalman filter helps:
  
-Smooth object motion by predicting positions between detections.
- 
-Handle missing detections when an object is temporarily occluded or one sensor misses it.
- 
-Track multiple objects by associating their positions over time.
+- Smooth object motion by predicting positions between detections.
+- Handle missing detections when an object is temporarily occluded or one sensor misses it.
+- Track multiple objects by associating their positions over time.
 
- Object Detection as Input to Kalman Filter
+**Advantages of Using Kalman Filters After Sensor Fusion**
  
-
- 
-LiDAR provides 3D bounding box coordinates (position and size) in the real-world space (e.g., x, y, z).
- 
-Cameras provide 2D bounding box coordinates (position in the image plane), along with class labels (e.g., pedestrian, car).
- 
- 
-Both sets of information can be fused to form a comprehensive detection for each object, combining spatial accuracy from LiDAR and visual details from the camera.
- 
-2. Tracking with Kalman Filter
- 
-The Kalman filter tracks each object by maintaining a state vector for each detected object, which typically includes:
- 
-Object's position (e.g., x, y, z from LiDAR)
- 
-Velocity (inferred from motion between frames)
- 
-Size (width, height, depth of the 3D bounding box)
- 
- 
-Prediction and Update Cycle:
- 
-Prediction: At each time step, the Kalman filter predicts the object's next position based on its current velocity and motion model.
- 
-Update: When new measurements (bounding boxes) arrive from the sensor fusion system (LiDAR and camera), the Kalman filter updates its estimate of the object's position and velocity, correcting any discrepancies between the prediction and the measurement.
- 
- 
-3. Advantages of Using Kalman Filters After Sensor Fusion
- 
-Robust Tracking: By integrating both LiDAR and camera data, the Kalman filter can track objects even if one of the sensors temporarily fails (e.g., a camera cannot detect objects in poor lighting, or LiDAR misses objects due to occlusion).
- 
-Handling Missing Detections: If an object is not detected in one frame, the Kalman filter can still predict its position, based on its motion in previous frames.
- 
-Smooth Object Motion: Kalman filters provide a smoothed estimate of an object's motion over time, reducing the effect of noisy measurements.
- 
- 
- 
----
- 
-Example Use Case in Autonomous Driving
- 
-In an autonomous vehicle navigating a busy city street:
- 
-Camera Detection: YOLO detects a pedestrian in the camera's image with 85% confidence but lacks depth information.
- 
-LiDAR Detection: LiDAR independently detects a moving object (cluster of points) at 12 meters away, producing a 3D bounding box but without classifying what the object is.
- 
-Late Fusion: By associating the 2D camera detection with the 3D LiDAR detection, the system confirms the object is a pedestrian at a distance of 12 meters and updates the Kalman filter to track the pedestrian's movement in 3D space.
- 
- 
-In this way, late fusion creates a more reliable and precise detection and ensures that the object is accurately tracked as the vehicle continues moving forward.
-
-
+- **Robust Tracking**: By integrating both LiDAR and camera data, the Kalman filter can track objects even if one of the sensors temporarily fails (e.g., a camera cannot detect objects in poor lighting, or LiDAR misses objects due to occlusion).
+- **Handling Missing Detections**: If an object is not detected in one frame, the Kalman filter can still predict its position, based on its motion in previous frames.
+- **Smooth Object Motion**: Kalman filters provide a smoothed estimate of an object's motion over time, reducing the effect of noisy measurements.
 
 #### Performance Metrics
 
@@ -168,13 +145,6 @@ Metrics for evaluating multi-object tracking (MOT) performance.
 - MOTA
 - IDF1
 - Track mAP
-
-
- 
-Combining LiDAR and Image Data for Object Detection
- 
-Sensor fusion combines data from multiple sensors to leverage the strengths of each, resulting in a more robust object detection system. Here's how LiDAR and image data are typically combined:
- 
 
 ### 1. LiDAR Object Detection Raw Point Cloud Methods
 
@@ -190,138 +160,40 @@ Bounding Box Fitting: Once clusters are identified, 3D bounding boxes are fitted
  
 Feature Extraction: Additional features like the shape, size, and orientation of the bounding box, as well as the object's motion, can be derived to classify and distinguish between different object types (e.g., cars vs. pedestrians).
  
- 
-
-### Fusion of Detection Results
- 
-After each sensor independently detects objects, late fusion combines these results at the decision-making stage. There are a few common methods to achieve this:
- 
-Method 1: Object Matching via Spatial Proximity
- 
-The 3D bounding boxes from LiDAR detection and the 2D bounding boxes from camera detection are compared by projecting the 3D LiDAR bounding boxes onto the 2D image plane.
- 
-Association is done by checking how closely the projected 3D bounding box aligns with a 2D bounding box from the camera.
- 
-If the projection of a LiDAR-detected object onto the image closely overlaps with a camera-detected object, the two detections are considered to represent the same object.
- 
- 
-Example:
- 
-The 3D bounding box for Object 1 from the LiDAR, when projected onto the image plane, overlaps significantly with the 2D bounding box of the "car" detected by the camera. This suggests that Object 1 is indeed a car.
- 
-The 3D bounding box for Object 2 from the LiDAR, when projected onto the image plane, overlaps with the 2D bounding box of a "pedestrian" detected by the camera. Hence, Object 2 is classified as a pedestrian.
- 
- 
-Method 2: Confidence Score Fusion
- 
-Each sensor's detection comes with a confidence score indicating how certain the system is about the detection (e.g., how confident YOLO is that a detected object is a pedestrian).
- 
-In late fusion, the confidence scores from both LiDAR and camera detections can be weighted and combined to improve decision-making.
- 
-For example, if the LiDAR system is 90% confident that an object exists in a certain location, but the camera-based YOLO detector is only 60% confident about detecting a car at that position, the system can combine the confidence scores (e.g., using a weighted average) to make a more robust detection decision.
-
- 
-Step 4: Decision and Classification
- 
-After associating the objects detected by the LiDAR and camera:
- 
-Final Decision: The system combines the classification information from the camera (which has better object recognition capabilities) and the localization from LiDAR (which provides accurate 3D positions and sizes of objects).
- 
-This fusion gives a complete and more reliable representation of each object, including its type (car, pedestrian) and its 3D position and size.
- 
- 
-Example of fused results:
- 
-Object 1: Detected as a "car" with high confidence, located at coordinates (x1, y1, z1), with bounding box size (w1, h1, l1).
- 
-Object 2: Detected as a "pedestrian" with medium confidence, located at coordinates (x2, y2, z2), with bounding box size (w2, h2, l2).
- 
- 
-
-Advantages of Late Fusion
- 
-1. Leverages Sensor Strengths:
- 
-LiDAR gives accurate 3D localization, while cameras excel at classification (object recognition).
- 
-Late fusion allows each sensor to work independently in its specialized domain, providing the best of both worlds.
- 
- 
-2. Improves Reliability:
- 
-If one sensor (e.g., LiDAR) misses an object or has low confidence, the other sensor (camera) can still provide useful information, leading to more robust detection.
-
- 
-3. Increased Flexibility:
- 
-Late fusion allows you to integrate different algorithms for each sensor and does not require combining raw sensor data early in the pipeline, making the system more modular.
- 
- 
- 
-
-DeepSORT (Deep Simple Online and Realtime Tracking) 
+#### DeepSORT (Deep Simple Online and Realtime Tracking) 
  
 DeepSORT is an advanced version of the SORT (Simple Online and Realtime Tracking) algorithm, designed for multi-object tracking (MOT). It enhances the basic SORT approach by adding appearance features from a deep learning model, which helps to maintain the identity of objects as they move through a scene. DeepSORT integrates object detection, bounding box association, and Kalman filtering to track multiple objects in a scene in real-time.
+
+DeepSORT is efficient, scalable, and can track multiple objects in real-time, making it suitable for complex environments like autonomous driving.
  
-Object Detection in DeepSORT
- 
+**Object Detection in DeepSORT
+** 
 Object detection is the first step in the DeepSORT pipeline. This involves detecting objects in the environment, typically using a pre-trained object detection model such as:
- 
-YOLO (You Only Look Once)
- 
-SSD (Single Shot Detector)
- 
-Faster R-CNN (Region-based Convolutional Neural Network)
- 
+- YOLO (You Only Look Once)
+- SSD (Single Shot Detector)
+- Faster R-CNN (Region-based Convolutional Neural Network)
  
 These models produce bounding boxes around the detected objects, which define the object's location and size in the image. The bounding boxes are associated with each object's class (e.g., pedestrian, car, cyclist) and confidence score (how sure the detector is about the object being present).
  
 Bounding Boxes and Object Tracking
  
 Once objects are detected and their bounding boxes are identified, DeepSORT uses the detected bounding boxes as inputs for the tracking system. These bounding boxes provide:
- 
-Position (x, y coordinates of the top-left corner of the box)
- 
-Width and height (to estimate the object's size)
- 
-Confidence score from the detection model.
- 
- 
+- Position (x, y coordinates of the top-left corner of the box)
+- Width and height (to estimate the object's size)
+- Confidence score from the detection model.
+   
 At each time step, new bounding boxes are produced by the object detector, and these need to be associated with the existing tracked objects.
  
-Integration with Kalman Filters
+**Integration with Kalman Filters**
  
 DeepSORT integrates a Kalman filter to predict and update the state of each tracked object over time. Here’s how this works:
- 
-1. State Vector: For each object, the Kalman filter maintains a state vector that contains information about the object's position and velocity in the 2D image space. The state might include:
- 
-Object's x, y position
- 
-Velocity in x, y directions
- 
-Width and height of the bounding box
- 
- 
- 
-2. Prediction Step: The Kalman filter uses a motion model (usually a constant velocity model) to predict the future position of each object based on its current state. This is particularly useful when an object might temporarily disappear from view (occlusion) or when detection is missed for a few frames.
- 
- 
-3. Update Step: After predicting the object's next state, the Kalman filter receives new measurements from the object detector (new bounding box locations). The filter then updates the predicted state with these measurements, refining the object's position and velocity. This recursive update helps in keeping the track consistent even with noisy detections.
- 
- 
- 
-The Kalman filter helps by providing a smoother, more accurate estimate of object movement and compensates for missing or imperfect detections.
- 
+
 Multi-Object Tracking (MOT) in DeepSORT
  
 One of the key challenges in multi-object tracking is data association, or how to assign new detections (bounding boxes) to the correct tracked object. DeepSORT handles this by combining:
  
 1. Kalman filter predictions: Predicting the future positions of objects to narrow down the search area for associations.
- 
- 
 2. Appearance features: DeepSORT improves the original SORT algorithm by incorporating a deep learning-based appearance descriptor (usually a CNN). This appearance model extracts features from each object (from its bounding box), which are then used to measure similarity between detections and previously tracked objects.
- 
- 
  
 This similarity metric helps associate detections with the correct object, even when objects cross paths, overlap, or when the Kalman filter alone might not be sufficient to distinguish between them.
  
@@ -329,41 +201,28 @@ Data Association (Matching Bounding Boxes)
  
 DeepSORT uses a combination of spatial (position-based) and appearance-based features to solve the data association problem:
  
-1. Hungarian Algorithm: This algorithm is used for solving the assignment problem, where new detections (bounding boxes) are matched with predicted object positions based on their spatial proximity.
- 
- 
+1. Hungarian Algorithm: This algorithm is used for solving the assignment problem, where new detections (bounding boxes) are matched with predicted object positions based on their spatial proximity. 
 2. Appearance Metric: In addition to spatial matching, DeepSORT uses a cosine similarity metric on the appearance features to associate new detections with previously tracked objects. This prevents identity switches (i.e., when the identity of an object is wrongly transferred to another).
  
- 
- 
-Inputs to DeepSORT
+**Inputs to DeepSORT**
  
 The inputs to DeepSORT are:
  
 Bounding boxes from an object detector (e.g., YOLO or Faster R-CNN), including:
- 
-Coordinates (x, y, width, height)
- 
-Class label (e.g., pedestrian, car, etc.)
- 
-Confidence score (how likely it is that the object is correctly detected)
- 
+- Coordinates (x, y, width, height)
+- Class label (e.g., pedestrian, car, etc.)
+- Confidence score (how likely it is that the object is correctly detected)
  
 Appearance features from a pre-trained deep learning model, extracted from the detected object's bounding box.
  
- 
-Outputs of DeepSORT
+**Outputs of DeepSORT**
  
 The outputs of DeepSORT are:
+- Tracked objects: Each object being tracked has a unique ID, and its updated bounding box coordinates (x, y, width, height) are output at each time step.
+- State information: For each object, the Kalman filter's predicted state (position, velocity) is available.
+- Appearance feature vectors: These are used internally to maintain the identity of objects, especially in crowded or complex environments.
  
-Tracked objects: Each object being tracked has a unique ID, and its updated bounding box coordinates (x, y, width, height) are output at each time step.
- 
-State information: For each object, the Kalman filter's predicted state (position, velocity) is available.
- 
-Appearance feature vectors: These are used internally to maintain the identity of objects, especially in crowded or complex environments.
- 
- 
-Temporal Tracking and Occlusion Handling
+**Temporal Tracking and Occlusion Handling**
  
 DeepSORT is designed to handle temporal aspects in object tracking. Since Kalman filters predict the next state of an object based on its previous state, DeepSORT is robust to short-term occlusions (when an object is briefly blocked from view). Even if the object is not detected for a few frames, DeepSORT can continue predicting its movement and recover its position once it reappears. The appearance model also helps in correctly re-identifying the object after occlusion.
  
@@ -372,36 +231,10 @@ Role in Autonomous Vehicle (AV) Perception Pipeline
 In autonomous vehicles, DeepSORT would be used in the tracking stage of the perception pipeline. Here’s a typical flow:
  
 1. Sensor Fusion: Data from various sensors (camera, LiDAR, radar) is first combined to create a robust perception of the environment.
- 
- 
 2. Object Detection: After sensor fusion, the detection module identifies and localizes objects of interest (e.g., pedestrians, vehicles) in the sensor data (usually in the form of 2D bounding boxes).
- 
- 
 3. Object Tracking: This is where DeepSORT comes into play. The tracking system receives bounding boxes from the object detector and uses DeepSORT to assign unique IDs to each detected object and track their movement over time.
- 
- 
 4. Prediction: The tracked objects are then used for motion prediction, allowing the vehicle to anticipate their future positions, which is crucial for safe path planning and navigation.
  
- 
- 
-Summary
- 
-Object Detection: DeepSORT uses detections from pre-trained models like YOLO or Faster R-CNN, which provide bounding boxes around objects in each frame.
- 
-Kalman Filters: Integrated to predict the state of tracked objects (position, velocity), providing robustness to missed detections or occlusions.
- 
-Appearance Model: A deep learning-based model extracts appearance features to maintain object identities even in complex scenarios.
- 
-Multi-Object Tracking: Uses the combination of motion (Kalman filter) and appearance features to track multiple objects, ensuring accurate association across frames.
- 
-Outputs: Tracked objects with unique IDs, positions, and velocities are the key outputs, along with continued tracking over time.
- 
-Stage in AV Perception: DeepSORT is used after object detection in the perception stage of the AV pipeline, ensuring that multiple objects are tracked accurately across frames for better motion prediction and decision-making.
- 
- 
-DeepSORT is efficient, scalable, and can track multiple objects in real-time, making it suitable for complex environments like autonomous driving.
-
-
 
 ---------------
 
