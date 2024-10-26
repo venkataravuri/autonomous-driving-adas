@@ -16,7 +16,7 @@
     - [Occupancy Networks]()
 
 
-## Overview
+## Perception Overview
 
 > Perception refers to the processing and interpretation of sensor data to detect, identify, classify and track objects.
 
@@ -29,61 +29,6 @@ To achieve such a high level of perception, a self-driving car should use one or
 - LiDAR
 - RADAR
 
-## Camera - Visual Perception
-
-Camera provides vision to the car, enabling multiple tasks like classification, segmentation, and localization.
-
-2. Camera Detection:
- 
-Process: A camera captures a 2D image of the scene.
- 
-Object Detection: A 2D object detection model (e.g., YOLO, Faster R-CNN) processes the image to detect objects like vehicles and pedestrians, resulting in 2D bounding boxes in the image frame, along with class labels (car, pedestrian, etc.) and confidence scores.
- 
-Strengths: Cameras provide rich visual information and object classification (identifying what the object is), such as recognizing a car, a pedestrian, or a cyclist.
- 
- 
-Example result:
- 
-Detected Object 1: 2D bounding box (x1', y1'), object class: "car", confidence: 0.95.
- 
-Detected Object 2: 2D bounding box (x2', y2'), object class: "pedestrian", confidence: 0.85.
- 
-
-## LiDAR
-
-LiDAR stands for Light Detection And Ranging, it’s a method to measure the distance of objects by firing a laser beam and then measuring how long it takes for it to be reflected by something.
-
-LiDAR perceives spatial information. 
-
- LiDAR sensor uses lasers or light to measure the distance of the nearby object. It will work at night and in dark environments, but it can still fail when there’s noise from rain or fog. That’s why we also need a RADAR sensor.
-
- 
-LiDAR generates a 3D point cloud of the environment.
- 
-Object Detection: A LiDAR-based object detection algorithm (e.g., clustering, DBSCAN, or deep learning methods) processes the point cloud to detect objects like vehicles, pedestrians, or obstacles. The result is a set of 3D bounding boxes around detected objects, along with their estimated positions (x, y, z coordinates).
- 
-Strengths: LiDAR provides accurate depth and 3D localization, allowing precise measurements of the distance and size of objects.
- 
- - Detected Object 1: 3D bounding box with coordinates (x1, y1, z1), size (w1, h1, l1), object type: unknown.
- - Detected Object 2: 3D bounding box with coordinates (x2, y2, z2), size (w2, h2, l2), object type: unknown.
- 
-
-## RADAR
-
-Radio detection and ranging (RADAR) is a key component in many military and consumer applications. It was first used by the military to detect objects. It calculates distance using radio wave signals.
-
-RADARs are highly effective because they use radio waves instead of lasers, so they work in any conditions. 
-
-Radars are noisy sensors, means that even if the camera sees no obstacle, the radar will detect some obstacles.
-
-<img src="https://i0.wp.com/neptune.ai/wp-content/uploads/2022/10/Self-driving-cars-lidar.png?ssl=1" height="50%" width="50%" />
-<img src="https://i0.wp.com/neptune.ai/wp-content/uploads/2022/10/Self-driving-cars-radar.png?ssl=1" height="50%" width="50%" />
-
-RADAR data should be cleaned in order to make good decisions and predictions. We need to separate weak signals from strong ones; this is called thresholding. We also use Fast Fourier Transforms (FFT) to filter and interpret the signal. 
-
-Generate the trajectories of objects and bounding box (bbox). The labels on top of a bbox (for example, [21] (0.24)) show the car ID (for example, 21), and the tracking confidence (for example, 0.24), respectively.
-
-Generating the trajectory of an object requires identifying the same object over time even when there are abrupt changes in visual appearance or motion dynamics. 
 
 multi-object trackers (MOT).
 
@@ -98,54 +43,26 @@ vehicle tracking, Pedestrian tracking
 
 Multi-Sensor Kalman Filter
 
+### Object Detection
 
+Object Detection: A 2D object detection model (e.g., YOLO, Faster R-CNN) processes the image to detect objects like vehicles and pedestrians, resulting in 2D bounding boxes in the image frame, along with class labels (car, pedestrian, etc.) and confidence scores.
 
-|  object tracker types | ML Models | Technology | Hardware & Devices | Papers |
-| --- | --- | --- | --- | --- |
-| ? | ? | ? | ? | ? |
-| ? | ? | ? | ? | ? |
+### Camera Image-Based Object Detection with YOLO
+ 
+For image-based object detection, deep learning models like YOLO (You Only Look Once) are commonly used. YOLO takes a 2D camera image as input and produces:
+ 
+2D bounding boxes around detected objects.
+ 
+Object class labels (e.g., vehicle, pedestrian).
+ 
+Confidence scores for each detection.
+ 
+While YOLO can provide detailed classification and detection in 2D, it lacks depth information (i.e., how far the object is from the vehicle), which is where LiDAR becomes crucial.
 
-Sources
-- [DRIVE Labs: Tracking Objects With Surround Camera Vision](https://developer.nvidia.com/blog/drive-labs-tracking-objects-with-surround-camera-vision/)
-
-Sensor fusion is the merging of data from at least two sensors. Sensor fusion along with perception enables an autonomous vehicle to develop a 3D model of the surrounding environment that feeds into the vehicle’s control unit.
-
-### Object-Level Fusion
-
-Traditional _object-level fusion_ approach, perception is done separately on each sensor.
-
-<img src="https://leddartech.com/app/uploads/2022/03/figure1.png" width="50%" height="50%" />
-
-This is not optimal because when sensor data is not fused before the system makes a decision, it may need to do so based on contradicting inputs. For example, if an obstacle is detected by the camera but was not detected by the LiDAR or the radar, the system may hesitate as to whether the vehicle should stop.
-
-### Raw Data Sensor Fusion
-
-In a raw-data fusion approach, objects detected by the different sensors are first fused into a dense and precise 3D environmental RGBD model, then decisions are made based on a single model built from all the available information.
-
-<img src="https://leddartech.com/app/uploads/2022/03/figure2.png" height="50%" width="50%" />
-
-Fusing raw data from multiple frames and multiple measurements of a single object improves the signal-to-noise ratio (SNR), enables the system to overcome single sensor faults and allows the use of lower-cost sensors. This solution provides better detections and less false alarms, especially for small obstacles and unclassified objects.
-
-full autonomous driving requires complete, 360-degree surround camera vision.
-
- surround camera object tracking software currently leverages a six-camera, 360-degree surround perception setup that has no blind spots around the car. The software tracks objects in all six camera images, and associates their locations in image space with unique ID numbers as well as time-to-collision (TTC) estimates.
-
- feature points which are invariant to rotation and translation are detected by the Harris Corner Detector [1]. Small templates centered on the corner points are tracked by the Lucas-Kanade template tracking algorithm
-
- Ghost tracks due to objects moving out of the scene are the main cause of false positive braking. Removing them with low latency and without missing any object tracks is a challenging task. 
-
- variety of seasons, routes, times of the day, illumination conditions, highway, and urban roads.
-
-Surround-view fisheye cameras
-
-Advanced driver assistance systems rely on front and rear cameras to perform ,
-1. Automatic cruise control (ACC)
-2. and lane keep assist.
 
 ## Semantic Segmentation
 
 Segmentation: Uses RANSAC to identify inliers and outliers, fitting a geometric model to the data.
-Clustering: Applies DBSCAN to the outliers to group them into clusters.
 
 ## Object Tracking
 
@@ -164,126 +81,13 @@ After object detection, each detected object is represented by a bounding box (f
 
 #### Primitive Techniques
 
-Kalman filters
+### Kalman filters
 
 State Estimation: Kalman filter is applied to to predict the future location of the target by optimally solving the velocity components. Then the detected bounding box in the previous step is used to update the target state.
 Target Association: Kalman filter just estimates the object’s new location, which needs to be optimized. 
 
 Hungarian algorithms 
 
-#### Performance Metrics
-
-Metrics for evaluating multi-object tracking (MOT) performance.
-- [HOTA](https://jonathonluiten.medium.com/how-to-evaluate-tracking-with-the-hota-metrics-754036d183e1) (Higher Order Tracking Accuracy). 
-- MOTA
-- IDF1
-- Track mAP
-
-### Raw Point Cloud Methods
-
-The LiDAR data projection and volumetric methods cause spatial information loss during conversion to another domain, so processing point clouds directly are important to keep this spatial information. However, the raw point cloud methods have high sparsity and computational costs due to 3D convolutions.
-
-
-### Voxels Vs. Point Clouds
-
-A voxel is a 3D image. Splits the space (yes, the "air") into 50*50*50 cm grids, and consider these as voxels. You then take the average of the points inside and give it a value. If no point is inside, you consider it empty.
-
-By converting  point cloud to a set of "voxels", we can use 3D Convolutions.
-
-Point and Voxel based approaches are the 2 "main" ways to process point clouds with 3D Deep Learning, 
-
-5 Approaches we can use to process point clouds using 3D Deep Learning, 
-
-### Camera
-
-
- 
-Image-Based Object Detection with YOLO
- 
-For image-based object detection, deep learning models like YOLO (You Only Look Once) are commonly used. YOLO takes a 2D camera image as input and produces:
- 
-2D bounding boxes around detected objects.
- 
-Object class labels (e.g., vehicle, pedestrian).
- 
-Confidence scores for each detection.
- 
- 
-While YOLO can provide detailed classification and detection in 2D, it lacks depth information (i.e., how far the object is from the vehicle), which is where LiDAR becomes crucial.
- 
-Combining LiDAR and Image Data for Object Detection
- 
-Sensor fusion combines data from multiple sensors to leverage the strengths of each, resulting in a more robust object detection system. Here's how LiDAR and image data are typically combined:
- 
-
-### 1. LiDAR Object Detection Non-ML Algorithms
-
-Processing and analyzing 3D point cloud data, particularly for object detection and segmentation tasks,
-
-Github Repo: https://github.com/AlirezaHabibi1377/3D-LiDAR-Based-Object-Detection
-
-The raw point cloud data is processed to detect objects by identifying clusters of points that represent individual objects. This is done through various steps:
-  
-Clustering: Algorithms like DBSCAN (Density-Based Spatial Clustering of Applications with Noise) or Euclidean Clustering are applied to group nearby points into clusters that likely represent discrete objects (e.g., vehicles, pedestrians).
- 
-Bounding Box Fitting: Once clusters are identified, 3D bounding boxes are fitted around each cluster. These boxes represent the extent of detected objects in the 3D space.
- 
-Feature Extraction: Additional features like the shape, size, and orientation of the bounding box, as well as the object's motion, can be derived to classify and distinguish between different object types (e.g., cars vs. pedestrians).
- 
- 
-LiDAR-based object detection systems are good at identifying objects' precise locations and sizes but may struggle with object classification (i.e., identifying what the object is) without additional data.
-
-Step 3: Fusion of Detection Results
- 
-After each sensor independently detects objects, late fusion combines these results at the decision-making stage. There are a few common methods to achieve this:
- 
-Method 1: Object Matching via Spatial Proximity
- 
-The 3D bounding boxes from LiDAR detection and the 2D bounding boxes from camera detection are compared by projecting the 3D LiDAR bounding boxes onto the 2D image plane.
- 
-Association is done by checking how closely the projected 3D bounding box aligns with a 2D bounding box from the camera.
- 
-If the projection of a LiDAR-detected object onto the image closely overlaps with a camera-detected object, the two detections are considered to represent the same object.
- 
- 
-Example:
- 
-The 3D bounding box for Object 1 from the LiDAR, when projected onto the image plane, overlaps significantly with the 2D bounding box of the "car" detected by the camera. This suggests that Object 1 is indeed a car.
- 
-The 3D bounding box for Object 2 from the LiDAR, when projected onto the image plane, overlaps with the 2D bounding box of a "pedestrian" detected by the camera. Hence, Object 2 is classified as a pedestrian.
- 
- 
-Method 2: Confidence Score Fusion
- 
-Each sensor's detection comes with a confidence score indicating how certain the system is about the detection (e.g., how confident YOLO is that a detected object is a pedestrian).
- 
-In late fusion, the confidence scores from both LiDAR and camera detections can be weighted and combined to improve decision-making.
- 
-For example, if the LiDAR system is 90% confident that an object exists in a certain location, but the camera-based YOLO detector is only 60% confident about detecting a car at that position, the system can combine the confidence scores (e.g., using a weighted average) to make a more robust detection decision.
- 
- 
- 
----
- 
-Step 4: Decision and Classification
- 
-After associating the objects detected by the LiDAR and camera:
- 
-Final Decision: The system combines the classification information from the camera (which has better object recognition capabilities) and the localization from LiDAR (which provides accurate 3D positions and sizes of objects).
- 
-This fusion gives a complete and more reliable representation of each object, including its type (car, pedestrian) and its 3D position and size.
- 
- 
-Example of fused results:
- 
-Object 1: Detected as a "car" with high confidence, located at coordinates (x1, y1, z1), with bounding box size (w1, h1, l1).
- 
-Object 2: Detected as a "pedestrian" with medium confidence, located at coordinates (x2, y2, z2), with bounding box size (w2, h2, l2).
- 
- 
- 
----
- 
 Step 5: Feeding Fused Results into Kalman Filter for Tracking
  
 Once the objects have been detected and classified using late fusion, their positions and attributes (e.g., 3D bounding boxes, class labels) are used as inputs for a Kalman filter to track these objects across time.
@@ -300,33 +104,7 @@ Smooth object motion by predicting positions between detections.
 Handle missing detections when an object is temporarily occluded or one sensor misses it.
  
 Track multiple objects by associating their positions over time.
- 
- 
- 
----
- 
-Advantages of Late Fusion
- 
-1. Leverages Sensor Strengths:
- 
-LiDAR gives accurate 3D localization, while cameras excel at classification (object recognition).
- 
-Late fusion allows each sensor to work independently in its specialized domain, providing the best of both worlds.
- 
- 
- 
-2. Improves Reliability:
- 
-If one sensor (e.g., LiDAR) misses an object or has low confidence, the other sensor (camera) can still provide useful information, leading to more robust detection.
- 
- 
- 
-3. Increased Flexibility:
- 
-Late fusion allows you to integrate different algorithms for each sensor and does not require combining raw sensor data early in the pipeline, making the system more modular.
- 
- 
- 
+
  Object Detection as Input to Kalman Filter
  
 
@@ -382,7 +160,106 @@ Late Fusion: By associating the 2D camera detection with the 3D LiDAR detection,
 In this way, late fusion creates a more reliable and precise detection and ensures that the object is accurately tracked as the vehicle continues moving forward.
 
 
-DeepSORT (Deep Simple Online and Realtime Tracking) Overview
+
+#### Performance Metrics
+
+Metrics for evaluating multi-object tracking (MOT) performance.
+- [HOTA](https://jonathonluiten.medium.com/how-to-evaluate-tracking-with-the-hota-metrics-754036d183e1) (Higher Order Tracking Accuracy). 
+- MOTA
+- IDF1
+- Track mAP
+
+
+ 
+Combining LiDAR and Image Data for Object Detection
+ 
+Sensor fusion combines data from multiple sensors to leverage the strengths of each, resulting in a more robust object detection system. Here's how LiDAR and image data are typically combined:
+ 
+
+### 1. LiDAR Object Detection Raw Point Cloud Methods
+
+The LiDAR data projection and volumetric methods cause spatial information loss during conversion to another domain, so processing point clouds directly are important to keep this spatial information. However, the raw point cloud methods have high sparsity and computational costs due to 3D convolutions.
+
+LiDAR-based object detection systems are good at identifying objects' precise locations and sizes but may struggle with object classification (i.e., identifying what the object is) without additional data.
+
+The raw point cloud data is processed to detect objects by identifying clusters of points that represent individual objects. This is done through various steps:
+  
+Clustering: Algorithms like DBSCAN (Density-Based Spatial Clustering of Applications with Noise) or Euclidean Clustering are applied to group nearby points into clusters that likely represent discrete objects (e.g., vehicles, pedestrians).
+ 
+Bounding Box Fitting: Once clusters are identified, 3D bounding boxes are fitted around each cluster. These boxes represent the extent of detected objects in the 3D space.
+ 
+Feature Extraction: Additional features like the shape, size, and orientation of the bounding box, as well as the object's motion, can be derived to classify and distinguish between different object types (e.g., cars vs. pedestrians).
+ 
+ 
+
+### Fusion of Detection Results
+ 
+After each sensor independently detects objects, late fusion combines these results at the decision-making stage. There are a few common methods to achieve this:
+ 
+Method 1: Object Matching via Spatial Proximity
+ 
+The 3D bounding boxes from LiDAR detection and the 2D bounding boxes from camera detection are compared by projecting the 3D LiDAR bounding boxes onto the 2D image plane.
+ 
+Association is done by checking how closely the projected 3D bounding box aligns with a 2D bounding box from the camera.
+ 
+If the projection of a LiDAR-detected object onto the image closely overlaps with a camera-detected object, the two detections are considered to represent the same object.
+ 
+ 
+Example:
+ 
+The 3D bounding box for Object 1 from the LiDAR, when projected onto the image plane, overlaps significantly with the 2D bounding box of the "car" detected by the camera. This suggests that Object 1 is indeed a car.
+ 
+The 3D bounding box for Object 2 from the LiDAR, when projected onto the image plane, overlaps with the 2D bounding box of a "pedestrian" detected by the camera. Hence, Object 2 is classified as a pedestrian.
+ 
+ 
+Method 2: Confidence Score Fusion
+ 
+Each sensor's detection comes with a confidence score indicating how certain the system is about the detection (e.g., how confident YOLO is that a detected object is a pedestrian).
+ 
+In late fusion, the confidence scores from both LiDAR and camera detections can be weighted and combined to improve decision-making.
+ 
+For example, if the LiDAR system is 90% confident that an object exists in a certain location, but the camera-based YOLO detector is only 60% confident about detecting a car at that position, the system can combine the confidence scores (e.g., using a weighted average) to make a more robust detection decision.
+
+ 
+Step 4: Decision and Classification
+ 
+After associating the objects detected by the LiDAR and camera:
+ 
+Final Decision: The system combines the classification information from the camera (which has better object recognition capabilities) and the localization from LiDAR (which provides accurate 3D positions and sizes of objects).
+ 
+This fusion gives a complete and more reliable representation of each object, including its type (car, pedestrian) and its 3D position and size.
+ 
+ 
+Example of fused results:
+ 
+Object 1: Detected as a "car" with high confidence, located at coordinates (x1, y1, z1), with bounding box size (w1, h1, l1).
+ 
+Object 2: Detected as a "pedestrian" with medium confidence, located at coordinates (x2, y2, z2), with bounding box size (w2, h2, l2).
+ 
+ 
+
+Advantages of Late Fusion
+ 
+1. Leverages Sensor Strengths:
+ 
+LiDAR gives accurate 3D localization, while cameras excel at classification (object recognition).
+ 
+Late fusion allows each sensor to work independently in its specialized domain, providing the best of both worlds.
+ 
+ 
+2. Improves Reliability:
+ 
+If one sensor (e.g., LiDAR) misses an object or has low confidence, the other sensor (camera) can still provide useful information, leading to more robust detection.
+
+ 
+3. Increased Flexibility:
+ 
+Late fusion allows you to integrate different algorithms for each sensor and does not require combining raw sensor data early in the pipeline, making the system more modular.
+ 
+ 
+ 
+
+DeepSORT (Deep Simple Online and Realtime Tracking) 
  
 DeepSORT is an advanced version of the SORT (Simple Online and Realtime Tracking) algorithm, designed for multi-object tracking (MOT). It enhances the basic SORT approach by adding appearance features from a deep learning model, which helps to maintain the identity of objects as they move through a scene. DeepSORT integrates object detection, bounding box association, and Kalman filtering to track multiple objects in a scene in real-time.
  
@@ -721,3 +598,5 @@ ByteTrack: A recent tracking method that handles noisy object detections and ass
  
  
 
+References
+- [DRIVE Labs: Tracking Objects With Surround Camera Vision](https://developer.nvidia.com/blog/drive-labs-tracking-objects-with-surround-camera-vision/)
