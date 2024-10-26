@@ -112,7 +112,7 @@ Lanelet2 maps are organized into three main layers:
 
 </details>
 
-### OpenDRIV HDMap Format
+### OpenDRIVE HDMap Format
 
 OpenDRIVE files typically have the .xodr extension and are organized into several key components:
 
@@ -294,6 +294,7 @@ Example: A city’s map is divided into tiles measuring, say, 100x100 meters. Fo
 ```
 
 </details>
+
 ### Compression Techniques in HD Maps
 
 HD maps are large and complex, so compression techniques are essential for efficient storage and transmission. Here are two primary techniques:
@@ -301,6 +302,22 @@ HD maps are large and complex, so compression techniques are essential for effic
 - **Polygon Simplification**: Many HD map features, like lanes and curbs, are represented as polygons. Simplifying these polygons by reducing the number of vertices can significantly compress the map data. For instance, using algorithms like the Douglas-Peucker algorithm, redundant points are removed while preserving the shape’s essential structure. This helps maintain important features without a significant loss in accuracy.
 
 - **Lossy Compression**: By applying lossy compression to areas where minor details are less critical (such as textures or vegetation), map size can be reduced. This involves approximating some data points, accepting minor distortions in exchange for a smaller file size. In HD maps, lossy techniques are typically applied to secondary information layers that are less relevant for precise localization.
+
+### Combining Multiple Passes for Map Updates
+
+When a route is driven multiple times, each pass provides slightly different data due to variations in position, lane, and sensor accuracy. Probabilistic fusion combines these multiple data points to improve the map’s accuracy and robustness.
+
+Example Scenario:
+
+    Pass 1: A vehicle drives in the left-most lane, collecting data for lane markings, road boundaries, and other features.
+    Pass 2: A second pass in the right-most lane gathers a slightly different perspective, with data shifted according to its position in the lane.
+
+Fusion Process:
+
+    Coordinate Transformation: Each pass’s data is transformed into a unified coordinate system. Since lane positions vary, data from each lane is aligned using coordinate translation techniques.
+    Probabilistic Averaging: For overlapping map features, such as lane markings, a probabilistic model averages multiple readings to reduce uncertainty. Outliers from sensor noise are excluded, while consistent data points are retained and averaged, resulting in a more precise map.
+
+For example, if a lane marking’s position varies by a few centimeters across passes, the average of these positions is calculated. A probabilistic weighting function can prioritize readings with lower variance or higher confidence scores to refine the final map.
 
 ### HD Map Generation ML Models
 
