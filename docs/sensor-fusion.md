@@ -31,6 +31,18 @@ The idea is to have, let’s say, a camera and a LiDAR sensor detect an obstacle
 
 This is similar to the mid-level method, except that we implement detection as well as tracking algorithms for each individual sensor, and then fuse the results.
 
+There are several methods for combining LiDAR and camera data:
+ 
+Early Fusion: Raw data from LiDAR and cameras are combined at the sensor level. For example, LiDAR point clouds are projected onto the 2D image, and both the point cloud and pixel data are fed into a neural network for joint object detection.
+ 
+Mid-Level Fusion: LiDAR-based object detection and image-based detection are done separately, and their results are combined. For instance:
+ 
+Use YOLO to detect objects in the 2D image (with 2D bounding boxes).
+ 
+Use LiDAR point clouds to detect objects in 3D space (with 3D bounding boxes).
+ 
+Fuse these results by projecting the 3D LiDAR data onto the 2D image, or by correlating detected objects in both modalities. This improves detection accuracy and helps assign depth to the objects detected by the camera.
+
 ## Kalman Filters
 
 https://www.thinkautonomous.ai/blog/sensor-fusion/
