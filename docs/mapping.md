@@ -1,20 +1,20 @@
 # Mapping & Localization
 
-## Mapping Overview
+In the realm of autonomous driving, mapping is vital for navigation and situational awareness.
 
-Maps includes elements such as road boundaries, lane delimiters, centerlines, direction of travel and crosswalks.
+**Mapping** involves creating a representation of the environment, which can include static objects like  road boundaries, lane delimiters, centerlines, direction of travel and crosswalks, buildings and dynamic objects such as pedestrians and other vehicles.It is a process of predicting map elements for a given set of surround view images and lidar point clouds.
 
-Mapping is a process of predicting map elements for a given set of surround view images and lidar point clouds.
+**Localization** is the process of determining the vehicle's position within that map. This is essential for navigation, obstacle avoidance, and path planning.
 
 ## Map Categores
 
-- Toplogical Maps (Traditional)
-- HD Maps
- - Offline
- - Online 
-- Mapless Autonomous Driving
+The main types of maps utilized include,
+- Topological maps
+- High-definition (HD) maps
+- and Mapless autonomous driving.
 
-### Topological Maps (Traditional)
+## Topological Maps
+Topological maps represent the environment based on the connectivity and relationships between various locations (e.g., intersections, routes) rather than precise geometrical details. They emphasize the paths and routes available, making them useful for navigation tasks that require understanding of how different areas are connected.
 
 Topological maps includes attributes like road topology, lane topology (number of lanes), building footprints, street segments, direction of travel, parking lots. They are useful to know how to get from point A to point B.
 
@@ -26,13 +26,26 @@ Data used to assemble these maps are produced from cameras mounted on dashboards
 - Engergy based
 - Neural Network
 
-### HD Maps
+## High-Definition (HD) Maps
+HD maps are highly detailed representations of the environment, essential for advanced autonomous driving systems. They provide centimeter-level accuracy and include intricate details about road geometry, traffic signs, lane markings, and other critical features.
 
 High-definition (HD) maps offer an intricate and precise depiction of the road, encompassing lane markings, traffic signs, and other critical features.
 
 HD Maps contain both geometric structure information as well as semantics.
 
 <img src="https://geospatialmedia.s3.amazonaws.com/wp-content/uploads/2016/04/here-1.jpg" height="50%" width="50%" />
+
+Types of HD Maps,
+
+- **Offline HD Maps**:
+ - Created using extensive data collection methods such as LiDAR, cameras, and GPS.
+ - Typically updated periodically based on new data or changes in the environment.
+ - Used for detailed planning and simulation.
+
+- **Online HD Maps**:
+ - Updated in real-time or near-real-time using sensor data from vehicles.
+ - Allow for dynamic changes in the environment to be reflected immediately.
+ - Essential for applications requiring immediate responsiveness to changing conditions.
 
 #### What are different HD map layers?
 
@@ -56,21 +69,19 @@ HD Map is organized into layers.
 | Lanelet2 | HD map format for autonomous driving XML, OSM | Points |
 | NDS | Global standard for automotive map data | Binary Vector data |
 
-### HD Map Generation Techniques
-
-4 techniques are used to perform point cloud registration: optimization-based approaches, probabilistic-based approaches, feature-based approaches, and deep learning techniques.
+### HD Map Generation ML Models
 
 - [HDMapNet: An Online HD Map Construction and Evaluation Framework](https://arxiv.org/pdf/2107.06307)
 - [MapTRv2: An End-to-End Framework for Online Vectorized HD Map Construction](https://arxiv.org/pdf/2308.05736)
-
- PoseNet and VLocNet++, are some of the frameworks that use point data to estimate the 3D position and orientation. These estimated 3D positions and orientations can be used to derive scene semantics, as seen in the image below.
-
-### Online HD Maps
-
-- [HDMapNet: An Online HD Map Construction and Evaluation Framework - 2022](https://arxiv.org/abs/2107.06307)
+-  PoseNet and VLocNet++, are some of the frameworks that use point data to estimate the 3D position and orientation. These estimated 3D positions and orientations can be used to derive scene semantics, as seen in the image below.
 
 
 ## Mapless Autonomous Driving
+Mapless autonomous driving refers to systems that navigate without relying on pre-defined maps. Instead, these systems utilize real-time sensor data to understand their environment and make decisions.
+
+Characteristics:
+- Can adapt to completely new environments without prior knowledge.
+- Often employs techniques like SLAM (Simultaneous Localization and Mapping) to build a map on-the-fly while localizing itself.
 
 Mapless autonomous driving leverages a combination of cameras and sensors to create a dynamic perception map of the vehicle’s surroundings without relying on pre-loaded HD maps.
 
