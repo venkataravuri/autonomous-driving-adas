@@ -112,6 +112,59 @@ Lanelet2 maps are organized into three main layers:
 
 </details>
 
+### OpenDRIV HDMap Format
+
+OpenDRIVE files typically have the .xodr extension and are organized into several key components:
+
+- **Header**: Contains metadata about the road network, including version information and timestamps.
+- **Roads**: Defines individual roads, including their geometry and attributes.
+- **Lanes**: Specifies lane details such as width, type, and markings.
+- **Junctions**: Describes how roads connect to each other.
+- **Objects**: Includes static features like traffic signs and signals.
+
+<details>
+<summary>OpenDRIVE Sample</summary>
+ 
+```xml
+<OpenDRIVE xmlns="http://www.opendrive.org/schema/1.6">
+    <header>
+        <revision>1.6</revision>
+        <name>Sample Road Network</name>
+        <date>2024-10-26T12:00:00</date>
+    </header>
+    <road id="1" length="1000" junction="-1">
+        <line>
+            <start x="0" y="0" z="0"/>
+            <end x="1000" y="0" z="0"/>
+        </line>
+        <lanes>
+            <lane id="1" type="driving" level="0">
+                <width>
+                    <laneWidth sOffset="0" a="3.5"/>
+                </width>
+                <roadMark>
+                    <type>solid</type>
+                    <color>white</color>
+                </roadMark>
+            </lane>
+            <lane id="2" type="driving" level="0">
+                <width>
+                    <laneWidth sOffset="0" a="3.5"/>
+                </width>
+                <roadMark>
+                    <type>dashed</type>
+                    <color>yellow</color>
+                </roadMark>
+            </lane>
+        </lanes>
+    </road>
+    <junction id="1">
+        <connection incomingRoadId="1" outgoingRoadId="2"/>
+    </junction>
+</OpenDRIVE>
+```
+
+</details>
 
 ### HD Map Generation ML Models
 
