@@ -22,6 +22,23 @@ Prediction provides future trajectories of observed movable objects. During plan
   - Type
   - Current state
  
+- Map Features Used
+  - Lane connectivity
+  - Road geometry
+  - Traffic rules
+  - Semantic information
+    - Speed limits
+    - Turn restrictions
+    - Stop lines
+    - Crosswalks
+
+4.2 Map-Based Constraints
+
+Lane-following behavior
+Legal maneuver checking
+Road topology consideration
+Speed profile generation
+ 
 ### Outputs to Planning
 
 - Predicted trajectories
