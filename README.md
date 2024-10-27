@@ -11,6 +11,7 @@
   - #### [Motion Prediction](), [Trajectory Prediction]()
 - ## :motorway: [Path Planning](docs/docs/planning.md)
 - ## :world_map: [Mapping & Localization](docs/mapping.md)
+  - #### [HD Maps](docs/mapping.md#high-definition-hd-maps), [Map Formats](docs/mapping.md#what-are-different-hd-maps-formats), [HD Map Generation Models](docs/mapping.md#hd-map-generation-ml-models)
 - ## :compass: [Control](control.md)
 - ## :city_sunset: [Simulation](docs/simulation.md)
   - #### [Log-Replay Vs. Simulation](), [Reinforcement Learning](docs/reinforcement-learning.md)
