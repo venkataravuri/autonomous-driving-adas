@@ -18,7 +18,6 @@
 
 # Camera Sensor
 
-
 Multiple camera sensors are typically positioned to cover different angles around the ego vehicle (front, rear, and sides), providing a near 360-degree view in the 2D space.
 
 Each camera covers a specific Field of View (FoV)
@@ -45,176 +44,35 @@ Extrinsic Parameters: These describe the camera’s position and orientation rel
 
 <img align="right" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRexJXGGhK719BgaGSQI5BouU79zlI-NWCOlql5wlISgRugJOwWsFUU1bUw7HBjD1j52u8" width="30%" height="30%" />
 
-# LiDAR - Light Detection and Ranging
-
-LiDAR stands for Light Detection And Ranging, it’s a method to measure the distance of objects by firing a laser beam and then measuring how long it takes for it to be reflected by something.
-
-LiDAR perceives spatial information. 
-
- LiDAR sensor uses lasers or light to measure the distance of the nearby object. It will work at night and in dark environments, but it can still fail when there’s noise from rain or fog. That’s why we also need a RADAR sensor.
-
- 
-LiDAR generates a 3D point cloud of the environment.
- 
-Object Detection: A LiDAR-based object detection algorithm (e.g., clustering, DBSCAN, or deep learning methods) processes the point cloud to detect objects like vehicles, pedestrians, or obstacles. The result is a set of 3D bounding boxes around detected objects, along with their estimated positions (x, y, z coordinates).
- 
-Strengths: LiDAR provides accurate depth and 3D localization, allowing precise measurements of the distance and size of objects.
- 
- - Detected Object 1: 3D bounding box with coordinates (x1, y1, z1), size (w1, h1, l1), object type: unknown.
- - Detected Object 2: 3D bounding box with coordinates (x2, y2, z2), size (w2, h2, l2), object type: unknown.
- 
-
-
-
-1. LiDAR Point Cloud Basics
- 
-LiDAR sensors emit laser pulses and measure the time it takes for the pulses to return after hitting an object. This generates a dense point cloud, which is a collection of 3D points representing the objects and terrain in the sensor’s field of view. Each point in the cloud has:
- 
-3D coordinates (x, y, z), representing its position in space.
- 
-Intensity value, representing the strength of the returned laser pulse.
-
-Point Cloud Preprocessing: This involves removing noise, ground points (e.g., roads), and redundant points to focus on potential objects.
-
-
-LiDAR device functions by emitting laser (light) pulses and measuring the duration it takes for these pulses to return after bouncing off of things. This time delay, known as the “time of flight”, is used to calculate precise distances, allowing for the creation of detailed three-dimensional maps of the environment.
-
-- LiDAR sensor readings are given in a set of 3D coordinates called a Point Cloud (PCL), which gives accurate depth information of each point’s surroundings and intensity levels. 
-- LiDAR sensors capture millions of data points per second, creating dense point clouds that represent the vehicle's surroundings in rich 3D scenes of environment.
-- Point clouds are rich in spatial information, they lack semantic context.
-- Point clouds represent the world in 3D. The LiDAR sensor gets the exact (X,Y,Z) position of every impact point.
-- LiDARs don’t work well in bad weather conditions. In cases of fog, the lasers can hit it and muddle the scene. Similar to rain drops or dirt.
-
-> RADARs measure the world by sending radio waves, and SONARs sending sound waves, LiDAR do it using light waves.
-
-
-# LiDAR
-
-The LiDAR sensor provides a 360-degree view by outputting a 3D point cloud of the surroundings. Assume the LiDAR outputs 100,000 points per frame, each point with 3D coordinates  relative to the vehicle's reference frame. The LiDAR also provides intensity information per point, which indicates how strong the reflection was.
-
-LiDAR generates a 3D point cloud of the environment.
-
-### LiDAR Data Formats
-
-| Data Format | Dataset | Details |
-|---|---|---|
-|bin|KITTI|?|
-|LAS |KITTI|?|
-XYZ & ASCII
-PLY
-
-## LiDAR Hardware
-
-- [OUSTER](https://ouster.com/) formerly Velodyne
-
-#### How LiDARs estimate Velocity?
-
-LiDAR estimate velocity as difference between two consecutive measurements. RADARs, on the other hand, can estimate the velocity using Doppler effect.
-
-#### How LiDARs point clouds can be stored efficiently?
-
-- Point cloud data is stored in formats like LAS, LAZ, or PLY, with metadata like color or intensity values.
-- Data is structured using techniques like octrees or k-d trees. These structures enable faster data access and manipulation.
-- Data compression is applied to reduce storage needs while maintaining accuracy.
-  
-- [Storing Point Clouds in PostgreSQL](https://oslandia.com/wp-content/uploads/2018/05/Lemoine-Oslandia-Pointcloud.pdf)
-
-#### LiDAR Point Cloud Visualization Tools
-
-## RADAR
-
-Radar stands for Radio Detection And Ranging.
-
-Radio detection and ranging (RADAR) is a key component in many military and consumer applications. It was first used by the military to detect objects. It calculates distance using radio wave signals.
-
-RADARs are highly effective because they use radio waves instead of lasers, so they work in any conditions. 
-
-Radars are noisy sensors, means that even if the camera sees no obstacle, the radar will detect some obstacles.
-
-<img src="https://i0.wp.com/neptune.ai/wp-content/uploads/2022/10/Self-driving-cars-lidar.png?ssl=1" height="50%" width="50%" />
-<img src="https://i0.wp.com/neptune.ai/wp-content/uploads/2022/10/Self-driving-cars-radar.png?ssl=1" height="50%" width="50%" />
-
-RADAR data should be cleaned in order to make good decisions and predictions. We need to separate weak signals from strong ones; this is called thresholding. We also use Fast Fourier Transforms (FFT) to filter and interpret the signal. 
-
-Generate the trajectories of objects and bounding box (bbox). The labels on top of a bbox (for example, [21] (0.24)) show the car ID (for example, 21), and the tracking confidence (for example, 0.24), respectively.
-
-Generating the trajectory of an object requires identifying the same object over time even when there are abrupt changes in visual appearance or motion dynamics. 
-
-
-### Physics of Radar
-
-Radar radio frequency (RF) generator emits electromagnetic waves and its receiver picks up, filters and processes the waves rebounded from the metal surfaces or other reflecting materials. The distance to the objects is measured by multiplying speed of the radio wave (speed of light~300,000 km/s) by half of the propagation time (transmission time + receiving time).
-
-#### What are applications of radar?
-Some applications of radar are in adaptive cruise control (ACC), predictive emergency braking (PEBS) and blind-spot monitoring (BSM) systems.
-
-non-line-of-sight (NLOS) detection — detecting objects and agents that are hidden (“occluded”).
-
- Tesla Autopilot has some ability to do this on the highway, for example when an occluded vehicle two or three cars ahead hits the brakes suddenly.
-
-#### What are different types of radar?
-
-There are different types of radars based on the range and beam angle. In the past the main types were short-range radars (SRR) in the ~24 GHz frequency band and long-range radars (LRR) in the ~76 GHz frequency band. But the applications are merging and some radars cover both ranges known as mid-range radars (MRR) in the 76 to 81 GHz. Eventually MRRs are expected to dominate the market supplemented by a LRR. Short-range radars typically have a range of 20–50 meters and a beam angle of up to 160 degrees. Long-range radars have ranges of 250 m and beam angles of up to 30 degrees. Mid-range radars have ranges of 100–150m and a beam angle in between.
-
-#### What is doppler effect?
-Radar can also measure the relative speed of all the detected objects using the doppler shift of the reflected electromagnetic wave as well as the transverse offset with an angle estimation.
-
- Doppler effect, where a moving target produces a shift in frequency in the EM wave being reflected from the object.
-
-Radar works by emitting a radio frequency signal and measuring the time it takes for the received signal to bounce back after it hits an object. By measuring the frequency difference which is created through time delay and doppler effect, radar can determine the distance and speed of the object.
-
-#### What are strengths of radar over other sensors?
-- They’re able to see through objects unlike lidar.
-- They work normally in bad weather (rain, snow, dust) unlike lidar.
-- They work well in fog and low light night time situations unlike cameras.
-- Some newer versions have resolutions and object recognition capabilities comparable to lidar.
-
-#### References
-- https://medium.com/@BabakShah/radar-in-self-driving-cars-5a31951164e2
-- https://www.linkedin.com/pulse/auto-annotating-labeling-lidar-data-self-driving-vehicles-bertini/
-- https://www.thinkautonomous.ai/blog/voxel-vs-points/
-- https://www.thinkautonomous.ai/blog/types-of-lidar/
-- https://www.thinkautonomous.ai/blog/how-lidar-detection-works/
-
-
-#### For autonomous driving, what are different camera sensors from MobileEye? What data can be streamed from these sensors? Which format it streams data? What are the specs of camera sensors? What is focal length?
+#### For autonomous driving, what are different camera sensors from MobileEye?
 
 Mobileye, a leader in advanced driver-assistance systems (ADAS) and autonomous driving technology, develops a variety of camera sensors that are crucial for enabling autonomous vehicles to perceive their surroundings. These camera sensors are part of Mobileye’s EyeQ system-on-chip (SoC) solutions, which process the visual data to perform tasks like object detection, lane detection, traffic sign recognition, and more. While the exact model numbers and specific cameras Mobileye integrates can vary by generation and automotive partner, here are the general aspects of Mobileye's camera systems:
- 
-1. Mobileye Camera Sensors for Autonomous Driving
  
 Mobileye typically deploys multi-camera setups that are forward, rearward, and side-facing, in both monocular and stereo configurations. These sensors are embedded into the vehicle for robust 360-degree perception.
  
 Types of Camera Setups:
+- **Monocular Camera**: Single cameras used for recognizing lanes, traffic signs, vehicles, pedestrians, and other road users.
+- **Stereo Camera**: Dual cameras used for depth perception (e.g., measuring the distance to an object using disparity between the two cameras’ views).
  
-Monocular Camera: Single cameras used for recognizing lanes, traffic signs, vehicles, pedestrians, and other road users.
- 
-Stereo Camera: Dual cameras used for depth perception (e.g., measuring the distance to an object using disparity between the two cameras’ views).
- 
- 
-2. Data Streamed from Mobileye Camera Sensors
+
+ What data streamed from camera sensors? What is the format of data? How data streamed fromat these sensors? 
  
 The data streamed from Mobileye’s camera sensors typically includes:
  
-RGB Image Data: Raw image frames captured by the cameras, representing the visual environment. These can be processed to detect objects, lanes, traffic signs, etc.
+- **RGB Image Data**: Raw image frames captured by the cameras, representing the visual environment. These can be processed to detect objects, lanes, traffic signs, etc.
+- **Depth Information**: If using stereo cameras, disparity maps or depth maps are calculated based on the difference between the two camera views.
+- **Semantic Information**: The camera data can be processed by the onboard Mobileye EyeQ chip to extract information like detected objects (cars, pedestrians, cyclists), lane markings, traffic signs, free space, and road geometry.
+- **Meta-data**: This can include the camera’s position, orientation, and timestamp data to synchronize with other sensor streams (LiDAR, radar).
  
-Depth Information: If using stereo cameras, disparity maps or depth maps are calculated based on the difference between the two camera views.
- 
-Semantic Information: The camera data can be processed by the onboard Mobileye EyeQ chip to extract information like detected objects (cars, pedestrians, cyclists), lane markings, traffic signs, free space, and road geometry.
- 
-Meta-data: This can include the camera’s position, orientation, and timestamp data to synchronize with other sensor streams (LiDAR, radar).
- 
- 
-3. Data Formats
- 
-Raw Image Data: Typically, the image data from Mobileye cameras can be streamed in YUV or RGB formats. Depending on the processing pipeline, data can also be converted into compressed formats like JPEG or video streams in formats like H.264 for transmission or storage.
- 
-Processed Data: After processing on Mobileye's EyeQ chip, data like object detection bounding boxes, lane positions, and classification results (e.g., car, pedestrian) are output as structured data (bounding boxes, labels, etc.) in real-time.
- 
-CAN Bus / Ethernet: Processed sensor information can be sent via CAN (Controller Area Network) or Ethernet to the vehicle’s main system.
+**Data Formats**
+
+- **Raw Image Data**: Typically, the image data from Mobileye cameras can be streamed in YUV or RGB formats. Depending on the processing pipeline, data can also be converted into compressed formats like JPEG or video streams in formats like H.264 for transmission or storage.
+- **Processed Data**: After processing on Mobileye's EyeQ chip, data like object detection bounding boxes, lane positions, and classification results (e.g., car, pedestrian) are output as structured data (bounding boxes, labels, etc.) in real-time.
+ - **CAN Bus / Ethernet**: Processed sensor information can be sent via CAN (Controller Area Network) or Ethernet to the vehicle’s main system.
  
  
-4. Specifications of Mobileye Camera Sensors
+What are the specs of camera sensors? What is focal length?
+
  
 The specific camera specs of Mobileye sensors can vary, especially with the EyeQ generation and the vehicle manufacturer it is integrated into. However, general specifications include:
  
@@ -432,6 +290,140 @@ Both YUV and RGB data can be compressed into JPEG using color space conversion, 
 Mobileye camera sensors send processed data (like object detection results) over CAN bus at 30-60 Hz, and for full video streams, they may use H.264 compression over Ethernet.
  
 H.264 streams can vary in bitrate depending on resolution and compression settings but generally allow for efficient video transmission.
+
+
+# LiDAR - Light Detection and Ranging
+
+LiDAR stands for Light Detection And Ranging, it’s a method to measure the distance of objects by firing a laser beam and then measuring how long it takes for it to be reflected by something.
+
+LiDAR perceives spatial information. 
+
+ LiDAR sensor uses lasers or light to measure the distance of the nearby object. It will work at night and in dark environments, but it can still fail when there’s noise from rain or fog. That’s why we also need a RADAR sensor.
+
+ 
+LiDAR generates a 3D point cloud of the environment.
+ 
+Object Detection: A LiDAR-based object detection algorithm (e.g., clustering, DBSCAN, or deep learning methods) processes the point cloud to detect objects like vehicles, pedestrians, or obstacles. The result is a set of 3D bounding boxes around detected objects, along with their estimated positions (x, y, z coordinates).
+ 
+Strengths: LiDAR provides accurate depth and 3D localization, allowing precise measurements of the distance and size of objects.
+ 
+ - Detected Object 1: 3D bounding box with coordinates (x1, y1, z1), size (w1, h1, l1), object type: unknown.
+ - Detected Object 2: 3D bounding box with coordinates (x2, y2, z2), size (w2, h2, l2), object type: unknown.
+ 
+
+
+
+1. LiDAR Point Cloud Basics
+ 
+LiDAR sensors emit laser pulses and measure the time it takes for the pulses to return after hitting an object. This generates a dense point cloud, which is a collection of 3D points representing the objects and terrain in the sensor’s field of view. Each point in the cloud has:
+ 
+3D coordinates (x, y, z), representing its position in space.
+ 
+Intensity value, representing the strength of the returned laser pulse.
+
+Point Cloud Preprocessing: This involves removing noise, ground points (e.g., roads), and redundant points to focus on potential objects.
+
+
+LiDAR device functions by emitting laser (light) pulses and measuring the duration it takes for these pulses to return after bouncing off of things. This time delay, known as the “time of flight”, is used to calculate precise distances, allowing for the creation of detailed three-dimensional maps of the environment.
+
+- LiDAR sensor readings are given in a set of 3D coordinates called a Point Cloud (PCL), which gives accurate depth information of each point’s surroundings and intensity levels. 
+- LiDAR sensors capture millions of data points per second, creating dense point clouds that represent the vehicle's surroundings in rich 3D scenes of environment.
+- Point clouds are rich in spatial information, they lack semantic context.
+- Point clouds represent the world in 3D. The LiDAR sensor gets the exact (X,Y,Z) position of every impact point.
+- LiDARs don’t work well in bad weather conditions. In cases of fog, the lasers can hit it and muddle the scene. Similar to rain drops or dirt.
+
+> RADARs measure the world by sending radio waves, and SONARs sending sound waves, LiDAR do it using light waves.
+
+
+# LiDAR
+
+The LiDAR sensor provides a 360-degree view by outputting a 3D point cloud of the surroundings. Assume the LiDAR outputs 100,000 points per frame, each point with 3D coordinates  relative to the vehicle's reference frame. The LiDAR also provides intensity information per point, which indicates how strong the reflection was.
+
+LiDAR generates a 3D point cloud of the environment.
+
+### LiDAR Data Formats
+
+| Data Format | Dataset | Details |
+|---|---|---|
+|bin|KITTI|?|
+|LAS |KITTI|?|
+XYZ & ASCII
+PLY
+
+## LiDAR Hardware
+
+- [OUSTER](https://ouster.com/) formerly Velodyne
+
+#### How LiDARs estimate Velocity?
+
+LiDAR estimate velocity as difference between two consecutive measurements. RADARs, on the other hand, can estimate the velocity using Doppler effect.
+
+#### How LiDARs point clouds can be stored efficiently?
+
+- Point cloud data is stored in formats like LAS, LAZ, or PLY, with metadata like color or intensity values.
+- Data is structured using techniques like octrees or k-d trees. These structures enable faster data access and manipulation.
+- Data compression is applied to reduce storage needs while maintaining accuracy.
+  
+- [Storing Point Clouds in PostgreSQL](https://oslandia.com/wp-content/uploads/2018/05/Lemoine-Oslandia-Pointcloud.pdf)
+
+#### LiDAR Point Cloud Visualization Tools
+
+## RADAR
+
+Radar stands for Radio Detection And Ranging.
+
+Radio detection and ranging (RADAR) is a key component in many military and consumer applications. It was first used by the military to detect objects. It calculates distance using radio wave signals.
+
+RADARs are highly effective because they use radio waves instead of lasers, so they work in any conditions. 
+
+Radars are noisy sensors, means that even if the camera sees no obstacle, the radar will detect some obstacles.
+
+<img src="https://i0.wp.com/neptune.ai/wp-content/uploads/2022/10/Self-driving-cars-lidar.png?ssl=1" height="50%" width="50%" />
+<img src="https://i0.wp.com/neptune.ai/wp-content/uploads/2022/10/Self-driving-cars-radar.png?ssl=1" height="50%" width="50%" />
+
+RADAR data should be cleaned in order to make good decisions and predictions. We need to separate weak signals from strong ones; this is called thresholding. We also use Fast Fourier Transforms (FFT) to filter and interpret the signal. 
+
+Generate the trajectories of objects and bounding box (bbox). The labels on top of a bbox (for example, [21] (0.24)) show the car ID (for example, 21), and the tracking confidence (for example, 0.24), respectively.
+
+Generating the trajectory of an object requires identifying the same object over time even when there are abrupt changes in visual appearance or motion dynamics. 
+
+
+### Physics of Radar
+
+Radar radio frequency (RF) generator emits electromagnetic waves and its receiver picks up, filters and processes the waves rebounded from the metal surfaces or other reflecting materials. The distance to the objects is measured by multiplying speed of the radio wave (speed of light~300,000 km/s) by half of the propagation time (transmission time + receiving time).
+
+#### What are applications of radar?
+Some applications of radar are in adaptive cruise control (ACC), predictive emergency braking (PEBS) and blind-spot monitoring (BSM) systems.
+
+non-line-of-sight (NLOS) detection — detecting objects and agents that are hidden (“occluded”).
+
+ Tesla Autopilot has some ability to do this on the highway, for example when an occluded vehicle two or three cars ahead hits the brakes suddenly.
+
+#### What are different types of radar?
+
+There are different types of radars based on the range and beam angle. In the past the main types were short-range radars (SRR) in the ~24 GHz frequency band and long-range radars (LRR) in the ~76 GHz frequency band. But the applications are merging and some radars cover both ranges known as mid-range radars (MRR) in the 76 to 81 GHz. Eventually MRRs are expected to dominate the market supplemented by a LRR. Short-range radars typically have a range of 20–50 meters and a beam angle of up to 160 degrees. Long-range radars have ranges of 250 m and beam angles of up to 30 degrees. Mid-range radars have ranges of 100–150m and a beam angle in between.
+
+#### What is doppler effect?
+Radar can also measure the relative speed of all the detected objects using the doppler shift of the reflected electromagnetic wave as well as the transverse offset with an angle estimation.
+
+ Doppler effect, where a moving target produces a shift in frequency in the EM wave being reflected from the object.
+
+Radar works by emitting a radio frequency signal and measuring the time it takes for the received signal to bounce back after it hits an object. By measuring the frequency difference which is created through time delay and doppler effect, radar can determine the distance and speed of the object.
+
+#### What are strengths of radar over other sensors?
+- They’re able to see through objects unlike lidar.
+- They work normally in bad weather (rain, snow, dust) unlike lidar.
+- They work well in fog and low light night time situations unlike cameras.
+- Some newer versions have resolutions and object recognition capabilities comparable to lidar.
+
+#### References
+- https://medium.com/@BabakShah/radar-in-self-driving-cars-5a31951164e2
+- https://www.linkedin.com/pulse/auto-annotating-labeling-lidar-data-self-driving-vehicles-bertini/
+- https://www.thinkautonomous.ai/blog/voxel-vs-points/
+- https://www.thinkautonomous.ai/blog/types-of-lidar/
+- https://www.thinkautonomous.ai/blog/how-lidar-detection-works/
+
+
 
 ### Voxels Vs. Point Clouds
 
